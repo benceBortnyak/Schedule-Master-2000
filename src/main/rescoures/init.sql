@@ -58,4 +58,28 @@ create table slots_tasks (
     task_id INT references tasks(task_id)
 );
 
+
+CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS $day_collum$
+    DECLARE
+        ID int;
+        columnTitle varchar(60);
+    BEGIN
+    SELECT columns.column_id INTO ID FROM columns WHERE max(column_id);
+    SELECT columns.title INTO columnTitle FROM columns WHERE max(column_id);
+    insert into columns(schedule_id, title) values (ID,columnTitle);
+    for i in 1..7
+        loop
+        FOR i in 1..24
+        loop
+            INSERT INTO slots(column_id, hour) values (ID,i);
+        end loop;
+    END LOOP;
+    RETURN null;
+    END
+    $day_collum$ LANGUAGE plpgsql;
+
+CREATE TRIGGER day_trigger
+    AFTER INSERT ON schedules
+    FOR EACH ROW EXECUTE PROCEDURE day_column();
+
 insert into users (email, password, user_type) values ('admin@admin.com', 'Admin1234', 'ADMIN');
