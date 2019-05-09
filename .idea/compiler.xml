@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="intellij-maven-ajax-quickstart" />
+        <module name="Schedule-Master-2000" />
       </profile>
     </annotationProcessing>
   </component>

@@ -33,6 +33,7 @@ CREATE  TABLE schedules (
     schedule_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
     title VARCHAR(60)
+    days int;
 );
 
 CREATE TABLE columns (
@@ -59,7 +60,7 @@ create table slots_tasks (
 );
 
 
-CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS $day_collum$
+CREATE OR REPLACE FUNCTION day_column(times int) RETURNS trigger AS $day_collum$
 DECLARE
     s_id int;
     columnTitle varchar(60);
@@ -69,7 +70,7 @@ BEGIN
     select max(schedule_id) into s_id from schedules;
     SELECT title INTO columnTitle FROM schedules where schedule_id = s_id;
 
-    for i in 1..7
+    for i in 1..times
     loop
         insert into columns(schedule_id, title) values (s_id,columnTitle);
         select max(column_id) into c_id from columns;
@@ -84,15 +85,14 @@ $day_collum$ LANGUAGE plpgsql;
 
 CREATE TRIGGER day_trigger
     AFTER INSERT ON schedules
-    FOR EACH ROW EXECUTE PROCEDURE day_column();
+    FOR EACH ROW EXECUTE PROCEDURE day_column(select days from schedules having schedule_id = max(schedule_id);
 
 insert into users (email, password, user_type) values ('admin@admin.com', 'Admin1234', 'ADMIN');
-
-insert into schedules(user_id, title) values (1, 'asd');
-insert into schedules(user_id, title) values (1, 'asdasd');
-
+insert into schedules(user_id, title, days) values (1, 'asd',6);
+insert into schedules(user_id, title, days) values (1, 'asdasd',4);
 
 select * from slots;
 
 select * from columns;
+
 
