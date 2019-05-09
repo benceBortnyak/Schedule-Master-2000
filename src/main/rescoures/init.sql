@@ -19,7 +19,8 @@ DROP TABLE IF EXISTS slots cascade;
 DROP TABLE IF EXISTS slots_tasks cascade;
 drop type if exists role;
 
-CREATE TYPE role AS ENUM ('GUEST','USER','ADMIN');
+CREATE TYPE role AS ENUM ('USER','ADMIN');
+create type task_type as enum ('PUBLIC','PRIVATE');
 
 
 CREATE TABLE users (
@@ -51,7 +52,9 @@ CREATE TABLE slots (
 CREATE TABLE tasks (
     task_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
-    title VARCHAR(60)
+    title VARCHAR(60),
+    type task_type,
+    content text
 );
 
 create table slots_tasks (
@@ -98,14 +101,15 @@ $count_$ LANGUAGE plpgsql;
 
 CREATE TRIGGER day_trigger
     AFTER INSERT ON schedules
-    FOR EACH ROW EXECUTE PROCEDURE day_column(count_());
+    FOR EACH ROW EXECUTE PROCEDURE day_column();
 
 insert into users (email, password, user_type) values ('admin@admin.com', 'Admin1234', 'ADMIN');
-insert into schedules(user_id, title, days_) values (1, 'asd',6);
-insert into schedules(user_id, title, days_) values (1, 'asdasd',4);
+insert into schedules(user_id, title, days_) values (1, 'asd', 3);
 
 select * from slots;
 
 select * from columns;
+
+select * from schedules;
 
 
