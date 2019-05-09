@@ -60,26 +60,39 @@ create table slots_tasks (
 
 
 CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS $day_collum$
-    DECLARE
-        ID int;
-        columnTitle varchar(60);
-    BEGIN
-    SELECT columns.column_id INTO ID FROM columns WHERE max(column_id);
-    SELECT columns.title INTO columnTitle FROM columns WHERE max(column_id);
-    insert into columns(schedule_id, title) values (ID,columnTitle);
+DECLARE
+    s_id int;
+    columnTitle varchar(60);
+    c_id int;
+BEGIN
+    SELECT MAX(columns.column_id) INTO c_id FROM columns;
+    select max(schedule_id) into s_id from schedules;
+    SELECT title INTO columnTitle FROM schedules where schedule_id = s_id;
+
     for i in 1..7
-        loop
+    loop
+        insert into columns(schedule_id, title) values (s_id,columnTitle);
+        select max(column_id) into c_id from columns;
         FOR i in 1..24
         loop
-            INSERT INTO slots(column_id, hour) values (ID,i);
+            INSERT INTO slots(column_id, hour) values (c_id,i);
         end loop;
     END LOOP;
     RETURN null;
-    END
-    $day_collum$ LANGUAGE plpgsql;
+END
+$day_collum$ LANGUAGE plpgsql;
 
 CREATE TRIGGER day_trigger
     AFTER INSERT ON schedules
     FOR EACH ROW EXECUTE PROCEDURE day_column();
 
 insert into users (email, password, user_type) values ('admin@admin.com', 'Admin1234', 'ADMIN');
+
+insert into schedules(user_id, title) values (1, 'asd');
+insert into schedules(user_id, title) values (1, 'asdasd');
+
+
+select * from slots;
+
+select * from columns;
+
