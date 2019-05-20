@@ -1,4 +1,4 @@
-package com.codecool.web.model;
+package com.codecool.web.model.enums;
 
 public enum UserType {
     USER,

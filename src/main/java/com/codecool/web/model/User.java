@@ -1,5 +1,7 @@
 package com.codecool.web.model;
 
+import com.codecool.web.model.enums.UserType;
+
 public class User {
 
     private int user_id;

@@ -17,9 +17,11 @@ DROP TABLE IF EXISTS schedules cascade;
 DROP TABLE IF EXISTS tasks cascade;
 DROP TABLE IF EXISTS slots cascade;
 DROP TABLE IF EXISTS slots_tasks cascade;
-drop type if exists role;
 
+drop type if exists role;
 CREATE TYPE role AS ENUM ('USER','ADMIN');
+
+DROP TYPE IF EXISTS task_type;
 create type task_type as enum ('PUBLIC','PRIVATE');
 
 
@@ -34,7 +36,7 @@ CREATE  TABLE schedules (
     schedule_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
     title VARCHAR(60),
-    days_ int
+    length int
 );
 
 CREATE TABLE columns (
@@ -62,54 +64,36 @@ create table slots_tasks (
     task_id INT references tasks(task_id)
 );
 
-
-CREATE OR REPLACE FUNCTION day_column(times int) RETURNS trigger AS $day_collum$
+CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS $day_collum$
 DECLARE
-    s_id int;
+    sched_id int;
     columnTitle varchar(60);
-    c_id int;
-    repeat_day int;
+    col_id int;
+    times int;
 BEGIN
-    SELECT MAX(columns.column_id) INTO c_id FROM columns;
-    select max(schedule_id) into s_id from schedules;
-    SELECT title INTO columnTitle FROM schedules where schedule_id = s_id;
+    SELECT column_id into col_id from columns where schedule_id = new.schedule_id;
+    select schedule_id into sched_id from schedules where schedule_id = new.schedule_id;
+    SELECT title into columnTitle FROM schedules where schedule_id = new.schedule_id;
+    select length INTO times FROM schedules where schedule_id = sched_id;
     for i in 1 .. times
     loop
-        insert into columns(schedule_id, title) values (s_id,columnTitle);
-        select max(column_id) into c_id from columns;
+        insert into columns(schedule_id, title) values (sched_id,columnTitle);
         FOR i in 1..24
         loop
-            INSERT INTO slots(column_id, hour) values (c_id,i);
+            INSERT INTO slots(column_id, hour) values (col_id,i);
         end loop;
     END LOOP;
     RETURN null;
 END
 $day_collum$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION count_() RETURNS trigger AS $count_$
-DECLARE
-    columns_ int;
-    s_id_max int;
-BEGIN
-    select max(schedule_id) into s_id_max from schedules;
-    select days_ INTO columns_ FROM schedules where schedule_id = s_id_max;
-    RETURN columns_;
-END
-$count_$ LANGUAGE plpgsql;
-
-
-
 CREATE TRIGGER day_trigger
     AFTER INSERT ON schedules
     FOR EACH ROW EXECUTE PROCEDURE day_column();
 
 insert into users (email, password, user_type) values ('admin@admin.com', 'Admin1234', 'ADMIN');
-insert into schedules(user_id, title, days_) values (1, 'asd', 3);
-
-select * from slots;
-
-select * from columns;
-
+insert into schedules(user_id, title, length) values (1, 'asd',6);
+insert into schedules(user_id, title, length) values (1, 'asdasd',4);
 select * from schedules;
-
-
+select * from users;
+select * from columns;
