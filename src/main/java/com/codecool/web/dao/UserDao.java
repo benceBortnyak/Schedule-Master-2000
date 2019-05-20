@@ -9,7 +9,7 @@ public interface UserDao {
 
     User findByEmail(String email) throws SQLException;
 
-    void add(User user) throws SQLException;
+    void add(String email, String password) throws SQLException;
 
     List<User> findAll() throws SQLException;
 }
