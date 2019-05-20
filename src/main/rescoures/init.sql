@@ -32,11 +32,12 @@ CREATE TABLE users (
     user_type role
 );
 
-CREATE  TABLE schedules (
+CREATE TABLE schedules (
     schedule_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
     title VARCHAR(60),
-    length int
+    length int,
+    CHECK (1 <= length >= 7)
 );
 
 CREATE TABLE columns (
