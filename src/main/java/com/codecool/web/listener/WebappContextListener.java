@@ -10,9 +10,11 @@ import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 import java.sql.Connection;
 
+@WebListener
 public final class WebappContextListener implements ServletContextListener {
 
     @Override

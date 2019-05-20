@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="com.codecool.web.servlet.StudentDataServlet" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,7 +35,7 @@
     </div>
 </section>
 
-<section id="login" class="login">
+<section id="login" class="login" style="display: none">
     <div class="login">
         <form action="login" method="post">
             <h4><p><label for="email"><b>Email</b></label>
@@ -62,13 +61,13 @@
     </div>
 </section>
 
-<section id="register" class="login">
-    <form action="register" method="post">
+<section id="signUp" class="login">
+    <form action="signup" method="post">
         <div>
             <p>
-            <h1>Register</h1></p>
-            <div id="div2"><input type="text" placeholder="Enter Lastname" name="lastname" required></div>
-            <div id="div1"><input type="text" placeholder="Enter Forename" name="forename" required></div>
+            <h1>SignUp</h1></p>
+            <div id="div2"><input type="text" placeholder="Enter last name" name="lastName" required></div>
+            <div id="div1"><input type="text" placeholder="Enter forename" name="forename" required></div>
             <p><input type="password" placeholder="Enter Password" name="psw"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
@@ -77,9 +76,9 @@
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
             </p>
-            <p><input type="text" placeholder="Enter your Email" name="email" required></p>
+            <p><input type="text" placeholder="Enter your email address" name="email" required></p>
             <p>
-                <button type="submit">Register</button>
+                <button type="submit">SignUp</button>
             </p>
         </div>
     </form>
@@ -92,39 +91,6 @@
     </form>
 </section>
 
-<section class="schedules">
-    <div class="datas">
-        <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction()">Name
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content" id="myDropdown">
-                <a>Name</a>
-                <a href="profile">Profile</a>
-                <a href="logout">Logout</a>
-            </div>
-        </div>
-    </div>
-    <div class="topnav">
-        <ul>
-            <a>Home</a>
-            <a>Shedules</a>
-        </ul>
-    </div>
-    <div class="sidenav">
-        <a>Login first</a>
-    </div>
-    <div class="content">
-        <table>
-            <th></th>
-            <tbody>
-            <tr>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
 <script>
     window.onclick = function (e) {
         if (!e.target.matches('.dropbtn')) {

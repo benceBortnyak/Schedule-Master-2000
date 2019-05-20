@@ -27,6 +27,8 @@ create type task_type as enum ('PUBLIC','PRIVATE');
 
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
+    forename VARCHAR(30),
+    lastName VARCHAR(30),
     email VARCHAR(30),
     password VARCHAR(60),
     user_type role
@@ -36,8 +38,7 @@ CREATE TABLE schedules (
     schedule_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
     title VARCHAR(60),
-    length int,
-    CHECK (1 <= length >= 7)
+    length int
 );
 
 CREATE TABLE columns (
@@ -65,7 +66,7 @@ create table slots_tasks (
     task_id INT references tasks(task_id)
 );
 
-CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS $day_collum$
+CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS '
 DECLARE
     sched_id int;
     columnTitle varchar(60);
@@ -86,7 +87,7 @@ BEGIN
     END LOOP;
     RETURN null;
 END
-$day_collum$ LANGUAGE plpgsql;
+' LANGUAGE plpgsql;
 
 CREATE TRIGGER day_trigger
     AFTER INSERT ON schedules

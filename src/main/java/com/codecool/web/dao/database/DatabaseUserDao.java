@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class DatabaseUserDao extends AbstractDao implements UserDao {
-    DatabaseUserDao(Connection connection) {
+    public DatabaseUserDao(Connection connection) {
         super(connection);
     }
 
@@ -34,14 +34,16 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
     }
 
     @Override
-    public void add(String email, String password) throws SQLException {
+    public void add(String forename, String lastName, String email, String password) throws SQLException {
         if (email == null || "".equals(email) || password == null || "".equals(password)) {
             throw new IllegalArgumentException("Password or email cannot be null or empty");
         }
-        String sql = "INSERT INTO users (email, password, user_type) VALUES (?, ?, 'USER')";
+        String sql = "INSERT INTO users (forename, lastName, email, password, user_type) VALUES (?, ?, ?, ?, 'USER')";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, email);
-            statement.setString(2, password);
+            statement.setString(1, forename);
+            statement.setString(2, lastName);
+            statement.setString(3, email);
+            statement.setString(4, password);
             executeInsert(statement);
         }
     }

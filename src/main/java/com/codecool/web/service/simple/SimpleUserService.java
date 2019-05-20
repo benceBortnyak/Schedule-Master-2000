@@ -30,9 +30,9 @@ public class SimpleUserService implements UserService {
     }
 
     @Override
-    public void addUser(String email, String password) throws SQLException, ServiceException {
+    public void addUser(String forename, String lastName, String email, String password) throws SQLException, ServiceException {
         try {
-            userDao.add(email, password);
+            userDao.add(forename, lastName, email, password);
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
