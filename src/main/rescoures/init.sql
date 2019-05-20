@@ -37,7 +37,7 @@ CREATE TABLE schedules (
     user_id INT REFERENCES users(user_id),
     title VARCHAR(60),
     length int,
-    CHECK (1 <= length >= 7)
+    CHECK (0 < length)
 );
 
 CREATE TABLE columns (
@@ -93,8 +93,10 @@ CREATE TRIGGER day_trigger
     FOR EACH ROW EXECUTE PROCEDURE day_column();
 
 insert into users (email, password, user_type) values ('admin@admin.com', 'Admin1234', 'ADMIN');
+insert into users(email, password, user_type) VALUES ('user1@user1.com','User1','USER');
 insert into schedules(user_id, title, length) values (1, 'asd',6);
 insert into schedules(user_id, title, length) values (1, 'asdasd',4);
+insert into tasks(user_id, title, type, content) values(1,'Gardening','PUBLIC','I love gardening');
 select * from schedules;
 select * from users;
 select * from columns;
