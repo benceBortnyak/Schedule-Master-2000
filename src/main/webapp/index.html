@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.codecool.web.servlet.StudentDataServlet" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<section class="content">
+<section class="home">
     <div class="datas">
         <div class="dropdown">
             <button class="dropbtn" onclick="myFunction()">Name
@@ -30,7 +32,7 @@
         <a>Login first</a>
     </div>
     <div class="content">
-        <p>Click here to Login with email</p>
+        <p></p>
     </div>
 </section>
 
@@ -62,7 +64,7 @@
 
 <section id="register" class="login">
     <form action="register" method="post">
-        <div id="div">
+        <div>
             <p>
             <h1>Register</h1></p>
             <div id="div2"><input type="text" placeholder="Enter Lastname" name="lastname" required></div>
@@ -82,7 +84,7 @@
         </div>
     </form>
     <form action="login" method="get">
-        <div id="div">
+        <div>
             <p>
                 <button type="submit">Back to login</button>
             </p>
@@ -90,6 +92,39 @@
     </form>
 </section>
 
+<section class="schedules">
+    <div class="datas">
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">Name
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a>Name</a>
+                <a href="profile">Profile</a>
+                <a href="logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="topnav">
+        <ul>
+            <a>Home</a>
+            <a>Shedules</a>
+        </ul>
+    </div>
+    <div class="sidenav">
+        <a>Login first</a>
+    </div>
+    <div class="content">
+        <table>
+            <th></th>
+            <tbody>
+            <tr>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 <script>
     window.onclick = function (e) {
         if (!e.target.matches('.dropbtn')) {

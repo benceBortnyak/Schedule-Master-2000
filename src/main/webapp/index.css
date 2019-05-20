@@ -10,7 +10,7 @@ div.datas{
     float: left;
     width: 10%;
     overflow: hidden;
-    border: black 5px groove;
+    border: black 5px solid;
     position: fixed;
 }
 div.datas a {
@@ -25,9 +25,7 @@ div.topnav{
     float: right;
     width: 87.5%;
     overflow: hidden;
-    border-color: black;
-    border-width: 5px;
-    border-style: groove;
+    border: black 5px solid;
     position: fixed;
     left: 11.2%;
 }
@@ -54,12 +52,10 @@ div.sidenav{
     position: fixed;
     top: 13.5%;
     overflow-x: hidden;
-    border-color: black;
-    border-width: 5px;
-    border-style: groove;
+    border: black 5px solid;
 }
 .topnav a:hover {
-    background-color: #00d8ff;
+    background-color: #fdb77b;
     color: white;
 }
 div.sidenav a{
@@ -72,9 +68,7 @@ div.content{
     width: 67.5%;
     height: 84%;
     float: right;
-    border-color: black;
-    border-width: 5px;
-    border-style: groove;
+    border: black 5px solid;
     position: fixed;
     left: 31%;
     top: 13.5%;
@@ -90,8 +84,6 @@ input[type=text], input[type=password] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
-
-/* Set a style for all buttons */
 button {
     background-color: #00d8ff;
     color: white;
@@ -106,6 +98,13 @@ section.login{
     height: 50%;
     display: none;
 }
+section.home{
+    display: none;
+}
+section{
+    background: rgba(255, 255, 255, 0.6);
+    box-sizing: inherit;
+}
 #div1{
     width: 50%;
     float: left;
@@ -119,22 +118,21 @@ section.login{
     overflow: hidden;
     display: inline;
 }
-
 .dropdown .dropbtn {
     cursor: pointer;
     font-size: 16px;
     border: none;
-    color: white;
-    padding: 16px 60px;
+    color: black;
+    padding: 24px 45px;
+    margin: 0;
     width: 100%;
     background-color: inherit;
     font-family: inherit;
 }
-
 .dropdown:hover .dropbtn, .dropbtn:focus {
-    background-color: #00d8ff;
+    background-color: #fdb77b;
+    color: white;
 }
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -144,7 +142,6 @@ section.login{
     /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
      z-index: 1;*/
 }
-
 .dropdown-content a {
     float: none;
     color: black;
@@ -154,7 +151,10 @@ section.login{
     display: block;
     text-align: left;
 }
-
 .dropdown-content a:hover {
     background-color: #ddd;
+}
+table, th, td {
+    text-align: center;
+    border: 1px solid white;
 }
