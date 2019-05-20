@@ -8,6 +8,7 @@ public class User extends AbstractModel{
     private String password;
     private UserType userType;
 
+
     public User(int id, String email, String password, UserType userType) {
         super(id);
         this.email = email;
@@ -16,11 +17,14 @@ public class User extends AbstractModel{
     }
 
 
-
     public User(int id, String email, UserType userType) {
         super(id);
         this.email = email;
         this.userType = userType;
         this.password = null;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
