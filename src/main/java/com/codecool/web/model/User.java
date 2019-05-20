@@ -17,12 +17,14 @@ public class User extends AbstractModel{
     }
 
 
-
-
     public User(int id, String email, UserType userType) {
         super(id);
         this.email = email;
         this.userType = userType;
         this.password = null;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
