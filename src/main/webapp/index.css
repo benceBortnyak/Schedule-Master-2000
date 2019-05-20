@@ -1,0 +1,160 @@
+body {
+    background-image: url("https://image.freepik.com/free-photo/abstract-polygonal-space-low-poly-dark-background-3d-rendering_7247-223.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Lato", sans-serif;
+}
+div.datas{
+    float: left;
+    width: 10%;
+    overflow: hidden;
+    border: black 5px solid;
+    position: fixed;
+}
+div.datas a {
+    float: left;
+    padding: 3% 20%;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+div.topnav{
+    float: right;
+    width: 87.5%;
+    overflow: hidden;
+    border: black 5px solid;
+    position: fixed;
+    left: 11.2%;
+}
+div.topnav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    display: inline;
+
+}
+div.topnav a{
+    float: left;
+    padding: 2% 10%;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+div.sidenav{
+    width: 30%;
+    height: 84%;
+    position: fixed;
+    top: 13.5%;
+    overflow-x: hidden;
+    border: black 5px solid;
+}
+.topnav a:hover {
+    background-color: #fdb77b;
+    color: white;
+}
+div.sidenav a{
+    text-decoration: none;
+    padding: 3%;
+    font-size: 16px;
+    display: block;
+}
+div.content{
+    width: 67.5%;
+    height: 84%;
+    float: right;
+    border: black 5px solid;
+    position: fixed;
+    left: 31%;
+    top: 13.5%;
+}
+div.content p{
+    padding: 0 20%;
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+button {
+    background-color: #00d8ff;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+section.login{
+    padding: 0px 30%;
+    height: 50%;
+    display: none;
+}
+section.home{
+    display: none;
+}
+section{
+    background: rgba(255, 255, 255, 0.6);
+    box-sizing: inherit;
+}
+#div1{
+    width: 50%;
+    float: left;
+}
+#div2{
+    width: 50%;
+    float: right;
+}
+.dropdown {
+    float: left;
+    overflow: hidden;
+    display: inline;
+}
+.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    color: black;
+    padding: 24px 45px;
+    margin: 0;
+    width: 100%;
+    background-color: inherit;
+    font-family: inherit;
+}
+.dropdown:hover .dropbtn, .dropbtn:focus {
+    background-color: #fdb77b;
+    color: white;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 20%;
+
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+     z-index: 1;*/
+}
+.dropdown-content a {
+    float: none;
+    color: black;
+    /*padding: 12px 16px;*/
+    width: 90%;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+table, th, td {
+    text-align: center;
+    border: 1px solid white;
+}
