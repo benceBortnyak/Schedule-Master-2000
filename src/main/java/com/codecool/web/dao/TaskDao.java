@@ -10,7 +10,7 @@ public interface TaskDao {
     
     List<Task> findAllByScheduleId(int taskId) throws SQLException;
     
-    Task findById() throws SQLException;
+    Task findById(int taskId) throws SQLException;
     
-    Task add(int userId,String title) throws SQLException;
+    Task add(int userId, String title, String type, String content) throws SQLException;
 }
