@@ -1,6 +1,8 @@
 package com.codecool.web.dao.database;
 
+import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.dao.TaskDao;
+import com.codecool.web.model.Schedule;
 import com.codecool.web.model.Task;
 
 import java.sql.*;
@@ -23,7 +25,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
                 "JOIN slots AS s ON s.column_id = c.column_id " +
                 "JOIN slots_tasks AS st ON st.slot_id = s.slot_id " +
                 "JOIN tasks AS t ON t.task_id = st.task_id " +
-                "WHERE sche.task_id = ?";
+                "WHERE sche.schedule_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
             preparedStatement.setInt(1, scheduleId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -70,6 +72,24 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             connection.rollback();
             throw ex;
         } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
+    
+    @Override
+    public void addToSlot(int slotId,int taskId) throws SQLException{
+        
+        boolean autoCommit= connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sqlString = "INSERT INTO slots_tasks(slot_id,task_id) VALUES (?, ?)";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)){
+            preparedStatement.setInt(1,slotId);
+            preparedStatement.setInt(2,taskId);
+            preparedStatement.executeUpdate();
+        }catch (SQLException ex){
+            connection.rollback();
+            throw ex;
+        }finally {
             connection.setAutoCommit(autoCommit);
         }
     }
