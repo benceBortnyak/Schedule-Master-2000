@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="com.codecool.web.servlet.StudentDataServlet" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,29 +10,39 @@
 </head>
 <body>
 <section class="home">
-    <div class="datas">
-        <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction()">Name
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content" id="myDropdown">
-                <a>Name</a>
-                <a href="profile">Profile</a>
-                <a href="logout">Logout</a>
-            </div>
-        </div>
-    </div>
     <div class="topnav">
         <ul>
+            <div class="dropdown">
+                <input type="image" class="dropbtn" onclick="myFunction()" src="ninja.png">
+                    <i class="fa fa-caret-down"></i>
+                </input>
+                <div class="dropdown-content" id="myDropdown">
+                    <a>Name</a>
+                    <a href="profile">Profile</a>
+                    <a href="logout">Logout</a>
+                </div>
+            </div>
             <a>Home</a>
-            <a>Shedules</a>
+            <a style="float: right">Shedules</a>
         </ul>
     </div>
-    <div class="sidenav">
-        <a>Login first</a>
-    </div>
-    <div class="content">
-        <p></p>
+    <div>
+        <div class="sidenav">
+            <a>Login first</a>
+        </div>
+        <div id="content" class="content">
+            <p></p>
+        </div>
+        <div id="schedules" class="content">
+            <table>
+                <th>Formatted Date (7): <fmt:formatDate pattern = "E" value = "${now}" /></th>
+                <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>
 
@@ -92,40 +102,11 @@
     </form>
 </section>
 
-<section class="schedules">
-    <div class="datas">
-        <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction()">Name
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content" id="myDropdown">
-                <a>Name</a>
-                <a href="profile">Profile</a>
-                <a href="logout">Logout</a>
-            </div>
-        </div>
-    </div>
-    <div class="topnav">
-        <ul>
-            <a>Home</a>
-            <a>Shedules</a>
-        </ul>
-    </div>
-    <div class="sidenav">
-        <a>Login first</a>
-    </div>
-    <div class="content">
-        <table>
-            <th></th>
-            <tbody>
-            <tr>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
 <script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
     window.onclick = function (e) {
         if (!e.target.matches('.dropbtn')) {
             var myDropdown = document.getElementById("myDropdown");
