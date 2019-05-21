@@ -14,7 +14,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     }
     
     @Override
-    public List<Task> findAllByScheduleId(int taskId) throws SQLException {
+    public List<Task> findAllByScheduleId(int scheduleId) throws SQLException {
         
         List<Task> taskList = new ArrayList<>();
         String sqlString = "SELECT t.task_id, t.user_id, t.title, t.type, t.content, sche.schedule_id " +
@@ -23,9 +23,9 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
                 "JOIN slots AS s ON s.column_id = c.column_id " +
                 "JOIN slots_tasks AS st ON st.slot_id = s.slot_id " +
                 "JOIN tasks AS t ON t.task_id = st.task_id " +
-                "WHERE t.task_id = ?";
+                "WHERE sche.task_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
-            preparedStatement.setInt(1, taskId);
+            preparedStatement.setInt(1, scheduleId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     taskList.add(fetchTask(resultSet));
