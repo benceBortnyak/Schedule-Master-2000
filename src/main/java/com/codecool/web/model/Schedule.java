@@ -1,22 +1,27 @@
 package com.codecool.web.model;
 
-public class Schedule {
-    private Integer scheduleId;
+public class Schedule extends AbstractModel {
+    
     private int userId;
     private String title;
     private int length;
 
-    public Schedule(int userId, String title, int days_) {
-        this.scheduleId = null;
+    public Schedule(int id, int userId, String title, int length) {
+        super(id);
         this.userId = userId;
         this.title = title;
         this.length = length;
     }
-
-    public Schedule(Integer scheduleId, int userId, String title, int length) {
-        this.scheduleId = scheduleId;
-        this.userId = userId;
-        this.title = title;
-        this.length = length;
+    
+    public int getUserId() {
+        return userId;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
+    
+    public int getLength() {
+        return length;
     }
 }
