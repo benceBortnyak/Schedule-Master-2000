@@ -63,7 +63,6 @@ CREATE TABLE tasks (
 create table slots_tasks (
     slot_id INTEGER,
     task_id INTEGER,
-    PRIMARY KEY(slot_id,task_id),
     FOREIGN KEY (slot_id) REFERENCES  slots(slot_id),
     FOREIGN KEY (task_id) REFERENCES  tasks(task_id)
 );
@@ -76,13 +75,15 @@ CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS '
 
     DECLARE
     c_id INT;
+    s_id INT;
     BEGIN
         for i in 1 .. new.length
             loop
                 insert into columns(schedule_id, title) values (new.schedule_id, new.title) returning column_id INTO c_id;
                 FOR i in 1..24
                     loop
-                        INSERT INTO slots(column_id, hour) values (c_id,i);
+                        INSERT INTO slots(column_id, hour) values (c_id,i) returning slot_id INTO s_id;
+                        INSERT INTO slots_tasks(slot_id) VALUES (s_id);
                     end loop;
             END LOOP;
         RETURN null;
