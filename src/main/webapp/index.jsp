@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<jsp:useBean id="now" class="java.util.Date"/>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Schedule-Master-2000</title>
     <link rel="stylesheet" type="text/css" href="index.css" media="all">
+    <c:url value="/scripts/index.js" var="indexScriptUrl"/>
+    <script src="${indexScriptUrl}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div id="home" class="home">
+<div id="main-content" class="home">
     <div class="topnav">
         <ul>
             <div class="dropdown">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <a>Home</a>
-            <a style="float: right">Shedules</a>
+            <a style="float: right">Schedules</a>
         </ul>
     </div>
     <div>

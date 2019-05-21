@@ -69,14 +69,19 @@ button {
     cursor: pointer;
     width: 100%;
 }
-div.login{
+#login-content{
+    padding: 0px 30%;
+    height: 50%;
+    /*display: none;*/
+}
+#signUp-content{
     padding: 0px 30%;
     height: 50%;
     display: none;
 }
-/*section.home{
+div.home{
     display: none;
-}*/
+}
 #div1{
     width: 50%;
     float: left;
