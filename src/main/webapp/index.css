@@ -1,33 +1,16 @@
 body {
-    background-image: url("https://image.freepik.com/free-photo/abstract-polygonal-space-low-poly-dark-background-3d-rendering_7247-223.jpg");
+    background: #cccccc;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
     overflow: hidden;
     font-family: "Lato", sans-serif;
 }
-div.datas{
-    float: left;
-    width: 10%;
-    overflow: hidden;
-    border: black 5px solid;
-    position: fixed;
-}
-div.datas a {
-    float: left;
-    padding: 3% 20%;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-}
 div.topnav{
-    float: right;
-    width: 87.5%;
     overflow: hidden;
     border: black 5px solid;
-    position: fixed;
-    left: 11.2%;
+    background: black;
+    color: white;
 }
 div.topnav ul {
     list-style: none;
@@ -47,16 +30,12 @@ div.topnav a{
     display: block;
 }
 div.sidenav{
-    width: 30%;
-    height: 84%;
-    position: fixed;
+    width: 20%;
+    height: 500px;
     top: 13.5%;
     overflow-x: hidden;
     border: black 5px solid;
-}
-.topnav a:hover {
-    background-color: #fdb77b;
-    color: white;
+    float: left;
 }
 div.sidenav a{
     text-decoration: none;
@@ -65,13 +44,10 @@ div.sidenav a{
     display: block;
 }
 div.content{
-    width: 67.5%;
-    height: 84%;
+    width: 78.5%;
+    height: 500px;
     float: right;
     border: black 5px solid;
-    position: fixed;
-    left: 31%;
-    top: 13.5%;
 }
 div.content p{
     padding: 0 20%;
@@ -93,17 +69,14 @@ button {
     cursor: pointer;
     width: 100%;
 }
-section.login{
+div.login{
     padding: 0px 30%;
     height: 50%;
-}
-section.home{
     display: none;
 }
-section{
-    background: rgba(255, 255, 255, 0.6);
-    box-sizing: inherit;
-}
+/*section.home{
+    display: none;
+}*/
 #div1{
     width: 50%;
     float: left;
@@ -121,15 +94,15 @@ section{
     cursor: pointer;
     font-size: 16px;
     border: none;
-    color: black;
-    padding: 24px 45px;
+    color: white;
+    padding: 0;
     margin: 0;
     width: 100%;
     background-color: inherit;
     font-family: inherit;
 }
 .dropdown:hover .dropbtn, .dropbtn:focus {
-    background-color: #fdb77b;
+    background-color: white;
     color: white;
 }
 .dropdown-content {
@@ -153,7 +126,13 @@ section{
 .dropdown-content a:hover {
     background-color: #ddd;
 }
+.show {
+    display: block;
+}
+#content{
+    display: none;
+}
 table, th, td {
     text-align: center;
-    border: 1px solid white;
+    border: 1px solid black;
 }

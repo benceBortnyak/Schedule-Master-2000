@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="now" class="java.util.Date"/>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,36 +11,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<section class="home">
-    <div class="datas">
-        <div class="dropdown">
-            <button class="dropbtn" onclick="myFunction()">Name
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content" id="myDropdown">
-                <a>Name</a>
-                <a href="profile">Profile</a>
-                <a href="logout">Logout</a>
-            </div>
-        </div>
-    </div>
+<div id="home" class="home">
     <div class="topnav">
         <ul>
+            <div class="dropdown">
+                <input type="image" class="dropbtn" onclick="myFunction()" src="ninja.png">
+                <i class="fa fa-caret-down"></i>
+                </input>
+                <div class="dropdown-content" id="myDropdown">
+                    <a>Name</a>
+                    <a href="profile">Profile</a>
+                    <a href="logout">Logout</a>
+                </div>
+            </div>
             <a>Home</a>
-            <a>Shedules</a>
+            <a style="float: right">Shedules</a>
         </ul>
     </div>
-    <div class="sidenav">
-        <a>Login first</a>
+    <div>
+        <div class="sidenav">
+            <a>Login first</a>
+        </div>
+        <div id="schedules" class="content">
+            <table>
+                <th></th>
+                <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="content">
-        <p></p>
-    </div>
-</section>
+</div>
 
-<div id="login-content" class="login" style="display: none">
+<div id="login-content" class="login">
     <div class="login">
-        <form action="login" method="post">
+        <form action="login-content" method="post">
             <h4><p><label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required></p>
                 <p><label for="psw"><b>Password</b></label>
@@ -48,26 +58,28 @@
                 </p>
             </h4>
         </form>
-        <form action="register" method="get">
+        <form action="signUp-content" method="get">
             <h4><p>Hit the sign up button to create a new account!</p></h4>
             <p>
                 <button type="submit">SIGN UP</button>
             </p>
         </form>
-        <h4><p>Login as guest</p></h4>
-        <p>
-            <button type="submit">I'm a guest</button>
-        </p>
+        <form action="loginGuest-content" method="post">
+            <h4><p>Login as guest</p></h4>
+            <p>
+                <button type="submit">I'm a guest</button>
+            </p>
+        </form>
     </div>
 </div>
 
-<section id="signUp" class="login">
-    <form action="signup" method="post">
+<div id="signUp-content" class="login">
+    <form action="signUp" method="post">
         <div>
             <p>
-            <h1>SignUp</h1></p>
-            <div id="div2"><input type="text" placeholder="Enter last name" name="lastName" required></div>
-            <div id="div1"><input type="text" placeholder="Enter forename" name="forename" required></div>
+            <h1>Register</h1></p>
+            <div id="div2"><input type="text" placeholder="Enter Lastname" name="lastname" required></div>
+            <div id="div1"><input type="text" placeholder="Enter Forename" name="forename" required></div>
             <p><input type="password" placeholder="Enter Password" name="psw"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
@@ -76,22 +88,26 @@
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
             </p>
-            <p><input type="text" placeholder="Enter your email address" name="email" required></p>
+            <p><input type="text" placeholder="Enter your email adress" name="email" required></p>
             <p>
-                <button type="submit">SignUp</button>
+                <button type="submit">Register</button>
             </p>
         </div>
     </form>
-    <form action="login" method="get">
+    <form action="login-content" method="get">
         <div>
             <p>
                 <button type="submit">Back to login</button>
             </p>
         </div>
     </form>
-</section>
+</div>
 
 <script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
     window.onclick = function (e) {
         if (!e.target.matches('.dropbtn')) {
             var myDropdown = document.getElementById("myDropdown");
