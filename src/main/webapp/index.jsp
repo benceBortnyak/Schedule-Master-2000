@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<jsp:useBean id="now" class="java.util.Date"/>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,12 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<section class="home">
+<div id="home" class="home">
     <div class="topnav">
         <ul>
             <div class="dropdown">
                 <input type="image" class="dropbtn" onclick="myFunction()" src="ninja.png">
-                    <i class="fa fa-caret-down"></i>
+                <i class="fa fa-caret-down"></i>
                 </input>
                 <div class="dropdown-content" id="myDropdown">
                     <a>Name</a>
@@ -30,12 +32,9 @@
         <div class="sidenav">
             <a>Login first</a>
         </div>
-        <div id="content" class="content">
-            <p></p>
-        </div>
         <div id="schedules" class="content">
             <table>
-                <th>Formatted Date (7): <fmt:formatDate pattern = "E" value = "${now}" /></th>
+                <th></th>
                 <tbody>
                 <tr>
                     <td></td>
@@ -44,11 +43,11 @@
             </table>
         </div>
     </div>
-</section>
+</div>
 
-<section id="login" class="login">
+<div id="login-content" class="login">
     <div class="login">
-        <form action="login" method="post">
+        <form action="login-content" method="post">
             <h4><p><label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required></p>
                 <p><label for="psw"><b>Password</b></label>
@@ -59,21 +58,23 @@
                 </p>
             </h4>
         </form>
-        <form action="register" method="get">
+        <form action="signUp-content" method="get">
             <h4><p>Hit the sign up button to create a new account!</p></h4>
             <p>
                 <button type="submit">SIGN UP</button>
             </p>
         </form>
-        <h4><p>Login as guest</p></h4>
-        <p>
-            <button type="submit">I'm a guest</button>
-        </p>
+        <form action="loginGuest-content" method="post">
+            <h4><p>Login as guest</p></h4>
+            <p>
+                <button type="submit">I'm a guest</button>
+            </p>
+        </form>
     </div>
-</section>
+</div>
 
-<section id="register" class="login">
-    <form action="register" method="post">
+<div id="signUp-content" class="login">
+    <form action="signUp" method="post">
         <div>
             <p>
             <h1>Register</h1></p>
@@ -87,20 +88,20 @@
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
             </p>
-            <p><input type="text" placeholder="Enter your Email" name="email" required></p>
+            <p><input type="text" placeholder="Enter your email adress" name="email" required></p>
             <p>
                 <button type="submit">Register</button>
             </p>
         </div>
     </form>
-    <form action="login" method="get">
+    <form action="login-content" method="get">
         <div>
             <p>
                 <button type="submit">Back to login</button>
             </p>
         </div>
     </form>
-</section>
+</div>
 
 <script>
     function myFunction() {
