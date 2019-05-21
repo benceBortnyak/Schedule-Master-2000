@@ -13,4 +13,6 @@ public interface TaskDao {
     Task findById(int taskId) throws SQLException;
     
     Task add(int userId, String title, String type, String content) throws SQLException;
+    
+    void addToSlot(int slotId, int taskId) throws SQLException;
 }

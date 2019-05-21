@@ -1,4 +1,19 @@
 package com.codecool.web.service;
 
-public class TaskService {
+import com.codecool.web.model.Task;
+import com.codecool.web.service.exception.ServiceException;
+
+import java.sql.SQLException;
+import java.util.List;
+
+public interface TaskService {
+    
+    Task addTask(int userId,String title,String type,String content) throws SQLException, ServiceException;
+    
+    List<Task> wiewTasks() throws SQLException, ServiceException;
+    
+    Task updateTask(int userId,String title,String type,String content) throws SQLException, ServiceException;
+    
+    Task removeTask(int userId,String title,String type,String content) throws SQLException, ServiceException;
+    
 }
