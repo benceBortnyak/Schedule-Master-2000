@@ -18,13 +18,14 @@ import java.sql.SQLException;
 public class SignUpServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         try (Connection connection = getConnection(req.getServletContext())) {
             UserDao userDao = new DatabaseUserDao(connection);
             UserService userService = new SimpleUserService(userDao);
             String forename = req.getParameter("forename");
             String lastName = req.getParameter("lastName");
             String email = req.getParameter("email");
-            String password = req.getParameter("psw");
+            String password = req.getParameter("password");
             userService.addUser(forename, lastName, email, password);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,4 +33,5 @@ public class SignUpServlet extends AbstractServlet {
             e.printStackTrace();
         }
     }
+
 }

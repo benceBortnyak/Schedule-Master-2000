@@ -7,7 +7,9 @@
     <title>Schedule-Master-2000</title>
     <link rel="stylesheet" type="text/css" href="index.css" media="all">
     <c:url value="/scripts/index.js" var="indexScriptUrl"/>
+    <c:url value="/scripts/signup.js" var="signUpScriptUrl"/>
     <script src="${indexScriptUrl}"></script>
+    <script src="${signUpScriptUrl}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -56,12 +58,9 @@
             </p>
         </h4>
     </form>
-    <form action="signUp-content" method="get">
-        <h4><p>Hit the sign up button to create a new account!</p></h4>
-        <p>
-            <button id="signUp-button" type="submit">SIGN UP</button>
-        </p>
-    </form>
+    <h4><p>Hit the sign up button to create a new account!</p></h4>
+    <button id="signUp-button" type="submit">SIGN UP</button>
+
     <form action="loginGuest-content" method="post">
         <h4><p>Login as guest</p></h4>
         <p>
@@ -71,11 +70,11 @@
 </div>
 
 <div id="signUp-content" class="login">
-    <form action="signUp" method="post">
+    <form accept-charset=utf-8 id ='signUp-form'>
         <div>
             <p>
-            <h1>Register</h1></p>
-            <div id="div2"><input type="text" placeholder="Enter Lastname" name="lastname" required></div>
+            <h1>SIGN UP</h1></p>
+            <div id="div2"><input type="text" placeholder="Enter Last Name" name="lastName" required></div>
             <div id="div1"><input type="text" placeholder="Enter Forename" name="forename" required></div>
             <p><input type="password" placeholder="Enter Password" name="psw"
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
@@ -85,19 +84,15 @@
                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
                       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
             </p>
-            <p><input type="text" placeholder="Enter your email adress" name="email" required></p>
+            <p><input type="text" placeholder="Enter your email address" name="email" required></p>
             <p>
-                <button type="submit">Register</button>
+                <button id = 'submitButton' type="submit">SUBMIT</button>
             </p>
         </div>
     </form>
-    <form action="login-content" method="get">
-        <div>
-            <p>
-                <button type="submit">Back to login</button>
-            </p>
-        </div>
-    </form>
+
+    <button id="backToLoginButton" type="submit">Back to login</button>
+
 </div>
 
 <div id="profile-content" class="profile">
