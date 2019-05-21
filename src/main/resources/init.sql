@@ -36,20 +36,20 @@ CREATE TABLE users (
 
 CREATE TABLE schedules (
     schedule_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id),
+    user_id INT REFERENCES users(user_id) NOT NULL,
     title VARCHAR(60),
     length int
 );
 
 CREATE TABLE columns (
     column_id SERIAL PRIMARY KEY,
-    schedule_id INT REFERENCES schedules(schedule_id),
+    schedule_id INT REFERENCES schedules(schedule_id) NOT NULL,
     title VARCHAR(60)
 );
 
 CREATE TABLE slots (
     slot_id SERIAL PRIMARY KEY,
-    column_id INT REFERENCES columns(column_id),
+    column_id INT REFERENCES columns(column_id) NOT NULL,
     hour INT
 );
 
@@ -62,40 +62,40 @@ CREATE TABLE tasks (
 );
 
 create table slots_tasks (
-    slot_id INT references slots(slot_id),
-    task_id INT references tasks(task_id)
+    slot_id INTEGER,
+    task_id INTEGER,
+    PRIMARY KEY(slot_id,task_id),
+    FOREIGN KEY (slot_id) REFERENCES  slots(slot_id),
+    FOREIGN KEY (task_id) REFERENCES  tasks(task_id)
 );
-
-CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS '
-DECLARE
-    sched_id int;
-    columnTitle varchar(60);
-    col_id int;
-    times int;
-BEGIN
-    SELECT column_id into col_id from columns where schedule_id = new.schedule_id;
-    select schedule_id into sched_id from schedules where schedule_id = new.schedule_id;
-    SELECT title into columnTitle FROM schedules where schedule_id = new.schedule_id;
-    select length INTO times FROM schedules where schedule_id = sched_id;
-    for i in 1 .. times
-    loop
-        insert into columns(schedule_id, title) values (sched_id,columnTitle);
-        FOR i in 1..24
-        loop
-            INSERT INTO slots(column_id, hour) values (col_id,i);
-        end loop;
-    END LOOP;
-    RETURN null;
-END
-' LANGUAGE plpgsql;
 
 CREATE TRIGGER day_trigger
     AFTER INSERT ON schedules
     FOR EACH ROW EXECUTE PROCEDURE day_column();
 
+CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS '
+
+    DECLARE
+    c_id INT;
+
+    BEGIN
+        for i in 1 .. new.length
+            loop
+                insert into columns(schedule_id, title) values (new.schedule_id, new.title) returning column_id INTO c_id;
+                FOR i in 1..24
+                    loop
+                        INSERT INTO slots(column_id, hour) values (c_id,i);
+                    end loop;
+            END LOOP;
+        RETURN null;
+    END
+' LANGUAGE plpgsql;
+
 insert into users (email, password, user_type) values ('admin@admin.com', 'Admin1234', 'ADMIN');
+insert into users(email, password, user_type) VALUES ('user1@user1.com', 'user1234', 'USER');
 insert into schedules(user_id, title, length) values (1, 'asd',6);
 insert into schedules(user_id, title, length) values (1, 'asdasd',4);
+insert into tasks(task_id,user_id,title,type,content) values(1, 2, 'Gardening', 'PUBLIC', 'I really love gardening!');
 select * from schedules;
 select * from users;
 select * from columns;
