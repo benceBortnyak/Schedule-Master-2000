@@ -35,7 +35,7 @@
     </div>
 </section>
 
-<section id="login" class="login" style="display: none">
+<div id="login-content" class="login" style="display: none">
     <div class="login">
         <form action="login" method="post">
             <h4><p><label for="email"><b>Email</b></label>
@@ -59,7 +59,7 @@
             <button type="submit">I'm a guest</button>
         </p>
     </div>
-</section>
+</div>
 
 <section id="signUp" class="login">
     <form action="signup" method="post">

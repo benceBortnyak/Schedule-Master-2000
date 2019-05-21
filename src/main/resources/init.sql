@@ -24,7 +24,6 @@ CREATE TYPE role AS ENUM ('USER','ADMIN');
 DROP TYPE IF EXISTS task_type;
 create type task_type as enum ('PUBLIC','PRIVATE');
 
-
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     forename VARCHAR(30),
@@ -77,7 +76,6 @@ CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS '
 
     DECLARE
     c_id INT;
-
     BEGIN
         for i in 1 .. new.length
             loop
