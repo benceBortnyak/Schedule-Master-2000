@@ -32,7 +32,7 @@
         <div class="sidenav">
             <a>Login first</a>
         </div>
-        <div id="schedules" class="content">
+        <div id="schedules-content" class="content">
             <table>
                 <th></th>
                 <tbody>
@@ -46,31 +46,28 @@
 </div>
 
 <div id="login-content" class="login">
-    <div class="login">
-        <form action="login-content" method="post">
-            <h4><p><label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" required></p>
-                <p><label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required></p>
-                <p><label><input type="checkbox" checked="checked" name="remember"> Remember me</label></p>
-                <p>
-                    <button type="submit">Login</button>
-                </p>
-            </h4>
-        </form>
-        <form action="signUp-content" method="get">
-            <h4><p>Hit the sign up button to create a new account!</p></h4>
+    <form action="login-content" method="post">
+        <h4><p><label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter your email address" name="email" required></p>
+            <p><label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required></p>
             <p>
-                <button type="submit">SIGN UP</button>
+                <button id="login-button" type="submit">Login</button>
             </p>
-        </form>
-        <form action="loginGuest-content" method="post">
-            <h4><p>Login as guest</p></h4>
-            <p>
-                <button type="submit">I'm a guest</button>
-            </p>
-        </form>
-    </div>
+        </h4>
+    </form>
+    <form action="signUp-content" method="get">
+        <h4><p>Hit the sign up button to create a new account!</p></h4>
+        <p>
+            <button id="signUp-button" type="submit">SIGN UP</button>
+        </p>
+    </form>
+    <form action="loginGuest-content" method="post">
+        <h4><p>Login as guest</p></h4>
+        <p>
+            <button id="loginGuest-button" type="submit">I'm a guest</button>
+        </p>
+    </form>
 </div>
 
 <div id="signUp-content" class="login">
@@ -101,6 +98,10 @@
             </p>
         </div>
     </form>
+</div>
+
+<div id="profile-content" class="profile">
+
 </div>
 
 <script>
