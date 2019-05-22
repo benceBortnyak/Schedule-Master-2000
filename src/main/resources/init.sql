@@ -96,6 +96,6 @@ insert into schedules(user_id, title, length) values (1, 'asd',6);
 insert into schedules(user_id, title, length) values (1, 'asdasd',4);
 insert into tasks(task_id,user_id,title,type,content) values(1, 2, 'Gardening', 'PUBLIC', 'I really love gardening!');
 UPDATE slots_tasks SET task_id = 1 where slot_id=1;
-UPDATE slots_tasks set task_id = null where task_id = 1;
+DELETE
 select * from tasks;
 select * from slots_tasks;

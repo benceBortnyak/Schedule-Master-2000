@@ -55,7 +55,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     
     @Override
     public Task add(int userId, String title, String type, String content) throws SQLException {
-        if (type != "PUBLIC" || type != "PRIVATE") {
+        if (type.equals("PUBLIC") || type.equals("PRIVATE")) {
             throw new IllegalArgumentException("type only can be PUBLIC or PRIVATE");
         }
         boolean autoCommit = connection.getAutoCommit();
@@ -112,7 +112,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
 
     }
     @Override
-    public void upadteTask(int taskId, String title, String content, TaskType taskType) throws SQLException{
+    public void updateTask(int taskId, String title, String content, TaskType taskType) throws SQLException{
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
         String sqlStatement = "UPDATE tasks SET title =?, type=?, content=? WHERE task_id =?";
@@ -129,7 +129,25 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             connection.setAutoCommit(autoCommit);
         }
     }
-    
+
+    @Override
+    public List<Task> findAll() throws SQLException {
+        List<Task> taskList = new ArrayList<>();
+        String sqlStatement = "SELECT * FROM tasks";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
+            try (ResultSet resultSet= preparedStatement.executeQuery()){
+                while (resultSet.next()){
+                    taskList.add(fetchTask(resultSet));
+                }
+            }
+        }
+        catch (SQLException e ){
+                connection.rollback();
+        }
+        return taskList;
+    }
+
+
     private Task fetchTask(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         int userId = resultSet.getInt("userId");
