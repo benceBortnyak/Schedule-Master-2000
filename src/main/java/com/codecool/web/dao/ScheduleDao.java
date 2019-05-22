@@ -13,8 +13,8 @@ public interface ScheduleDao {
     
     Schedule add(int userId, String title, int length) throws SQLException;
     
-    Schedule update(int userId, String title, int length) throws SQLException;
+    void update(int scheduleId, String title, int length) throws SQLException;
     
-    Schedule delete(int userId, String title) throws SQLException;
+    void delete(int scheduleId) throws SQLException;
 
 }
