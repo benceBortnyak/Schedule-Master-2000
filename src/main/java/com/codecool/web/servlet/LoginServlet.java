@@ -20,6 +20,7 @@ import java.sql.SQLException;
 public class LoginServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         try(Connection connection = getConnection(req.getServletContext())){
             UserDao userDao = new DatabaseUserDao(connection);
             UserService userService = new SimpleUserService(userDao);
@@ -29,6 +30,7 @@ public class LoginServlet extends AbstractServlet {
         }catch (SQLException e ){
             handleSqlError(resp, e);
         }catch (ServiceException e ){
+            e.printStackTrace();
             sendMessage(resp,HttpServletResponse.SC_UNAUTHORIZED,e.getMessage());
         }
     }

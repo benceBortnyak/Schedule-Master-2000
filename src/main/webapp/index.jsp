@@ -50,7 +50,7 @@
 </div>
 
 <div id="login-content" class="login">
-    <form id="login-form" onsubmit="return false;">
+    <form accept-charset=utf-8 id="login-form" onsubmit="return false;">
         <h4><p><label for="email"><b>Email</b></label>
             <input type="text" placeholder="Enter your email address" name="email" required></p>
             <p><label for="psw"><b>Password</b></label>
@@ -63,16 +63,14 @@
     <h4><p>Hit the sign up button to create a new account!</p></h4>
     <button id="signUp-button" type="submit">SIGN UP</button>
 
-    <form action="loginGuest-content" method="post">
-        <h4><p>Login as guest</p></h4>
-        <p>
-            <button id="loginGuest-button" type="submit">I'm a guest</button>
-        </p>
-    </form>
+    <h4><p>Login as guest</p></h4>
+    <p>
+        <button id="loginGuest-button" type="submit">I'm a guest</button>
+    </p>
 </div>
 
 <div id="signUp-content" class="login">
-    <form accept-charset=utf-8 id ='signUp-form' onsubmit="return false;">
+    <form accept-charset=utf-8 id='signUp-form' onsubmit="return false;">
         <div>
             <p>
             <h1>SIGN UP</h1></p>
@@ -88,7 +86,7 @@
             </p>
             <p><input type="text" placeholder="Enter your email address" name="email" required></p>
             <p>
-                <button id = 'submitButton' type="submit">SUBMIT</button>
+                <button id='submitButton' type="submit">SUBMIT</button>
             </p>
         </div>
     </form>

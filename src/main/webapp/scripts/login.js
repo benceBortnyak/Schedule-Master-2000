@@ -1,6 +1,7 @@
 function onLoginResponse() {
     if (this.status === OK) {
-        console.log("login complete");
+        const user = JSON.parse(this.responseText);
+        console.log(user);
         loginContentDivEl.style.display = 'none';
         mainContentDivEl.style.display = 'block';
     }
