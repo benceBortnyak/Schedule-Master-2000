@@ -8,8 +8,10 @@
     <link rel="stylesheet" type="text/css" href="index.css" media="all">
     <c:url value="/scripts/index.js" var="indexScriptUrl"/>
     <c:url value="/scripts/signup.js" var="signUpScriptUrl"/>
+    <c:url value="/scripts/login.js" var="loginScriptUrl"/>
     <script src="${indexScriptUrl}"></script>
     <script src="${signUpScriptUrl}"></script>
+    <script src="${loginScriptUrl}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -23,7 +25,7 @@
                 <div class="dropdown-content" id="myDropdown">
                     <a>Name</a>
                     <a href="profile">Profile</a>
-                    <a href="logout">Logout</a>
+                    <button id="logout-button">Logout</button>
                 </div>
             </div>
             <a>Home</a>
@@ -48,7 +50,7 @@
 </div>
 
 <div id="login-content" class="login">
-    <form action="login-content" method="post">
+    <form id="login-form" onsubmit="return false;">
         <h4><p><label for="email"><b>Email</b></label>
             <input type="text" placeholder="Enter your email address" name="email" required></p>
             <p><label for="psw"><b>Password</b></label>
@@ -70,7 +72,7 @@
 </div>
 
 <div id="signUp-content" class="login">
-    <form accept-charset=utf-8 id ='signUp-form'>
+    <form accept-charset=utf-8 id ='signUp-form' onsubmit="return false;">
         <div>
             <p>
             <h1>SIGN UP</h1></p>
