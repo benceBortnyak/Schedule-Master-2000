@@ -9,6 +9,8 @@
     <c:url value="/scripts/index.js" var="indexScriptUrl"/>
     <c:url value="/scripts/signup.js" var="signUpScriptUrl"/>
     <c:url value="/scripts/login.js" var="loginScriptUrl"/>
+    <c:url value="/scripts/profile.js" var="profileScriptUrl"/>
+    <script src="${profileScriptUrl}"></script>
     <script src="${indexScriptUrl}"></script>
     <script src="${signUpScriptUrl}"></script>
     <script src="${loginScriptUrl}"></script>
