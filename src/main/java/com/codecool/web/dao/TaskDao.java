@@ -1,6 +1,7 @@
 package com.codecool.web.dao;
 
 import com.codecool.web.model.Task;
+import com.codecool.web.model.enums.TaskType;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,4 +18,6 @@ public interface TaskDao {
     void addToSlot(int slotId, int taskId) throws SQLException;
 
     void deleteTask(int task) throws SQLException;
+
+    void upadteTask(int taskId, String title, String content, TaskType taskType) throws SQLException;
 }
