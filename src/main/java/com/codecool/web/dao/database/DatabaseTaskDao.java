@@ -97,7 +97,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     public void upadteTask(int taskId,String title,String content) throws SQLException{
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sqlStatement = ""
+        String sqlStatement = "";
 
     }
 

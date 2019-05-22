@@ -27,10 +27,11 @@ public class SignUpServlet extends AbstractServlet {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
             userService.addUser(forename, lastName, email, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ServiceException e) {
-            e.printStackTrace();
+            sendMessage(resp, HttpServletResponse.SC_OK, "Sign Up complete");
+        } catch (ServiceException ex) {
+            sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
+        } catch (SQLException ex) {
+            handleSqlError(resp, ex);
         }
     }
 
