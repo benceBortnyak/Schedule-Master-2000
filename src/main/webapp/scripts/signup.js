@@ -1,7 +1,6 @@
 function onSignUpResponse() {
     if (this.status === OK) {
-        loginContentDivEl.style.display = 'block';
-        signUpContentDivEl.style.display = 'none';
+        showContents(['login-content']);
     } else if (this.status === BAD_REQUEST) {
         alert("You've provided invalid data");
     }
@@ -33,13 +32,12 @@ function onSubmitButtonClicked() {
 }
 
 function backToLoginButtonClicked() {
-    loginContentDivEl.style.display = 'block';
-    signUpContentDivEl.style.display = 'none';
+    showContents(['login-content']);
 }
 
 function onSignUpButtonClicked() {
-    loginContentDivEl.style.display = 'none';
-    signUpContentDivEl.style.display = 'block';
+    showContents(['signUp-content']);
+
 
     const backToLoginButtonEl = document.getElementById('backToLoginButton');
     backToLoginButtonEl.addEventListener('click', backToLoginButtonClicked);

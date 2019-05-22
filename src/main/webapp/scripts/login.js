@@ -3,8 +3,8 @@ function onLoginResponse() {
         const user = JSON.parse(this.responseText);
         setAuthorization(user);
         onProfileLoad(user);
-        loginContentDivEl.style.display = 'none';
-        mainContentDivEl.style.display = 'block';
+        console.log(user);
+        showContents(['main-content']);
     }else if(this.status === UNAUTHORIZED){
         alert("Your email address or password was incorrect!");
     }
