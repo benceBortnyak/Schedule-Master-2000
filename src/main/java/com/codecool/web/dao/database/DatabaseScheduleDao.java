@@ -83,7 +83,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
             }catch (SQLException ex) {
                 connection.rollback();
                 throw ex;
-            }finally {
+            } finally {
                 connection.setAutoCommit(autoCommit);
             }
         } else {
@@ -93,13 +93,33 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     
     @Override
     public void delete(int scheduleId) throws SQLException {
-        
+    
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sqlString = "DELETE FROM schedules CASCADE WHERE schedule_id = ?";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)){
-            preparedStatement.setInt(1,scheduleId);
+        String sqlString = "DELETE FROM schedules cascade WHERE schedule_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
+            preparedStatement.setInt(1, scheduleId);
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
         }
+    }
+    
+    @Override
+    public List<Schedule> findAllByUserId(int userId) throws SQLException {
+        List<Schedule> scheduleList = new ArrayList<>();
+        String sqlString = "SELECT * FROM schedules WHERE user_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
+             preparedStatement.setInt(1,userId);
+             ResultSet resultSet = preparedStatement.executeQuery(sqlString);
+            while (resultSet.next()) {
+                scheduleList.add(fetchSchedule(resultSet));
+            }
+        }
+        return scheduleList;
     }
     
     private Schedule fetchSchedule(ResultSet resultSet) throws SQLException {

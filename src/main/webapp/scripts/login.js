@@ -1,7 +1,12 @@
 function onLoginResponse() {
-    console.log("login done");
-    loginContentDivEl.style.display = 'none';
-    mainContentDivEl.style.display= 'block';
+    if (this.status === OK) {
+        const user = JSON.parse(this.responseText);
+        setAuthorization(user);
+        loginContentDivEl.style.display = 'none';
+        mainContentDivEl.style.display = 'block';
+    }else if(this.status === UNAUTHORIZED){
+        alert("Your email address or password was incorrect!");
+    }
 
 }
 
@@ -21,11 +26,5 @@ function onLoginButtonClicked(){
     xhr.addEventListener('load', onLoginResponse);
     xhr.open('POST', 'login');
     xhr.send(params);
-
-    /*const loginButtonEl = document.getElementById('login-button');
-    loginButtonEl.addEventListener('click', onLoginButtonClicked);
-
-    const signUpButtonEl = document.getElementById('signUp-button');
-    signUpButtonEl.addEventListener('click', onSignUpButtonClicked);*/
 }
 

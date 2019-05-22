@@ -12,10 +12,10 @@ SET default_with_oids = false;
 SET search_path TO public;
 
 DROP TABLE IF EXISTS users cascade;
-DROP TABLE IF EXISTS columns cascade;
-DROP TABLE IF EXISTS schedules cascade;
+DROP TABLE IF EXISTS columns CASCADE;
+DROP TABLE IF EXISTS schedules CASCADE;
 DROP TABLE IF EXISTS tasks cascade;
-DROP TABLE IF EXISTS slots cascade;
+DROP TABLE IF EXISTS slots CASCADE;
 DROP TABLE IF EXISTS slots_tasks cascade;
 
 drop type if exists role;
@@ -35,20 +35,20 @@ CREATE TABLE users (
 
 CREATE TABLE schedules (
     schedule_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id) NOT NULL,
+    user_id INT REFERENCES users(user_id)NOT NULL,
     title VARCHAR(60),
     length int
 );
 
 CREATE TABLE columns (
     column_id SERIAL PRIMARY KEY,
-    schedule_id INT REFERENCES schedules(schedule_id) NOT NULL,
+    schedule_id INT REFERENCES schedules(schedule_id)ON DELETE CASCADE,
     title VARCHAR(60)
 );
 
 CREATE TABLE slots (
     slot_id SERIAL PRIMARY KEY,
-    column_id INT REFERENCES columns(column_id) NOT NULL,
+    column_id INT REFERENCES columns(column_id)ON DELETE CASCADE,
     hour INT
 );
 
@@ -63,7 +63,7 @@ CREATE TABLE tasks (
 create table slots_tasks (
     slot_id INTEGER,
     task_id INTEGER,
-    FOREIGN KEY (slot_id) REFERENCES  slots(slot_id),
+    FOREIGN KEY (slot_id) REFERENCES  slots(slot_id) ON DELETE CASCADE,
     FOREIGN KEY (task_id) REFERENCES  tasks(task_id)
 );
 

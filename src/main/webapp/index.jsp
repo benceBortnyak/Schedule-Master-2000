@@ -9,6 +9,8 @@
     <c:url value="/scripts/index.js" var="indexScriptUrl"/>
     <c:url value="/scripts/signup.js" var="signUpScriptUrl"/>
     <c:url value="/scripts/login.js" var="loginScriptUrl"/>
+    <c:url value="/scripts/profile.js" var="profileScriptUrl"/>
+    <script src="${profileScriptUrl}"></script>
     <script src="${indexScriptUrl}"></script>
     <script src="${signUpScriptUrl}"></script>
     <script src="${loginScriptUrl}"></script>
@@ -19,12 +21,12 @@
     <div class="topnav">
         <ul>
             <div class="dropdown">
-                <input type="image" class="dropbtn" onclick="myFunction()" src="ninja.png">
+                <input type="image" class="dropbtn" onclick="showDropdown()" src="ninja.png">
                 <i class="fa fa-caret-down"></i>
                 </input>
                 <div class="dropdown-content" id="myDropdown">
                     <a>Name</a>
-                    <a href="profile">Profile</a>
+                    <button id="profile-button">Profile</button>
                     <button id="logout-button">Logout</button>
                 </div>
             </div>
@@ -50,7 +52,7 @@
 </div>
 
 <div id="login-content" class="login">
-    <form id="login-form" onsubmit="return false;">
+    <form accept-charset=utf-8 id="login-form" onsubmit="return false;">
         <h4><p><label for="email"><b>Email</b></label>
             <input type="text" placeholder="Enter your email address" name="email" required></p>
             <p><label for="psw"><b>Password</b></label>
@@ -62,17 +64,14 @@
     </form>
     <h4><p>Hit the sign up button to create a new account!</p></h4>
     <button id="signUp-button" type="submit">SIGN UP</button>
-
-    <form action="loginGuest-content" method="post">
-        <h4><p>Login as guest</p></h4>
-        <p>
-            <button id="loginGuest-button" type="submit">I'm a guest</button>
-        </p>
-    </form>
+    <h4><p>Login as guest</p></h4>
+    <p>
+        <button id="loginGuest-button" type="submit">I'm a guest</button>
+    </p>
 </div>
 
 <div id="signUp-content" class="login">
-    <form accept-charset=utf-8 id ='signUp-form' onsubmit="return false;">
+    <form accept-charset=utf-8 id='signUp-form' onsubmit="return false;">
         <div>
             <p>
             <h1>SIGN UP</h1></p>
@@ -88,32 +87,18 @@
             </p>
             <p><input type="text" placeholder="Enter your email address" name="email" required></p>
             <p>
-                <button id = 'submitButton' type="submit">SUBMIT</button>
+                <button id='submitButton' type="submit">SUBMIT</button>
             </p>
         </div>
     </form>
-
     <button id="backToLoginButton" type="submit">Back to login</button>
-
 </div>
 
 <div id="profile-content" class="profile">
-
+    <p>LastName: <span id="user-lastName"></span></p>
+    <p>Forename: <span id="user-forename"></span></p>
+    <p>Email: <span id="user-email"></span></p>
 </div>
 
-<script>
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    window.onclick = function (e) {
-        if (!e.target.matches('.dropbtn')) {
-            var myDropdown = document.getElementById("myDropdown");
-            if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
-            }
-        }
-    }
-</script>
 </body>
 </html>

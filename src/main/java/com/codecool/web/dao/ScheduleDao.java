@@ -16,5 +16,7 @@ public interface ScheduleDao {
     void update(int scheduleId, String title, int length) throws SQLException;
     
     void delete(int scheduleId) throws SQLException;
-
+    
+    List<Schedule> findAllByUserId(int userId) throws SQLException;
+    
 }

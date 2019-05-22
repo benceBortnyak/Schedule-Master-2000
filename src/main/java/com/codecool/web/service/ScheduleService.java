@@ -10,9 +10,13 @@ public interface ScheduleService {
     
     void addSchedule(int userId, String title, int length) throws SQLException, ServiceException;
     
-    List<Schedule> viewSchedules() throws SQLException, ServiceException; //type=public
+    List<Schedule> findAll() throws SQLException, ServiceException;
     
-    Schedule updateSchedule(int userId, String title, int length) throws SQLException, ServiceException;
+    void updateSchedule(int scheduleId, String title, int length) throws SQLException, ServiceException;
     
-    Schedule deleteSchedule(int userId, String title, int length) throws SQLException, ServiceException;
+    void deleteSchedule(int scheduleId) throws SQLException, ServiceException;
+    
+    Schedule findById(int scheduleId) throws SQLException, ServiceException;
+    
+    List<Schedule> findAllByUserId(int userId) throws SQLException, ServiceException;
 }
