@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div id="main-content" class="home">
+<div id="main-content" class="hidden content">
     <div class="topnav">
         <ul>
             <div class="dropdown">
@@ -38,7 +38,7 @@
         <div class="sidenav">
             <a>Login first</a>
         </div>
-        <div id="schedules-content" class="content">
+        <div id="schedules-content" class="schedules">
             <table>
                 <th></th>
                 <tbody>
@@ -51,7 +51,7 @@
     </div>
 </div>
 
-<div id="login-content" class="login">
+<div id="login-content" class="content">
     <form accept-charset=utf-8 id="login-form" onsubmit="return false;">
         <h4><p><label for="email"><b>Email</b></label>
             <input type="text" placeholder="Enter your email address" name="email" required></p>
@@ -70,7 +70,7 @@
     </p>
 </div>
 
-<div id="signUp-content" class="login">
+<div id="signUp-content" class="hidden content">
     <form accept-charset=utf-8 id='signUp-form' onsubmit="return false;">
         <div>
             <p>
@@ -94,7 +94,7 @@
     <button id="backToLoginButton" type="submit">Back to login</button>
 </div>
 
-<div id="profile-content" class="profile">
+<div id="profile-content" class="hidden content">
     <p>LastName: <span id="user-lastName"></span></p>
     <p>Forename: <span id="user-forename"></span></p>
     <p>Email: <span id="user-email"></span></p>
