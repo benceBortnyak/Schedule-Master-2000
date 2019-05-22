@@ -23,11 +23,11 @@ public class LoginServlet extends AbstractServlet {
         try(Connection connection = getConnection(req.getServletContext())){
             UserDao userDao = new DatabaseUserDao(connection);
             UserService userService = new SimpleUserService(userDao);
-            User user = userService.loginUser(req.getParameter("email"),req.getParameter("psw"));
-            req.getSession().setAttribute("user",user);
-            sendMessage(resp,HttpServletResponse.SC_OK,user);
+            User user = userService.loginUser(req.getParameter("email"),req.getParameter("password"));
+            req.getSession().setAttribute("user", user);
+            sendMessage(resp,HttpServletResponse.SC_OK, user);
         }catch (SQLException e ){
-
+            handleSqlError(resp, e);
         }catch (ServiceException e ){
             sendMessage(resp,HttpServletResponse.SC_UNAUTHORIZED,e.getMessage());
         }
