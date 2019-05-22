@@ -2,6 +2,7 @@ function onLoginResponse() {
     console.log("login done");
     loginContentDivEl.style.display = 'none';
     mainContentDivEl.style.display= 'block';
+
 }
 
 function onLoginButtonClicked(){
