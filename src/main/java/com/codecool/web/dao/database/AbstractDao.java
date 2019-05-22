@@ -34,4 +34,8 @@ abstract class AbstractDao {
         connection.commit();
         return id;
     }
+    public boolean checkString(String string,int min,int max){
+        return (string.length()< min || string.length()> max);
+    }
+
 }

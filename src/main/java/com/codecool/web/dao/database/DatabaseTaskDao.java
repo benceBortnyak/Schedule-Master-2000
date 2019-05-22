@@ -93,8 +93,17 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             connection.setAutoCommit(autoCommit);
         }
     }
+
+    public void upadteTask(int taskId,String title,String content) throws SQLException{
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sqlStatement = ""
+
+    }
+
+
     
-    public Task fetchTask(ResultSet resultSet) throws SQLException {
+    private Task fetchTask(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         int userId = resultSet.getInt("userId");
         String title = resultSet.getString("title");
@@ -103,4 +112,5 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         
         return new Task(id, userId, title, type, content);
     }
+
 }
