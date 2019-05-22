@@ -6,7 +6,6 @@ import com.codecool.web.service.ScheduleService;
 import com.codecool.web.service.exception.ServiceException;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleScheduleService implements ScheduleService {
@@ -27,7 +26,7 @@ public class SimpleScheduleService implements ScheduleService {
     }
     
     @Override
-    public List<Schedule> viewSchedules() throws SQLException, ServiceException {
+    public List<Schedule> findAll() throws SQLException, ServiceException {
         try {
             return scheduleDao.findAll();
         } catch (IllegalArgumentException ex) {
@@ -36,12 +35,38 @@ public class SimpleScheduleService implements ScheduleService {
     }
     
     @Override
-    public Schedule updateSchedule(int userId, String title, int length) throws SQLException, ServiceException {
-        return null;
+    public Schedule findById(int scheduleId) throws SQLException, ServiceException {
+        try {
+            return scheduleDao.findById(scheduleId);
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
     }
     
     @Override
-    public Schedule deleteSchedule(int userId, String title, int length) throws SQLException, ServiceException {
-        return null;
+    public void updateSchedule(int scheduleId, String title, int length) throws SQLException, ServiceException {
+        try {
+            scheduleDao.update(scheduleId,title,length);
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
+    }
+    
+    @Override
+    public void deleteSchedule(int scheduleId) throws SQLException, ServiceException {
+        try {
+            scheduleDao.delete(scheduleId);
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
+    }
+    
+    @Override
+    public List<Schedule> findAllByUserId(int userId) throws SQLException, ServiceException {
+        try {
+            return scheduleDao.findAllByUserId(userId);
+        }   catch (IllegalArgumentException ex) {
+            throw  new ServiceException(ex.getMessage());
+        }
     }
 }

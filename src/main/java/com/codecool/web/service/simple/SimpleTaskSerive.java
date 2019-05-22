@@ -1,8 +1,8 @@
 package com.codecool.web.service.simple;
 
-import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.dao.TaskDao;
 import com.codecool.web.model.Task;
+import com.codecool.web.model.enums.TaskType;
 import com.codecool.web.service.TaskService;
 import com.codecool.web.service.exception.ServiceException;
 
@@ -37,18 +37,47 @@ public class SimpleTaskSerive  implements TaskService {
     }
 
     @Override
-    public Task updateTask(int userId, String title, String type, String content) throws SQLException, ServiceException {
-
-
-
-        return null;
+    public void updateTask(int taskId, String title, String content, TaskType taskType) throws SQLException,ServiceException {
+        try{
+            taskDao.updateTask(taskId,title,content,taskType);
+        }catch (IllegalArgumentException e ){
+            throw new ServiceException(e.getMessage());
+        }
     }
 
     @Override
-    public Task removeTask(int userId, String title, String type, String content) throws SQLException, ServiceException {
+    public void deleteTask(int taskId) throws SQLException, ServiceException {
+        try{
+            taskDao.deleteTask(taskId);
+        }catch (IllegalArgumentException e ){
+            throw new ServiceException(e.getMessage());
+        }
+    }
 
+    @Override
+    public void addToSlot(int slotId, int taskId) throws SQLException, ServiceException {
+        try{
+            taskDao.addToSlot(slotId,taskId);
+        }catch (IllegalArgumentException e ){
+            throw new ServiceException(e.getMessage());
+        }
+    }
 
+    @Override
+    public Task findById(int taskId) throws SQLException,ServiceException {
+        try{
+            return taskDao.findById(taskId);
+        }catch (IllegalArgumentException e){
+            throw new ServiceException(e.getMessage());
+        }
+    }
 
-        return null;
+    @Override
+    public List<Task> findAll() throws SQLException, ServiceException {
+        try{
+            return taskDao.findAll();
+        }catch (IllegalArgumentException e){
+            throw new ServiceException(e.getMessage());
+        }
     }
 }
