@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="index.css" media="all">
     <c:url value="/scripts/index.js" var="indexScriptUrl"/>
     <c:url value="/scripts/signup.js" var="signUpScriptUrl"/>
+    <c:url value="/scripts/login.js" var="loginScriptUrl"/>
+    <script src="${loginScriptUrl}"></script>
     <script src="${indexScriptUrl}"></script>
     <script src="${signUpScriptUrl}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +56,7 @@
             <p><label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required></p>
             <p>
-                <button id="login-button" type="submit">Login</button>
+                <button id="login-button">Login</button>
             </p>
         </h4>
     </form>
@@ -70,7 +72,7 @@
 </div>
 
 <div id="signUp-content" class="login">
-    <form accept-charset=utf-8 id ='signUp-form'>
+    <form accept-charset=utf-8 id ='signUp-form' onsubmit="return false;">
         <div>
             <p>
             <h1>SIGN UP</h1></p>

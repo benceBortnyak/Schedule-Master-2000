@@ -1,5 +1,10 @@
 function onSignUpResponse() {
-    console.log("signup ok");
+    if (this.status === OK) {
+        loginContentDivEl.style.display = 'block';
+        signUpContentDivEl.style.display = 'none';
+    } else if (this.status === BAD_REQUEST) {
+        alert("You've provided invalid data");
+    }
 }
 
 function onSubmitButtonClicked() {
@@ -13,17 +18,18 @@ function onSubmitButtonClicked() {
     const forename = forenameInputEl.value;
     const lastName = lastNameInputEl.value;
     const password = passwordInputEl.value;
-    
+
     const params = new URLSearchParams();
     params.append('email', email);
     params.append('forename', forename);
     params.append('lastName', lastName);
     params.append('password', password);
-    
+
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onSignUpResponse);
     xhr.open('POST', 'signup');
     xhr.send(params);
+
 }
 
 function backToLoginButtonClicked() {

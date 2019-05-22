@@ -4,7 +4,6 @@ import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.dao.TaskDao;
 import com.codecool.web.model.Schedule;
 import com.codecool.web.model.Task;
-import com.codecool.web.model.enums.TaskType;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -87,7 +86,6 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             preparedStatement.setInt(1,slotId);
             preparedStatement.setInt(2,taskId);
             preparedStatement.executeUpdate();
-            executeInsert(preparedStatement);
         }catch (SQLException ex){
             connection.rollback();
             throw ex;
@@ -96,41 +94,15 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         }
     }
 
-    @Override
-    public void deleteTask(int taskId) throws SQLException {
+    public void upadteTask(int taskId,String title,String content) throws SQLException{
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sqlString = "UPDATE slots_tasks set task_id = null where task_id = ?";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)){
-            preparedStatement.setInt(1,taskId);
-            preparedStatement.executeUpdate();
-        }catch (SQLException e ){
-            connection.rollback();
-            throw e;
-        }finally {
-            connection.setAutoCommit(autoCommit);
-        }
+        String sqlStatement = "";
 
     }
 
-    public void upadteTask(int taskId, String title, String content, TaskType taskType) throws SQLException{
-        boolean autoCommit = connection.getAutoCommit();
-        connection.setAutoCommit(false);
-        String sqlStatement = "UPDATE tasks SET title =?, type=?, content=? WHERE task_id =?";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
-            preparedStatement.setString(1,title);
-            preparedStatement.setString(2,(taskType.toString()));
-            preparedStatement.setString(3,content);
-            preparedStatement.setInt(4,taskId);
-            preparedStatement.executeUpdate();
-        }catch (SQLException e ){
-            connection.rollback();
-            throw e;
-        } finally {
-            connection.setAutoCommit(autoCommit);
-        }
-    }
 
+    
     private Task fetchTask(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         int userId = resultSet.getInt("userId");
