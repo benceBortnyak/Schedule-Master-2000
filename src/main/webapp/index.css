@@ -43,17 +43,14 @@ div.sidenav a{
     font-size: 16px;
     display: block;
 }
-div.content{
+div.schedules{
     width: 78.5%;
     height: 500px;
     float: right;
     border: black 5px solid;
 }
-div.content p{
+div.schedules p{
     padding: 0 20%;
-}
-div.profile{
-    display: none;
 }
 input[type=text], input[type=password] {
     width: 100%;
@@ -75,15 +72,10 @@ button {
 #login-content{
     padding: 0px 30%;
     height: 50%;
-    /*display: none;*/
 }
 #signUp-content{
     padding: 0px 30%;
     height: 50%;
-    display: none;
-}
-div.home{
-    display: none;
 }
 #div1{
     width: 50%;
@@ -137,10 +129,10 @@ div.home{
 .show {
     display: block;
 }
-#content{
-    display: none;
-}
 table, th, td {
     text-align: center;
     border: 1px solid black;
+}
+.hidden{
+    display: none;
 }
