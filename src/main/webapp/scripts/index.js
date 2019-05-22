@@ -10,6 +10,21 @@ let mainContentDivEl;
 let profileContentDivEl;
 let schedulesContentDivEl;
 
+function hasAuthorization() {
+    return localStorage.getItem('user') !== null;
+}
+
+function setAuthorization(user) {
+    return localStorage.setItem('user', JSON.stringify(user));
+}
+
+function getAuthorization() {
+    return JSON.parse(localStorage.getItem('user'));
+}
+
+function setUnauthorized() {
+    return localStorage.removeItem('user');
+}
 
 function onLoad() {
     loginContentDivEl = document.getElementById('login-content');
@@ -23,10 +38,10 @@ function onLoad() {
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
-    /*
-        const loginGuestButtonEl = document.getElementById('loginGuest-button');
-        loginGuestButtonEl.addEventListener('click', onLoginGuestButtonClicked);
-    */
+
+    if(hasAuthorization()) {
+        onProfileLoad(getAuthorization());
+    }
 
 }
 document.addEventListener('DOMContentLoaded', onLoad);

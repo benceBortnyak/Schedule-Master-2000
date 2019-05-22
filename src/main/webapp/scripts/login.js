@@ -1,7 +1,7 @@
 function onLoginResponse() {
     if (this.status === OK) {
         const user = JSON.parse(this.responseText);
-        console.log(user);
+        setAuthorization(user);
         loginContentDivEl.style.display = 'none';
         mainContentDivEl.style.display = 'block';
     }
