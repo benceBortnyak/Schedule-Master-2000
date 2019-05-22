@@ -19,12 +19,12 @@
     <div class="topnav">
         <ul>
             <div class="dropdown">
-                <input type="image" class="dropbtn" onclick="myFunction()" src="ninja.png">
+                <input type="image" class="dropbtn" onclick="showDropdown()" src="ninja.png">
                 <i class="fa fa-caret-down"></i>
                 </input>
                 <div class="dropdown-content" id="myDropdown">
                     <a>Name</a>
-                    <a href="profile">Profile</a>
+                    <button id="profile-button">Profile</button>
                     <button id="logout-button">Logout</button>
                 </div>
             </div>
@@ -62,7 +62,6 @@
     </form>
     <h4><p>Hit the sign up button to create a new account!</p></h4>
     <button id="signUp-button" type="submit">SIGN UP</button>
-
     <h4><p>Login as guest</p></h4>
     <p>
         <button id="loginGuest-button" type="submit">I'm a guest</button>
@@ -90,28 +89,14 @@
             </p>
         </div>
     </form>
-
     <button id="backToLoginButton" type="submit">Back to login</button>
-
 </div>
 
 <div id="profile-content" class="profile">
-
+    <p>LastName: <span id="user-lastName"></span></p>
+    <p>Forename: <span id="user-forename"></span></p>
+    <p>Email: <span id="user-email"></span></p>
 </div>
 
-<script>
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    window.onclick = function (e) {
-        if (!e.target.matches('.dropbtn')) {
-            var myDropdown = document.getElementById("myDropdown");
-            if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
-            }
-        }
-    }
-</script>
 </body>
 </html>

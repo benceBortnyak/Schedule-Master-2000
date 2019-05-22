@@ -1,9 +1,10 @@
 function onLoginResponse() {
-    if (this.status === OK) {
-        const user = JSON.parse(this.responseText);
-        console.log(user);
+    if(this.status === OK){
         loginContentDivEl.style.display = 'none';
-        mainContentDivEl.style.display = 'block';
+        mainContentDivEl.style.display= 'block';
+    }
+    else if(this.status === UNAUTHORIZED){
+        alert("Your email address or password was incorrect!");
     }
 
 }
@@ -24,5 +25,10 @@ function onLoginButtonClicked(){
     xhr.addEventListener('load', onLoginResponse);
     xhr.open('POST', 'login');
     xhr.send(params);
+
+}
+
+function onLoginGuestButtonClicked() {
+    
 }
 
