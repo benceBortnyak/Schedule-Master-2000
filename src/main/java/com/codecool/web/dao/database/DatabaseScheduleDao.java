@@ -74,4 +74,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         
         return new Schedule(scheduleId, userId, title, length);
     }
+
+
+
 }
