@@ -34,8 +34,21 @@ abstract class AbstractDao {
         connection.commit();
         return id;
     }
-    public boolean checkString(String string,int min,int max){
-        return (string.length()< min || string.length()> max);
+    public boolean checkString(String string,int min,int max) throws IllegalArgumentException{
+        try {
+            return (string.length() < min || string.length() > max);
+        }catch (IllegalArgumentException ex){
+            throw ex;
+        }
+        
+    }
+    
+    public boolean checkInt(int value,int min,int max) throws IllegalArgumentException {
+        try {
+            return (value < min || value > max);
+        }catch (IllegalArgumentException ex){
+            throw ex;
+        }
     }
 
 }

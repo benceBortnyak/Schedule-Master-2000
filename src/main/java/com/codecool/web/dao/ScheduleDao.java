@@ -12,5 +12,9 @@ public interface ScheduleDao {
     Schedule findById(int schedule_id) throws SQLException;
     
     Schedule add(int userId, String title, int length) throws SQLException;
+    
+    Schedule update(int userId, String title, int length) throws SQLException;
+    
+    Schedule delete(int userId, String title) throws SQLException;
 
 }
