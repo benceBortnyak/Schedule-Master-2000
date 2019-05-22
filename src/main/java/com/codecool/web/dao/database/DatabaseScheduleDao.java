@@ -66,7 +66,22 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         }
     }
     
-    public Schedule fetchSchedule(ResultSet resultSet) throws SQLException {
+    @Override
+    public Schedule update(int userId, String title, int length) throws SQLException {
+        if(length < 0 || length > 7) {
+            throw new IllegalArgumentException("Schedule length must be between 0 and 7");
+        }
+        
+        
+        return null;
+    }
+    
+    @Override
+    public Schedule delete(int userId, String title) throws SQLException {
+        return null;
+    }
+    
+    private Schedule fetchSchedule(ResultSet resultSet) throws SQLException {
         Integer scheduleId = resultSet.getInt("scheduleId");
         int userId = resultSet.getInt("userId");
         String title = resultSet.getString("title");
@@ -74,4 +89,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         
         return new Schedule(scheduleId, userId, title, length);
     }
+
+
+
 }

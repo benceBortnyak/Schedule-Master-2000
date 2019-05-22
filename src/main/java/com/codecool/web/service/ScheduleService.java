@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ScheduleService {
     
-    Schedule addSchedule(int userId, String title, int length) throws SQLException, ServiceException;
+    void addSchedule(int userId, String title, int length) throws SQLException, ServiceException;
     
-    List<Schedule> wiewSchedules() throws SQLException, ServiceException; //type=public
+    List<Schedule> viewSchedules() throws SQLException, ServiceException; //type=public
     
     Schedule updateSchedule(int userId, String title, int length) throws SQLException, ServiceException;
     
