@@ -1,11 +1,7 @@
 package com.codecool.web.dao.database;
 
-import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.dao.TaskDao;
-import com.codecool.web.model.Schedule;
 import com.codecool.web.model.Task;
-import com.codecool.web.model.enums.TaskType;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +16,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     public List<Task> findAllByScheduleId(int scheduleId) throws SQLException {
         
         List<Task> taskList = new ArrayList<>();
-        String sqlString = "SELECT t.task_id, t.user_id, t.title, t.type, t.content, sche.schedule_id " +
+        String sqlString = "SELECT t.task_id, t.user_id, t.title, t.content, sche.schedule_id " +
                 "FROM schedules AS sche " +
                 "JOIN columns AS c ON c.schedule_id = sche.schedule_id " +
                 "JOIN slots AS s ON s.column_id = c.column_id " +
@@ -41,7 +37,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     @Override
     public Task findById(int taskId) throws SQLException {
         
-        String sqlString = "SELECT task_id,user_id,title,type,content FROM tasks WHERE task_id = ?";
+        String sqlString = "SELECT task_id,user_id,title,content FROM tasks WHERE task_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
             preparedStatement.setInt(1, taskId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -54,21 +50,17 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     }
     
     @Override
-    public Task add(int userId, String title, String type, String content) throws SQLException {
-        if (type.equals("PUBLIC") || type.equals("PRIVATE")) {
-            throw new IllegalArgumentException("type only can be PUBLIC or PRIVATE");
-        }
+    public Task add(int userId, String title, String content) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sqlString = "INSERT INTO tasks (user_id, title, type, content) VALUES (?, ?, ?, ?)";
+        String sqlString = "INSERT INTO tasks (user_id, title, content) VALUES (?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
             preparedStatement.setInt(1, userId);
             preparedStatement.setString(2, title);
-            preparedStatement.setString(3, type);
-            preparedStatement.setString(4, content);
+            preparedStatement.setString(3, content);
             executeInsert(preparedStatement);
             int id = fetchGeneratedId(preparedStatement);
-            return new Task(id, userId, title, type, content);
+            return new Task(id, userId, title, content);
         } catch (SQLException ex) {
             connection.rollback();
             throw ex;
@@ -112,15 +104,14 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
 
     }
     @Override
-    public void updateTask(int taskId, String title, String content, TaskType taskType) throws SQLException{
+    public void updateTask(int taskId, String title, String content) throws SQLException{
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sqlStatement = "UPDATE tasks SET title =?, type=?, content=? WHERE task_id =?";
+        String sqlStatement = "UPDATE tasks SET title =?, content=? WHERE task_id =?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
             preparedStatement.setString(1,title);
-            preparedStatement.setString(2,(taskType.toString()));
-            preparedStatement.setString(3,content);
-            preparedStatement.setInt(4,taskId);
+            preparedStatement.setString(2,content);
+            preparedStatement.setInt(3,taskId);
             preparedStatement.executeUpdate();
         }catch (SQLException e ){
             connection.rollback();
@@ -152,10 +143,9 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         int id = resultSet.getInt("id");
         int userId = resultSet.getInt("userId");
         String title = resultSet.getString("title");
-        String type = resultSet.getString("type");
         String content = resultSet.getString("content");
         
-        return new Task(id, userId, title, type, content);
+        return new Task(id, userId, title, content);
     }
 
 }

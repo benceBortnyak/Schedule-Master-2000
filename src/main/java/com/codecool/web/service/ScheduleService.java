@@ -1,6 +1,7 @@
 package com.codecool.web.service;
 
 import com.codecool.web.model.Schedule;
+import com.codecool.web.model.enums.ScheduleType;
 import com.codecool.web.service.exception.ServiceException;
 
 import java.sql.SQLException;
@@ -19,4 +20,6 @@ public interface ScheduleService {
     Schedule findById(int scheduleId) throws SQLException, ServiceException;
     
     List<Schedule> findAllByUserId(int userId) throws SQLException, ServiceException;
+    
+    List<Schedule> findAllByPublic(ScheduleType scheduleType) throws SQLException, ServiceException;
 }

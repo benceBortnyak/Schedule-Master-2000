@@ -2,6 +2,7 @@ package com.codecool.web.service.simple;
 
 import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.model.Schedule;
+import com.codecool.web.model.enums.ScheduleType;
 import com.codecool.web.service.ScheduleService;
 import com.codecool.web.service.exception.ServiceException;
 
@@ -65,6 +66,15 @@ public class SimpleScheduleService implements ScheduleService {
     public List<Schedule> findAllByUserId(int userId) throws SQLException, ServiceException {
         try {
             return scheduleDao.findAllByUserId(userId);
+        }   catch (IllegalArgumentException ex) {
+            throw  new ServiceException(ex.getMessage());
+        }
+    }
+    
+    @Override
+    public List<Schedule> findAllByPublic(ScheduleType scheduleType) throws SQLException, ServiceException {
+        try {
+            return scheduleDao.findAllByPublic(scheduleType);
         }   catch (IllegalArgumentException ex) {
             throw  new ServiceException(ex.getMessage());
         }

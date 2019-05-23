@@ -21,8 +21,8 @@ DROP TABLE IF EXISTS slots_tasks cascade;
 drop type if exists role;
 CREATE TYPE role AS ENUM ('USER','ADMIN');
 
-DROP TYPE IF EXISTS task_type;
-create type task_type as enum ('PUBLIC','PRIVATE');
+DROP TYPE IF EXISTS schedule_type;
+create type schedule_type as enum ('PUBLIC','PRIVATE');
 
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
@@ -37,7 +37,8 @@ CREATE TABLE schedules (
     schedule_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id)NOT NULL,
     title VARCHAR(60),
-    length int
+    length int,
+    type schedule_type
 );
 
 CREATE TABLE columns (
@@ -56,7 +57,6 @@ CREATE TABLE tasks (
     task_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id),
     title VARCHAR(60),
-    type task_type,
     content text
 );
 
@@ -92,6 +92,6 @@ CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS '
 
 insert into users (forename, lastName, email, password, user_type) values ('AdminForename','AdminLastName','admin@admin.com', 'Admin1234', 'ADMIN');
 insert into users(email, password, user_type) VALUES ('user1@user1.com', 'user1234', 'USER');
-insert into schedules(user_id, title, length) values (1, 'asd',6);
-insert into schedules(user_id, title, length) values (1, 'asdasd',4);
-insert into tasks(task_id,user_id,title,type,content) values(1, 2, 'Gardening', 'PUBLIC', 'I really love gardening!');
+insert into schedules(user_id, title, length,type) values (1, 'asd',6, 'PUBLIC');
+insert into schedules(user_id, title, length, type) values (1, 'asdasd',4, 'PUBLIC');
+insert into tasks(task_id,user_id,title,content) values(1, 2, 'Gardening', 'I really love gardening!');

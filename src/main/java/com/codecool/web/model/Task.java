@@ -4,14 +4,12 @@ public class Task extends AbstractModel {
     
     private int userId;
     private String title;
-    private String taskType;
     private String content;
     
-    public Task(int id, int userId, String title, String taskType, String content) {
+    public Task(int id, int userId, String title, String content) {
         super(id);
         this.userId = userId;
         this.title = title;
-        this.taskType = taskType;
         this.content = content;
     }
     
@@ -23,9 +21,6 @@ public class Task extends AbstractModel {
         return title;
     }
     
-    public String getTaskType() {
-        return taskType;
-    }
     
     public String getContent() {
         return content;

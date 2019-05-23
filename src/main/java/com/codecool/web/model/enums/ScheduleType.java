@@ -1,6 +1,6 @@
 package com.codecool.web.model.enums;
 
-public enum TaskType {
+public enum ScheduleType {
     PUBLIC,
     PRIVATE
 }
