@@ -38,6 +38,19 @@
     </div>
     <div id="schedules">
         <div id="sidenav-content" class="sidenav">
+            <%--<p id="newScheduleButton" href="javascript:void(0);">Add schedule</p>--%>
+            <div id="addSchedule" class="hidden">
+                <p><input type="text" placeholder="Type schedule tile">
+                    <select name="schedule-length">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                    </select></p>
+            </div>
         </div>
         <div id="schedules-content" class="schedules">
             <table>
@@ -52,7 +65,8 @@
     </div>
     <div id="profile-content" class="hidden content modal">
         <form class="modal-content animate" action="/action_page.php">
-            <div class="imgcontainer"><span style="width: 2%; float: right" id="closeProfile-button" title="Close PopUp" class="close">&times;</span>
+            <div class="imgcontainer"><span style="width: 2%; float: right" id="closeProfile-button" title="Close PopUp"
+                                            class="close">&times;</span>
                 <p>LastName: <span id="user-lastName"></span></p>
                 <p>Forename: <span id="user-forename"></span></p>
                 <p>Email: <span id="user-email"></span></p>
@@ -75,7 +89,7 @@
         <form accept-charset=utf-8 id="login-form" onsubmit="return false;" class="modal-content animate"
               action="/action_page.php">
             <div class="imgcontainer"><span style="width: 2%; float: right" id="closeLogin-button" title="Close PopUp"
-                       class="close">&times;</span>
+                                            class="close">&times;</span>
                 <h4>
                     <input type="text" placeholder="Enter your email address" name="email" required>
                     <input type="password" placeholder="Enter Password" name="psw" required>
