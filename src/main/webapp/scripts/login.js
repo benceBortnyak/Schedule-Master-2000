@@ -29,3 +29,8 @@ function onLoginButtonClicked(){
     xhr.send(params);
 }
 
+function onCloseButtonClicked() {
+    showContents(['welcome-content']);
+
+}
+

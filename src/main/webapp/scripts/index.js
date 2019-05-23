@@ -54,11 +54,21 @@ function onLoad() {
     const profileButtonEl = document.getElementById('profile-button');
     profileButtonEl.addEventListener('click', onProfileButtonClicked);
 
-    if(hasAuthorization()) {
+    const toLoginButtonEl = document.getElementById('toLogin-button');
+    toLoginButtonEl.addEventListener('click', backToLoginButtonClicked);
+
+    const toSignUpButtonEl = document.getElementById('toSignUp-button');
+    toSignUpButtonEl.addEventListener('click', onSignUpButtonClicked);
+
+    const closeButtonEl = document.getElementById('close-button');
+    closeButtonEl.addEventListener('click', onCloseButtonClicked);
+
+    if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
     }
 
 }
+
 document.addEventListener('DOMContentLoaded', onLoad);
 
 function showDropdown() {
@@ -73,3 +83,18 @@ window.onclick = function (e) {
         }
     }
 }
+
+var log = document.getElementById('login-content');
+window.onclick = function (event) {
+    if (event.target == log) {
+        log.style.display = "none";
+    }
+}
+
+var sign = document.getElementById('signUp-content');
+window.onclick = function (event) {
+    if (event.target == sign) {
+        sign.style.display = "none";
+    }
+}
+

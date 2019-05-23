@@ -32,11 +32,11 @@ function onSubmitButtonClicked() {
 }
 
 function backToLoginButtonClicked() {
-    showContents(['login-content']);
+    showContents(['login-content', 'welcome-content']);
 }
 
 function onSignUpButtonClicked() {
-    showContents(['signUp-content']);
+    showContents(['signUp-content', 'welcome-content']);
 
 
     const backToLoginButtonEl = document.getElementById('backToLoginButton');

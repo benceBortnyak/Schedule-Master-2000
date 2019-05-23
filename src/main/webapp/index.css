@@ -8,7 +8,7 @@ body {
 }
 div.topnav{
     overflow: hidden;
-    border: black 5px solid;
+    /*border: black 5px solid;*/
     background: black;
     color: white;
 }
@@ -34,7 +34,7 @@ div.sidenav{
     height: 500px;
     top: 13.5%;
     overflow-x: hidden;
-    border: black 5px solid;
+    /*border: black 5px solid;*/
     float: left;
 }
 div.sidenav a{
@@ -44,10 +44,12 @@ div.sidenav a{
     display: block;
 }
 div.schedules{
-    width: 78.5%;
+    width: 60%;
     height: 500px;
-    float: right;
-    border: black 5px solid;
+    float: left;
+
+    /*border: black 5px solid;*/
+    background: white;
 }
 div.schedules p{
     padding: 0 20%;
@@ -61,7 +63,7 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 button {
-    background-color: #00d8ff;
+    background-color: #1cd200;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -69,14 +71,17 @@ button {
     cursor: pointer;
     width: 100%;
 }
-#login-content{
-    padding: 0px 30%;
+div.schedules a:hover{
+    background: white;
+}
+/*#login-content{
+    padding: 0px 40%;
     height: 50%;
 }
 #signUp-content{
-    padding: 0px 30%;
+    padding: 0px 40%;
     height: 50%;
-}
+}*/
 #div1{
     width: 50%;
     float: left;
@@ -84,6 +89,9 @@ button {
 #div2{
     width: 50%;
     float: right;
+}
+#schedules{
+    padding-left: 20%;
 }
 .dropdown {
     float: left;
@@ -129,10 +137,47 @@ button {
 .show {
     display: block;
 }
-table, th, td {
+th, td {
     text-align: center;
-    border: 1px solid black;
+    border: 1px dotted black;
 }
 .hidden{
     display: none;
+}
+.modal {
+    /*display:none;*/
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: black;
+    margin: 4% auto 15% auto;
+    border: 1px solid #888;
+    width: 40%;
+    padding-bottom: 30px;
+}
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+.close:hover,.close:focus {
+    color: red;
+    cursor: pointer;
+}
+.animate {
+    animation: zoom 0.6s
+}
+@keyframes zoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
 }
