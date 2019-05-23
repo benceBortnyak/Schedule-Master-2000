@@ -35,7 +35,7 @@
         </ul>
     </div>
     <div id="schedules">
-        <div class="sidenav">
+        <div id="sidenav-content" class="sidenav">
             <a>Login first</a>
         </div>
         <div id="schedules-content" class="schedules">
