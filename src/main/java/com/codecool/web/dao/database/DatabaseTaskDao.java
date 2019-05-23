@@ -141,7 +141,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
 
     private Task fetchTask(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        int userId = resultSet.getInt("userId");
+        int userId = resultSet.getInt("user_id");
         String title = resultSet.getString("title");
         String content = resultSet.getString("content");
         
