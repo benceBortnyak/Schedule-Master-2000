@@ -18,9 +18,9 @@ public class SimpleScheduleService implements ScheduleService {
     }
     
     @Override
-    public void addSchedule(int userId, String title, int length) throws SQLException, ServiceException {
+    public void addSchedule(int userId, String title, int length,ScheduleType scheduleType) throws SQLException, ServiceException {
         try {
-            scheduleDao.add(userId,title,length);
+            scheduleDao.add(userId, title, length, scheduleType);
         } catch (IllegalArgumentException ex){
             throw new ServiceException(ex.getMessage());
         }
@@ -45,9 +45,9 @@ public class SimpleScheduleService implements ScheduleService {
     }
     
     @Override
-    public void updateSchedule(int scheduleId, String title, int length) throws SQLException, ServiceException {
+    public void updateSchedule(int scheduleId, String title, int length, ScheduleType scheduleType) throws SQLException, ServiceException {
         try {
-            scheduleDao.update(scheduleId,title,length);
+            scheduleDao.update(scheduleId,title,length,scheduleType);
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
