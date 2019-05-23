@@ -140,11 +140,11 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     }
     
     private Schedule fetchSchedule(ResultSet resultSet) throws SQLException {
-        Integer scheduleId = resultSet.getInt("scheduleId");
-        int userId = resultSet.getInt("userId");
+        Integer scheduleId = resultSet.getInt("schedule_id");
+        int userId = resultSet.getInt("user_id");
         String title = resultSet.getString("title");
         int length = resultSet.getInt("length");
-        ScheduleType scheduleType = ScheduleType.valueOf(resultSet.getString("PUBLIC"));
+        ScheduleType scheduleType = ScheduleType.valueOf(resultSet.getString("type"));
         
         return new Schedule(scheduleId, userId, title, length, scheduleType);
     }

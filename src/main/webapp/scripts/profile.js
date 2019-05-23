@@ -11,7 +11,7 @@ function onProfileLoad(user) {
     params.append('id', user.id);
 
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onSchedulesResponse);
+    xhr.addEventListener('load', onSchedulesReceived);
     xhr.open('POST', 'schedules');
     xhr.send(params);
 }
