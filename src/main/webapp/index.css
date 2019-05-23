@@ -160,6 +160,7 @@ th, td {
     background-color: #888888;
     margin: 4% auto 15% auto;
     border: 1px solid #888;
+    border-radius: 50px;
     width: 30%;
     padding-bottom: 30px;
     text-align: center;
@@ -182,4 +183,9 @@ th, td {
 @keyframes zoom {
     from {transform: scale(0)}
     to {transform: scale(1)}
+}
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
 }

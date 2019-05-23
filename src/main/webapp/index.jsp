@@ -53,7 +53,7 @@
     </div>
     <div id="profile-content" class="hidden content modal">
         <form class="modal-content animate" action="/action_page.php">
-            <div><span style="width: 2%; float: right" id="closeProfile-button" title="Close PopUp" class="close">&times;</span>
+            <div class="imgcontainer"><span style="width: 2%; float: right" id="closeProfile-button" title="Close PopUp" class="close">&times;</span>
                 <p>LastName: <span id="user-lastName"></span></p>
                 <p>Forename: <span id="user-forename"></span></p>
                 <p>Email: <span id="user-email"></span></p>
@@ -75,7 +75,7 @@
     <div id="login-content" class="hidden content modal">
         <form accept-charset=utf-8 id="login-form" onsubmit="return false;" class="modal-content animate"
               action="/action_page.php">
-            <div><span style="width: 2%; float: right" id="closeLogin-button" title="Close PopUp"
+            <div class="imgcontainer"><span style="width: 2%; float: right" id="closeLogin-button" title="Close PopUp"
                        class="close">&times;</span>
                 <h4>
                     <input type="text" placeholder="Enter your email address" name="email" required>
@@ -99,7 +99,9 @@
     <div id="signUp-content" class="hidden content modal">
         <form accept-charset=utf-8 id='signUp-form' onsubmit="return false;" class="modal-content animate"
               action="/action_page.php">
-            <div>
+            <div class="imgcontainer">
+                <span style="width: 2%; float: right" id="closeSignUp-button" title="Close PopUp"
+                      class="close">&times;</span>
                 <h1>SIGN UP</h1>
                 <div><input type="text" placeholder="Enter Last Name" name="lastName" required style="width: 39%">
                     <input type="text" placeholder="Enter Forename" name="forename" required style="width: 39%"></div>
