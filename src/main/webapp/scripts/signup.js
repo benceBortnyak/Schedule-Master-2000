@@ -1,6 +1,6 @@
 function onSignUpResponse() {
     if (this.status === OK) {
-        showContents(['login-content']);
+        showContents(['login-content', 'welcome-content']);
     } else if (this.status === BAD_REQUEST) {
         alert("You've provided invalid data");
     }
