@@ -29,7 +29,7 @@ function onLoginButtonClicked(){
     xhr.send(params);
 }
 
-function onCloseButtonClicked() {
+function onCloseLoginButtonClicked() {
     showContents(['welcome-content']);
 
 }

@@ -10,6 +10,19 @@ let mainContentDivEl;
 let profileContentDivEl;
 let schedulesContentDivEl;
 
+window.onclick = function (e) {
+    if (!e.target.matches('.dropbtn')) {
+        var myDropdown = document.getElementById("myDropdown");
+        if (myDropdown.classList.contains('show')) {
+            myDropdown.classList.remove('show');
+        }
+    }
+}
+
+function showDropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
 function hasAuthorization() {
     return localStorage.getItem('user') !== null;
 }
@@ -60,8 +73,11 @@ function onLoad() {
     const toSignUpButtonEl = document.getElementById('toSignUp-button');
     toSignUpButtonEl.addEventListener('click', onSignUpButtonClicked);
 
-    const closeButtonEl = document.getElementById('close-button');
-    closeButtonEl.addEventListener('click', onCloseButtonClicked);
+    const closeProfileButtonEl = document.getElementById('closeProfile-button');
+    closeProfileButtonEl.addEventListener('click', onCloseProfileButtonClicked);
+
+    const closeLoginButtonEl = document.getElementById('closeLogin-button');
+    closeLoginButtonEl.addEventListener('click', onCloseLoginButtonClicked);
 
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
@@ -71,30 +87,5 @@ function onLoad() {
 
 document.addEventListener('DOMContentLoaded', onLoad);
 
-function showDropdown() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
 
-window.onclick = function (e) {
-    if (!e.target.matches('.dropbtn')) {
-        var myDropdown = document.getElementById("myDropdown");
-        if (myDropdown.classList.contains('show')) {
-            myDropdown.classList.remove('show');
-        }
-    }
-}
-
-var log = document.getElementById('login-content');
-window.onclick = function (event) {
-    if (event.target == log) {
-        log.style.display = "none";
-    }
-}
-
-var sign = document.getElementById('signUp-content');
-window.onclick = function (event) {
-    if (event.target == sign) {
-        sign.style.display = "none";
-    }
-}
 

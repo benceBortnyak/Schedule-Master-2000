@@ -55,7 +55,7 @@ div.schedules p{
     padding: 0 20%;
 }
 input[type=text], input[type=password] {
-    width: 100%;
+    width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -65,11 +65,12 @@ input[type=text], input[type=password] {
 button {
     background-color: #1cd200;
     color: white;
-    padding: 14px 20px;
+    padding: 10px 5px;
     margin: 8px 0;
     border: none;
+    border-radius: 50px;
     cursor: pointer;
-    width: 100%;
+    width: 80%;
 }
 div.schedules a:hover{
     background: white;
@@ -156,11 +157,12 @@ th, td {
     background-color: rgba(0,0,0,0.4);
 }
 .modal-content {
-    background-color: black;
+    background-color: #888888;
     margin: 4% auto 15% auto;
     border: 1px solid #888;
-    width: 40%;
+    width: 30%;
     padding-bottom: 30px;
+    text-align: center;
 }
 .close {
     position: absolute;

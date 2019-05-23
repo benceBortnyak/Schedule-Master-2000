@@ -49,12 +49,21 @@
             </table>
         </div>
     </div>
+    <div id="profile-content" class="hidden content modal">
+        <form class="modal-content animate" action="/action_page.php">
+            <div><span style="width: 2%; float: right" id="closeProfile-button" title="Close PopUp" class="close">&times;</span>
+                <p>LastName: <span id="user-lastName"></span></p>
+                <p>Forename: <span id="user-forename"></span></p>
+                <p>Email: <span id="user-email"></span></p>
+            </div>
+        </form>
+    </div>
 </div>
 
 <div id="welcome-content" class="content">
     <div style="float: left; width: 50%; padding: 20% 0">
         <p>Welcome to our schedule manager apps!<br>
-        You can manage daily tasks</p>
+            You can manage daily tasks</p>
         <button style="width: 30%" id="toLogin-button">Press to Login</button>
         <button style="width: 30%" id="toSignUp-button">Press to Sign Up</button>
     </div>
@@ -62,28 +71,36 @@
         <img style="float: left; width: 93%" src="ninja_big.png">
     </div>
     <div id="login-content" class="hidden content modal">
-        <form accept-charset=utf-8 id="login-form" onsubmit="return false;" class="modal-content animate" action="/action_page.php">
-            <span style="width: 2%; float: right" id="close-button" title="Close PopUp">&times;</span>
-            <h4><p><label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter your email address" name="email" required></p>
-                <p><label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required></p>
-                <button id="login-button" type="submit">Login</button>
-            </h4>
-            <p>Hit the sign up button to create a new account!</p>
-            <button id="signUp-button" type="submit">SIGN UP</button>
-            <p>Login as guest</p>
-            <button id="loginGuest-button" type="submit">I'm a guest</button>
+        <form accept-charset=utf-8 id="login-form" onsubmit="return false;" class="modal-content animate"
+              action="/action_page.php">
+            <div><span style="width: 2%; float: right" id="closeLogin-button" title="Close PopUp"
+                       class="close">&times;</span>
+                <h4>
+                    <input type="text" placeholder="Enter your email address" name="email" required>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <p style="padding: 0 20%">
+                        <button id="login-button" type="submit">Login</button>
+                    </p>
+                </h4>
+                <p>Hit the sign up button to create a new account!</p>
+                <p style="padding: 0 20%">
+                    <button id="signUp-button" type="submit">SIGN UP</button>
+                </p>
+                <p>Login as guest</p>
+                <p style="padding: 0 20%">
+                    <button id="loginGuest-button" type="submit">I'm a guest</button>
+                </p>
+            </div>
         </form>
     </div>
 
     <div id="signUp-content" class="hidden content modal">
-        <form accept-charset=utf-8 id='signUp-form' onsubmit="return false;" class="modal-content animate" action="/action_page.php">
+        <form accept-charset=utf-8 id='signUp-form' onsubmit="return false;" class="modal-content animate"
+              action="/action_page.php">
             <div>
-                <p>
-                <h1>SIGN UP</h1></p>
-                <div id="div2"><input type="text" placeholder="Enter Last Name" name="lastName" required></div>
-                <div id="div1"><input type="text" placeholder="Enter Forename" name="forename" required></div>
+                <h1>SIGN UP</h1>
+                <div><input type="text" placeholder="Enter Last Name" name="lastName" required style="width: 39%">
+                    <input type="text" placeholder="Enter Forename" name="forename" required style="width: 39%"></div>
                 <p><input type="password" placeholder="Enter Password" name="psw"
                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required
                           title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
@@ -93,20 +110,15 @@
                           title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                 </p>
                 <p><input type="text" placeholder="Enter your email address" name="email" required></p>
-                <p>
+                <p style="padding: 0 20%">
                     <button id='submitButton' type="submit">SUBMIT</button>
                 </p>
             </div>
-            <button id="backToLoginButton" type="submit">Back to login</button>
+            <p style="padding: 0 20%">
+                <button id="backToLoginButton" type="submit">Back to login</button>
+            </p>
         </form>
-
     </div>
-</div>
-
-<div id="profile-content" class="hidden content">
-    <p>LastName: <span id="user-lastName"></span></p>
-    <p>Forename: <span id="user-forename"></span></p>
-    <p>Email: <span id="user-email"></span></p>
 </div>
 
 </body>

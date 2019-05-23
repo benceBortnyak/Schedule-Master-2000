@@ -10,6 +10,10 @@ function onProfileLoad(user) {
 }
 
 function onProfileButtonClicked(){
-    mainContentDivEl.style.display = "none";
-    profileContentDivEl.style.display = "block";
+    showContents(['profile-content', 'main-content']);
+}
+
+function onCloseProfileButtonClicked() {
+    showContents(['main-content']);
+
 }
