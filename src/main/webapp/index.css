@@ -190,6 +190,10 @@ th, td {
     margin: 24px 0 12px 0;
     position: relative;
 }
+div.sidenav p{
+    padding: 10px;
+    margin: 0;
+}
 div.sidenav p:hover{
     background: white;
 }
