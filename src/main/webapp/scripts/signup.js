@@ -38,7 +38,6 @@ function backToLoginButtonClicked() {
 function onSignUpButtonClicked() {
     showContents(['signUp-content', 'welcome-content']);
 
-
     const backToLoginButtonEl = document.getElementById('backToLoginButton');
     backToLoginButtonEl.addEventListener('click', backToLoginButtonClicked);
 

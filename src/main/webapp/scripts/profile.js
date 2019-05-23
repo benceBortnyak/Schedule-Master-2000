@@ -7,6 +7,13 @@ function onProfileLoad(user) {
     userLastNameSpanEl.textContent = user.lastName;
     userEmailSpanEl.textContent = user.email;
 
+    const params = new URLSearchParams();
+    params.append('id', user.id);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onSchedulesResponse);
+    xhr.open('POST', 'schedules');
+    xhr.send(params);
 }
 
 function onProfileButtonClicked(){
