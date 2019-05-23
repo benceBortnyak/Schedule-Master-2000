@@ -18,9 +18,9 @@ public class SimpleTaskSerive  implements TaskService {
 
 
     @Override
-    public void addTask(int userId, String title, String type, String content) throws SQLException, ServiceException {
+    public void addTask(int userId, String title, String content) throws SQLException, ServiceException {
         try {
-            taskDao.add(userId, title, type, content);
+            taskDao.add(userId, title, content);
         }catch (IllegalArgumentException e ){
             throw new ServiceException(e.getMessage());
         }
