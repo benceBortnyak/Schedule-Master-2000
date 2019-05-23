@@ -9,7 +9,7 @@ function createScheduleList(scheduleList) {
     }
     const idAttr = document.createAttribute('id');
     idAttr.value = 'addSchedule-button';
-    const addSchedulePEl = document.createElement('p');
+    const addSchedulePEl = document.createElement('a');
     addSchedulePEl.textContent = 'Add schedule';
     addSchedulePEl.setAttributeNode(idAttr);
     addSchedulePEl.setAttribute('href', 'javascript:void(0);');
@@ -22,4 +22,12 @@ function onSchedulesReceived() {
         const scheduleList = JSON.parse(this.responseText);
         sideNavContentDivEl.appendChild(createScheduleList(scheduleList));
     }
+}
+
+const addScheduleButtonEl = document.getElementById('addSchedule-button');
+addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
+
+function onNewScheduleButtonClicked() {
+    document.getElementById('addSchedule-button').style.display = 'none';
+    document.getElementById('addSchedule-content').style.display = 'block';
 }

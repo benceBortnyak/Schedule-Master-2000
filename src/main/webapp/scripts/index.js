@@ -84,6 +84,8 @@ function onLoad() {
     const closeSignUpButtonEl = document.getElementById('closeSignUp-button');
     closeSignUpButtonEl.addEventListener('click', onCloseSignUpButtonClicked);
 
+
+
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
     }

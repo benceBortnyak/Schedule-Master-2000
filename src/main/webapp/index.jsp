@@ -39,7 +39,7 @@
     <div id="schedules">
         <div id="sidenav-content" class="sidenav">
             <%--<p id="newScheduleButton" href="javascript:void(0);">Add schedule</p>--%>
-            <div id="addSchedule" class="hidden">
+            <div id="addSchedule-content" style="display: none">
                 <p><input type="text" placeholder="Type schedule tile">
                     <select name="schedule-length">
                         <option>1</option>
@@ -53,12 +53,30 @@
             </div>
         </div>
         <div id="schedules-content" class="schedules">
-            <table>
-                <th></th>
+            <table cellspacing="0" >
+                <thead>
+                <td></td>
+                <td>Mon</td>
+                <td>Tue</td>
+                <td>Wed</td>
+                <td>Thu</td>
+                <td>Fri</td>
+                <td>Sat</td>
+                <td>Sun</td>
+                </thead>
                 <tbody>
+                <c:forEach varStatus="i" begin="1" end="24">
                 <tr>
+                    <td><c:out value="${i.index}"/></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                 </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
