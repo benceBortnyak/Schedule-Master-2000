@@ -2,6 +2,7 @@ package com.codecool.web.dao.database;
 
 import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.model.Schedule;
+import com.codecool.web.model.enums.ScheduleType;
 
 
 import java.sql.*;
@@ -44,19 +45,20 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     }
     
     @Override
-    public Schedule add(int userId, String title, int length) throws SQLException {
+    public Schedule add(int userId, String title, int length,ScheduleType scheduleType) throws SQLException {
         if (checkInt(length,1,7)) {
     
             boolean autoCommit = connection.getAutoCommit();
             connection.setAutoCommit(false);
-            String sqlString = "INSERT INTO schedules (user_id, title, length) VALUES(?, ?, ?)";
+            String sqlString = "INSERT INTO schedules (user_id, title, length, type) VALUES(?, ?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setInt(1, userId);
                 preparedStatement.setString(2, title);
                 preparedStatement.setInt(3, length);
+                preparedStatement.setString(4,String.valueOf(scheduleType));
                 executeInsert(preparedStatement);
                 int id = fetchGeneratedId(preparedStatement);
-                return new Schedule(id, userId, title, length);
+                return new Schedule(id, userId, title, length, scheduleType);
             } catch (SQLException ex) {
                 connection.rollback();
                 throw ex;
@@ -69,16 +71,17 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     }
     
     @Override
-    public void update(int scheduleId, String title, int length) throws SQLException {
+    public void update(int scheduleId, String title, int length, ScheduleType scheduleType) throws SQLException {
         if(checkInt(length,1,7)) {
             
             boolean autoCommit = connection.getAutoCommit();
             connection.setAutoCommit(false);
-            String sqlString = "UPDATE schedules SET title = ?, length = ? WHERE schedule_id = ?";
+            String sqlString = "UPDATE schedules SET title = ?, length = ?,type = ? WHERE schedule_id = ?";
             try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
                 preparedStatement.setString(1,title);
                 preparedStatement.setInt(2,length);
-                preparedStatement.setInt(3,scheduleId);
+                preparedStatement.setString(3,String.valueOf(scheduleType));
+                preparedStatement.setInt(4,scheduleId);
                 preparedStatement.executeUpdate();
             }catch (SQLException ex) {
                 connection.rollback();
@@ -114,8 +117,22 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         String sqlString = "SELECT * FROM schedules WHERE user_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
              preparedStatement.setInt(1,userId);
-             ResultSet resultSet = preparedStatement.executeQuery(sqlString);
+             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                scheduleList.add(fetchSchedule(resultSet));
+            }
+        }
+        return scheduleList;
+    }
+    
+    @Override
+    public List<Schedule> findAllByPublic(ScheduleType scheduleType) throws SQLException {
+        List<Schedule> scheduleList = new ArrayList<>();
+        String sqlString = "SELECT * FROM  schedules WHERE type = ?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
+            preparedStatement.setString(1,"PUBLIC");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
                 scheduleList.add(fetchSchedule(resultSet));
             }
         }
@@ -127,8 +144,9 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         int userId = resultSet.getInt("userId");
         String title = resultSet.getString("title");
         int length = resultSet.getInt("length");
+        ScheduleType scheduleType = ScheduleType.valueOf(resultSet.getString("PUBLIC"));
         
-        return new Schedule(scheduleId, userId, title, length);
+        return new Schedule(scheduleId, userId, title, length, scheduleType);
     }
 
 
