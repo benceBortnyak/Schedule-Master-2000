@@ -8,6 +8,7 @@ import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleScheduleService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+@WebServlet("/schedules")
 public class SchedulesServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,6 +26,7 @@ public class SchedulesServlet extends AbstractServlet {
             ScheduleService scheduleService = new SimpleScheduleService(scheduleDao);
             int id = Integer.parseInt(req.getParameter("id"));
             List<Schedule> scheduleList = scheduleService.findAllByUserId(id);
+            System.out.println(scheduleList);
             sendMessage(resp,HttpServletResponse.SC_OK, scheduleList);
         } catch (SQLException e) {
             e.printStackTrace();
