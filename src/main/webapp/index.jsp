@@ -156,7 +156,7 @@
             <option>6</option>
             <option>7</option>
         </select>
-    <button id="addScheduleButton" >Add Scedule</button></p>
+    <button id="addScheduleButton" style="width: auto; margin: 0; padding: 5%; border-radius: 50%;padding-top: 3%;padding-bottom: 4%;" >+</button></p>
 </div>
 
 </body>
