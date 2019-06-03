@@ -11,6 +11,8 @@
     <c:url value="/scripts/login.js" var="loginScriptUrl"/>
     <c:url value="/scripts/profile.js" var="profileScriptUrl"/>
     <c:url value="/scripts/schedule.js" var="schedulesScriptUrl"/>
+    <c:url value="/scripts/table.js" var="tableScriptUrl"/>
+    <script src="${tableScriptUrl}"></script>
     <script src="${schedulesScriptUrl}"></script>
     <script src="${profileScriptUrl}"></script>
     <script src="${indexScriptUrl}"></script>
