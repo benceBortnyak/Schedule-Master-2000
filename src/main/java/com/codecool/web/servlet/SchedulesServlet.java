@@ -33,4 +33,16 @@ public class SchedulesServlet extends AbstractServlet {
             e.printStackTrace();
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+        try (Connection connection = getConnection(req.getServletContext())) {
+            ScheduleDao scheduleDao = new DatabaseScheduleDao(connection);
+            ScheduleService scheduleService = new SimpleScheduleService(scheduleDao);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
