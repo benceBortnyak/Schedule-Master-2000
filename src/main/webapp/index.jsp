@@ -122,8 +122,8 @@
 </div>
 
 <div id="addSchedule-content" style="display: none">
-    <p><input type="text" placeholder="Type schedule tile">
-        <select name="schedule-length">
+    <%--<p><input type="text" placeholder="Type schedule tile" name="scheduleTitle">
+        <select name="scheduleLength">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -132,7 +132,11 @@
             <option>6</option>
             <option>7</option>
         </select>
-    <button id="addScheduleButton" style="width: auto; margin: 0; padding: 5%; border-radius: 50%;padding-top: 3%;padding-bottom: 4%;" >+</button></p>
+        <input type="checkbox" name="isPublished">
+        <button id="addScheduleButton"
+                style="width: auto; margin: 0; padding: 5%; border-radius: 50%;padding-top: 3%;padding-bottom: 4%;">+
+        </button>
+    </p>--%>
 </div>
 
 </body>

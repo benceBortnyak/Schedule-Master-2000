@@ -3,6 +3,7 @@ package com.codecool.web.servlet;
 import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.dao.database.DatabaseScheduleDao;
 import com.codecool.web.model.Schedule;
+import com.codecool.web.model.enums.ScheduleType;
 import com.codecool.web.service.ScheduleService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleScheduleService;
@@ -40,8 +41,14 @@ public class SchedulesServlet extends AbstractServlet {
         try (Connection connection = getConnection(req.getServletContext())) {
             ScheduleDao scheduleDao = new DatabaseScheduleDao(connection);
             ScheduleService scheduleService = new SimpleScheduleService(scheduleDao);
-
+            String title = req.getParameter("title");
+            int length = Integer.parseInt(req.getParameter("length"));
+            int id = Integer.parseInt(req.getParameter("id"));
+            ScheduleType type = ScheduleType.valueOf(req.getParameter("type"));
+            scheduleService.addSchedule(id, title, length, type);
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
     }

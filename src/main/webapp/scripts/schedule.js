@@ -1,6 +1,48 @@
+function onAddScheduleResponse() {
+
+}
+
+function addShceduleButtonClicked() {
+    const el = this;
+    const title = el.getAttribute('title');
+    const length = el.getAttribute('length');
+    const type = el.getAttribute('type');
+    const id = getAuthorization().id;
+
+    const params = new URLSearchParams();
+    params.append('title', title);
+    params.append('length', length);
+    params.append('type', type);
+    params.append('id', id);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onAddScheduleResponse);
+    xhr.open('POST', 'schedules');
+    xhr.send(params);
+}
+
 function onNewScheduleButtonClicked() {
     document.getElementById('addSchedule-button').style.display = 'none';
     document.getElementById('addSchedule-content').style.display = 'block';
+
+    const scheduleTitleEl = document.querySelector('input[name="scheduleTitle"]');
+    const scheduleLengthEl = document.querySelector('select[name="scheduleLength"]');
+    const scheduleTypeEl = document.querySelector('input[name="isPublished"]');
+    const title = scheduleTitleEl.value;
+    const length = scheduleLengthEl.value;
+    let type;
+    if (scheduleTypeEl) {
+        type = 'PUBLIC';
+    } else {
+        type = 'PRIVATE'
+    }
+
+    const addScheduleButtonEl = document.getElementById('addScheduleButton');
+    addScheduleButtonEl.setAttribute('title', title);
+    addScheduleButtonEl.setAttribute('length', length);
+    addScheduleButtonEl.setAttribute('type', type);
+
+    addScheduleButtonEl.addEventListener('click', addShceduleButtonClicked);
 }
 
 function createScheduleList(scheduleList) {
