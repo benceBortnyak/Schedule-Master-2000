@@ -10,8 +10,8 @@ body {
 div.topnav{
     overflow: hidden;
     /*border: black 5px solid;*/
-    background: black;
-    color: white;
+    background: #3d3d3d;
+    color: black;
 }
 div.topnav ul {
     list-style: none;

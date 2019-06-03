@@ -39,18 +39,7 @@
     <div id="schedules">
         <div id="sidenav-content" class="sidenav">
             <%--<p id="newScheduleButton" href="javascript:void(0);">Add schedule</p>--%>
-            <div id="addSchedule-content" style="display: none">
-                <p><input type="text" placeholder="Type schedule tile">
-                    <select name="schedule-length">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                    </select></p>
-            </div>
+
         </div>
         <div id="schedules-content" class="schedules">
             <table cellspacing="0" >
@@ -154,6 +143,19 @@
             </p>
         </form>
     </div>
+</div>
+
+<div id="addSchedule-content" style="display: none">
+    <p><input type="text" placeholder="Type schedule tile">
+        <select name="schedule-length">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+        </select></p>
 </div>
 
 </body>
