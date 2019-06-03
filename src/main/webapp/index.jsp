@@ -39,7 +39,7 @@
     <div id="schedules">
         <div id="sidenav-content" class="sidenav">
         </div>
-        <div id="taskTable-content" class="schedules">
+        <div id="table-content" class="schedules">
             <%--<table cellspacing="0" >
                 <thead>
                 <td></td>
@@ -153,7 +153,8 @@
             <option>5</option>
             <option>6</option>
             <option>7</option>
-        </select></p>
+        </select>
+    <button id="addScheduleButton" >Add Scedule</button></p>
 </div>
 
 </body>
