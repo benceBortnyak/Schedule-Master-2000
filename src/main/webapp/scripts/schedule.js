@@ -1,43 +1,8 @@
 function onAddScheduleResponse() {
-
+    console.log('ok');
 }
 
-function createAddScheduleContent(){
-    const divEl = document.getElementById('addSchedule-content');
-    const titleEl = document.createElement('input');
-    const publishedEl = document.createElement('input');
-    const addButtonEl = document.createElement('button');
-    const lengthEl = document.createElement('select');
-
-    titleEl.setAttribute('type', 'text');
-    titleEl.setAttribute('placeholder', 'Type your schedule title');
-    titleEl.setAttribute('name', 'scheduleTitle');
-
-    lengthEl.setAttribute('name', 'scheduleLength');
-    lengthEl.textContent = 'Length';
-
-    for(let i=1; i<=7; i++){
-        const opEl = document.createElement('option');
-        opEl.setAttribute('value', i);
-        opEl.textContent = i;
-        lengthEl.appendChild(opEl);
-    }
-
-    publishedEl.setAttribute('type', 'checkbox');
-    publishedEl.textContent = 'Public?';
-
-    addButtonEl.setAttribute('id', 'addScheduleButton');
-    addButtonEl.textContent = '+';
-
-    divEl.appendChild(titleEl);
-    divEl.appendChild(lengthEl);
-    divEl.appendChild(publishedEl);
-    divEl.appendChild(addButtonEl);
-
-    return divEl;
-}
-
-function addScheduleButtonClicked() {
+function newScheduleButtonClicked() {
     const el = this;
     const title = el.getAttribute('title');
     const length = el.getAttribute('length');
@@ -56,28 +21,66 @@ function addScheduleButtonClicked() {
     xhr.send(params);
 }
 
-function onNewScheduleButtonClicked() {
-    document.getElementById('addSchedule-button').style.display = 'none';
-    document.getElementById('addSchedule-content').style.display = 'block';
+function createAddScheduleForm(){
+    const formEl = document.createElement('form');
+    formEl.classList.add('hidden');
+    formEl.setAttribute('onsubmit','return false;');
+    formEl.setAttribute('id', 'addSchedule-content');
 
-    const scheduleTitleEl = document.querySelector('input[name="scheduleTitle"]');
-    const scheduleLengthEl = document.querySelector('select[name="scheduleLength"]');
-    const scheduleTypeEl = document.querySelector('input[name="isPublished"]');
+    const titleEl = document.createElement('input');
+    titleEl.setAttribute('type', 'text');
+    titleEl.setAttribute('placeholder', 'Type your schedule title');
+    titleEl.setAttribute('name', 'scheduleTitle');
+
+    const publishedEl = document.createElement('input');
+    publishedEl.setAttribute('name', 'isPublished');
+    publishedEl.setAttribute('type', 'checkbox');
+
+    const addButtonEl = document.createElement('button');
+    addButtonEl.setAttribute('id', 'newScheduleButton');
+    addButtonEl.textContent = '+';
+
+    const lengthEl = document.createElement('select');
+    lengthEl.setAttribute('name', 'scheduleLength');
+    lengthEl.textContent = 'Length';
+
+    for(let i=1; i<=7; i++){
+        const opEl = document.createElement('option');
+        opEl.setAttribute('value', i);
+        opEl.textContent = i;
+        lengthEl.appendChild(opEl);
+    }
+
+    formEl.appendChild(titleEl);
+    formEl.appendChild(lengthEl);
+    formEl.appendChild(publishedEl);
+    formEl.appendChild(addButtonEl);
+
+    return formEl;
+}
+
+function onNewScheduleButtonClicked() {
+    document.getElementById('addSchedule-button').classList.add('hidden');
+    document.getElementById('addSchedule-content').classList.remove('hidden');
+
+    const scheduleFormEl = document.forms['addSchedule-content'];
+    const scheduleTitleEl = scheduleFormEl.querySelector('input[name="scheduleTitle"]');
+    const scheduleLengthEl = scheduleFormEl.querySelector('select[name="scheduleLength"]');
+    const scheduleTypeEl = scheduleFormEl.querySelector('input[name="isPublished"]');
     const title = scheduleTitleEl.value;
     const length = scheduleLengthEl.value;
     let type;
-    if (scheduleTypeEl) {
+    if (scheduleTypeEl.value) {
         type = 'PUBLIC';
     } else {
         type = 'PRIVATE'
     }
 
-    const addScheduleButtonEl = document.getElementById('addScheduleButton');
+    const addScheduleButtonEl = document.getElementById('newScheduleButton');
     addScheduleButtonEl.setAttribute('title', title);
     addScheduleButtonEl.setAttribute('length', length);
     addScheduleButtonEl.setAttribute('type', type);
-
-    addScheduleButtonEl.addEventListener('click', addScheduleButtonClicked);
+    addScheduleButtonEl.addEventListener('click', newScheduleButtonClicked);
 }
 
 function createScheduleList(scheduleList) {
@@ -94,11 +97,9 @@ function createScheduleList(scheduleList) {
     addSchedulePEl.textContent = 'Add schedule';
     addSchedulePEl.setAttribute('id', 'addSchedule-button');
     addSchedulePEl.setAttribute('href', 'javascript:void(0);');
-    ulEl.appendChild(addSchedulePEl);
 
-    const addScheduleContentEl = document.getElementById('addSchedule-content');
-    ulEl.appendChild(addScheduleContentEl);
-    ulEl.appendChild(createAddScheduleContent());
+    ulEl.appendChild(addSchedulePEl);
+    ulEl.appendChild(createAddScheduleForm());
     return ulEl;
 }
 
@@ -110,7 +111,6 @@ function onSchedulesReceived() {
         addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
         const tableDivEl = document.getElementById('table-content');
         tableDivEl.appendChild(createTaskTable(scheduleList[0].length));
-
     }
 }
 
