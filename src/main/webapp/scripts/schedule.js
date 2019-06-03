@@ -1,3 +1,8 @@
+function onNewScheduleButtonClicked() {
+    document.getElementById('addSchedule-button').style.display = 'none';
+    document.getElementById('addSchedule-content').style.display = 'block';
+}
+
 function createScheduleList(scheduleList) {
     const ulEl = document.createElement('ul');
     for (let i = 0; i < scheduleList.length; i++) {
@@ -30,8 +35,15 @@ function onSchedulesReceived() {
     }
 }
 
-function onNewScheduleButtonClicked() {
-    document.getElementById('addSchedule-button').style.display = 'none';
-    document.getElementById('addSchedule-content').style.display = 'block';
+function onLoadSchedules(id) {
+    const params = new URLSearchParams();
+    params.append('id', id);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onSchedulesReceived);
+    xhr.open('GET', 'schedules?' + params.toString());
+    xhr.send();
 }
+
+
 

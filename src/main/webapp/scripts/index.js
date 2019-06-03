@@ -142,11 +142,10 @@ function onLoad() {
 
 
     if (hasAuthorization()) {
-        onProfileLoad(getAuthorization());
+        onLoadProfile(getAuthorization());
     }
 
 }
-
 
 document.addEventListener('DOMContentLoaded', onLoad);
 

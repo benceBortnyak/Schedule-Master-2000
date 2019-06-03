@@ -7,7 +7,6 @@ function onLoginResponse() {
     }else if(this.status === UNAUTHORIZED){
         alert("Your email address or password was incorrect!");
     }
-
 }
 
 function onLoginButtonClicked(){
@@ -30,6 +29,5 @@ function onLoginButtonClicked(){
 
 function onCloseLoginButtonClicked() {
     showContents(['welcome-content']);
-
 }
 

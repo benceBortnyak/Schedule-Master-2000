@@ -44,32 +44,6 @@
         <div id="sidenav-content" class="sidenav">
         </div>
         <div id="table-content" class="schedules">
-            <%--<table cellspacing="0" >
-                <thead>
-                <td></td>
-                <td>Mon</td>
-                <td>Tue</td>
-                <td>Wed</td>
-                <td>Thu</td>
-                <td>Fri</td>
-                <td>Sat</td>
-                <td>Sun</td>
-                </thead>
-                <tbody>
-                <c:forEach varStatus="i" begin="1" end="24">
-                <tr>
-                    <td><c:out value="${i.index}"/></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </c:forEach>
-                </tbody>
-            </table>--%>
         </div>
     </div>
     <div id="profile-content" class="hidden content modal">

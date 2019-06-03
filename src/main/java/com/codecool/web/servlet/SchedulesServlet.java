@@ -19,7 +19,7 @@ import java.util.List;
 @WebServlet("/schedules")
 public class SchedulesServlet extends AbstractServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
         try (Connection connection = getConnection(req.getServletContext())) {
             ScheduleDao scheduleDao = new DatabaseScheduleDao(connection);
@@ -33,5 +33,4 @@ public class SchedulesServlet extends AbstractServlet {
             e.printStackTrace();
         }
     }
-
 }
