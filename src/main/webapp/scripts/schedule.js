@@ -2,7 +2,7 @@ function createScheduleList(scheduleList) {
     const ulEl = document.createElement('ul');
     for (let i = 0; i < scheduleList.length; i++) {
         const schedule = scheduleList[i];
-        const pEl = document.createElement('p');
+        const pEl = document.createElement('a');
         pEl.textContent = schedule.title;
         pEl.setAttribute('href', 'javascript:void(0);');
         ulEl.appendChild(pEl);
@@ -25,6 +25,8 @@ function onSchedulesReceived() {
         sideNavContentDivEl.appendChild(createScheduleList(scheduleList));
         const addScheduleButtonEl = document.getElementById('addSchedule-button');
         addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
+        const tableDivEl = document.getElementById('table-content');
+        tableDivEl.appendChild(createTaskTable(scheduleList[0].length));
     }
 }
 

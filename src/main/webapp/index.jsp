@@ -10,8 +10,10 @@
     <c:url value="/scripts/signup.js" var="signUpScriptUrl"/>
     <c:url value="/scripts/login.js" var="loginScriptUrl"/>
     <c:url value="/scripts/profile.js" var="profileScriptUrl"/>
-    <c:url value="/scripts/schedules.js" var="schedulesScriptUrl"/>
     <c:url value="/scripts/logout.js" var="logoutScriptUrl"/>
+    <c:url value="/scripts/schedule.js" var="schedulesScriptUrl"/>
+    <c:url value="/scripts/table.js" var="tableScriptUrl"/>
+    <script src="${tableScriptUrl}"></script>
     <script src="${schedulesScriptUrl}"></script>
     <script src="${profileScriptUrl}"></script>
     <script src="${indexScriptUrl}"></script>
@@ -40,11 +42,9 @@
     </div>
     <div id="schedules">
         <div id="sidenav-content" class="sidenav">
-            <%--<p id="newScheduleButton" href="javascript:void(0);">Add schedule</p>--%>
-
         </div>
-        <div id="schedules-content" class="schedules">
-            <table cellspacing="0" >
+        <div id="table-content" class="schedules">
+            <%--<table cellspacing="0" >
                 <thead>
                 <td></td>
                 <td>Mon</td>
@@ -69,7 +69,7 @@
                 </tr>
                 </c:forEach>
                 </tbody>
-            </table>
+            </table>--%>
         </div>
     </div>
     <div id="profile-content" class="hidden content modal">
@@ -157,7 +157,8 @@
             <option>5</option>
             <option>6</option>
             <option>7</option>
-        </select></p>
+        </select>
+    <button id="addScheduleButton" style="width: auto; margin: 0; padding: 5%; border-radius: 50%;padding-top: 3%;padding-bottom: 4%;" >+</button></p>
 </div>
 
 </body>

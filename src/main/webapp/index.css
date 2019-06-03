@@ -35,12 +35,15 @@ div.sidenav{
     height: 500px;
     top: 13.5%;
     overflow-x: hidden;
+    color: black;
+    text-decoration: none;
     /*border: black 5px solid;*/
     float: left;
 }
 div.sidenav a{
     text-decoration: none;
     padding: 3%;
+    color: black;
     font-size: 16px;
     display: block;
 }
@@ -49,10 +52,11 @@ div.schedules{
     height: 500px;
     float: left;
     overflow: auto;
+    text-decoration: none;
     /*border: black 5px solid;*/
     background: white;
 }
-div.schedules p{
+div.schedules a{
     padding: 0 20%;
 }
 input[type=text], input[type=password] {
@@ -73,7 +77,7 @@ button {
     cursor: pointer;
     width: 80%;
 }
-div.schedules a:hover{
+div.sidenav a:hover{
     background: white;
 }
 /*#login-content{
@@ -200,4 +204,8 @@ div.sidenav p{
 }
 div.sidenav p:hover{
     background: white;
+}
+
+.timeIndicator{
+    width: 1%;
 }
