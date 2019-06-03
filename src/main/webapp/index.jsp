@@ -11,11 +11,13 @@
     <c:url value="/scripts/login.js" var="loginScriptUrl"/>
     <c:url value="/scripts/profile.js" var="profileScriptUrl"/>
     <c:url value="/scripts/schedules.js" var="schedulesScriptUrl"/>
+    <c:url value="/scripts/logout.js" var="logoutScriptUrl"/>
     <script src="${schedulesScriptUrl}"></script>
     <script src="${profileScriptUrl}"></script>
     <script src="${indexScriptUrl}"></script>
     <script src="${signUpScriptUrl}"></script>
     <script src="${loginScriptUrl}"></script>
+    <script src="${logoutScriptUrl}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
