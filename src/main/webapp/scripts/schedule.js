@@ -2,7 +2,42 @@ function onAddScheduleResponse() {
 
 }
 
-function addShceduleButtonClicked() {
+function createAddScheduleContent(){
+    const divEl = document.getElementById('addSchedule-content');
+    const titleEl = document.createElement('input');
+    const publishedEl = document.createElement('input');
+    const addButtonEl = document.createElement('button');
+    const lengthEl = document.createElement('select');
+
+    titleEl.setAttribute('type', 'text');
+    titleEl.setAttribute('placeholder', 'Type your schedule title');
+    titleEl.setAttribute('name', 'scheduleTitle');
+
+    lengthEl.setAttribute('name', 'scheduleLength');
+    lengthEl.textContent = 'Length';
+
+    for(let i=1; i<=7; i++){
+        const opEl = document.createElement('option');
+        opEl.setAttribute('value', i);
+        opEl.textContent = i;
+        lengthEl.appendChild(opEl);
+    }
+
+    publishedEl.setAttribute('type', 'checkbox');
+    publishedEl.textContent = 'Public?';
+
+    addButtonEl.setAttribute('id', 'addScheduleButton');
+    addButtonEl.textContent = '+';
+
+    divEl.appendChild(titleEl);
+    divEl.appendChild(lengthEl);
+    divEl.appendChild(publishedEl);
+    divEl.appendChild(addButtonEl);
+
+    return divEl;
+}
+
+function addScheduleButtonClicked() {
     const el = this;
     const title = el.getAttribute('title');
     const length = el.getAttribute('length');
@@ -42,7 +77,7 @@ function onNewScheduleButtonClicked() {
     addScheduleButtonEl.setAttribute('length', length);
     addScheduleButtonEl.setAttribute('type', type);
 
-    addScheduleButtonEl.addEventListener('click', addShceduleButtonClicked);
+    addScheduleButtonEl.addEventListener('click', addScheduleButtonClicked);
 }
 
 function createScheduleList(scheduleList) {
@@ -63,6 +98,7 @@ function createScheduleList(scheduleList) {
 
     const addScheduleContentEl = document.getElementById('addSchedule-content');
     ulEl.appendChild(addScheduleContentEl);
+    ulEl.appendChild(createAddScheduleContent());
     return ulEl;
 }
 
@@ -74,6 +110,7 @@ function onSchedulesReceived() {
         addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
         const tableDivEl = document.getElementById('table-content');
         tableDivEl.appendChild(createTaskTable(scheduleList[0].length));
+
     }
 }
 
