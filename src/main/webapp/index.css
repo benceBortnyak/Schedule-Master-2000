@@ -44,7 +44,7 @@ div.sidenav a{
     font-size: 16px;
     display: block;
 }
-div.schedules{
+div.table{
     width: 60%;
     height: 500px;
     float: left;
@@ -52,7 +52,7 @@ div.schedules{
     /*border: black 5px solid;*/
     background: white;
 }
-div.schedules p{
+div.table p{
     padding: 0 20%;
 }
 input[type=text], input[type=password] {
@@ -73,7 +73,7 @@ button {
     cursor: pointer;
     width: 80%;
 }
-div.schedules a:hover{
+div.table a:hover{
     background: white;
 }
 /*#login-content{

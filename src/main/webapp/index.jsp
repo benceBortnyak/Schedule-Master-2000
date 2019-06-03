@@ -11,6 +11,8 @@
     <c:url value="/scripts/login.js" var="loginScriptUrl"/>
     <c:url value="/scripts/profile.js" var="profileScriptUrl"/>
     <c:url value="/scripts/schedule.js" var="schedulesScriptUrl"/>
+    <c:url value="/scripts/table.js" var="tableScriptUrl"/>
+    <script src="${tableScriptUrl}"></script>
     <script src="${schedulesScriptUrl}"></script>
     <script src="${profileScriptUrl}"></script>
     <script src="${indexScriptUrl}"></script>
@@ -41,7 +43,7 @@
             <%--<p id="newScheduleButton" href="javascript:void(0);">Add schedule</p>--%>
 
         </div>
-        <div id="taskTable-content" class="content schedules">
+        <div id="table-content" class="table">
 
             <%--<table cellspacing="0" >
                 <thead>

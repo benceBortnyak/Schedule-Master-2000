@@ -25,6 +25,8 @@ function onSchedulesReceived() {
         sideNavContentDivEl.appendChild(createScheduleList(scheduleList));
         const addScheduleButtonEl = document.getElementById('addSchedule-button');
         addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
+        const tableDivEl = document.getElementById('table-content');
+        tableDivEl.appendChild(createTaskTable(scheduleList[0].length));
     }
 }
 
