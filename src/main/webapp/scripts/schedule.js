@@ -2,7 +2,7 @@ function createScheduleList(scheduleList) {
     const ulEl = document.createElement('ul');
     for (let i = 0; i < scheduleList.length; i++) {
         const schedule = scheduleList[i];
-        const pEl = document.createElement('p');
+        const pEl = document.createElement('a');
         pEl.textContent = schedule.title;
         pEl.setAttribute('href', 'javascript:void(0);');
         ulEl.appendChild(pEl);
