@@ -94,7 +94,7 @@ function createScheduleList(scheduleList) {
     }
 
     const addSchedulePEl = document.createElement('a');
-    addSchedulePEl.textContent = 'Add schedule';
+    addSchedulePEl.textContent = '+ schedule';
     addSchedulePEl.setAttribute('id', 'addSchedule-button');
     addSchedulePEl.setAttribute('href', 'javascript:void(0);');
 

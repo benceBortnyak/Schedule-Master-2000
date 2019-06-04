@@ -1,8 +1,13 @@
+function onCloseLoginButtonClicked() {
+    showContents(['welcome-content']);
+}
+
 function onLoginResponse() {
     if (this.status === OK) {
         const user = JSON.parse(this.responseText);
         setAuthorization(user);
         console.log(user);
+        onLoadProfile(user);
         showContents(['main-content']);
     }else if(this.status === UNAUTHORIZED){
         alert("Your email address or password was incorrect!");
@@ -27,7 +32,5 @@ function onLoginButtonClicked(){
     xhr.send(params);
 }
 
-function onCloseLoginButtonClicked() {
-    showContents(['welcome-content']);
-}
+
 
