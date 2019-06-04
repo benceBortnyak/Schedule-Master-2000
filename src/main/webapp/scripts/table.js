@@ -25,7 +25,7 @@ function createTableBody(length) {
             } else if (j === 1) {
                 tdEl.setAttribute('id', i);
             } else {
-                tdEl.setAttribute('id', i + (j - 1) * 24);
+                tdEl.setAttribute('id', (i + (j - 1) * 24));
             }
             trEl.appendChild(tdEl);
         }
