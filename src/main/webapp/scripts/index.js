@@ -139,9 +139,7 @@ function onLoad() {
     const logoutButtonEl = document.getElementById('logout-button');
     logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
 
-    if (hasAuthorization()) {
-        onLoadProfile(getAuthorization());
-    }
+
 
 }
 
