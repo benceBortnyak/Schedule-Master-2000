@@ -33,7 +33,6 @@
                 <i class="fa fa-caret-down"></i>
                 </input>
                 <div class="dropdown-content" id="myDropdown">
-                    <a>Name</a>
                     <button id="profile-button">Profile</button>
                     <button id="logout-button">Logout</button>
                 </div>

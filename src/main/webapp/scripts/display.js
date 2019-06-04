@@ -45,6 +45,7 @@ function createScheduleList(scheduleList) {
         aEl.textContent = schedule.title;
         aEl.setAttribute('href', 'javascript:void(0);');
         aEl.setAttribute('id', schedule.id);
+        aEl.classList.add('passive');
         aEl.addEventListener('click', onScheduleClicked);
         ulEl.appendChild(aEl);
     }

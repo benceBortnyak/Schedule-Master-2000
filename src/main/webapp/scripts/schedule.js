@@ -2,11 +2,22 @@ function onLoadSchedule() {
     const schedule = JSON.parse(this.responseText);
     tableDivEl.appendChild(createTaskTable(schedule.length));
 }
+function setActiveClass(ids) {
+    const scheduleEls = document.getElementsByClassName('passive');
+    for (let i = 0; i < scheduleEls.length; i++){
+        const scheduleEl = scheduleEls[i];
+        if(ids.includes(scheduleEl.id)){
+            scheduleEl.classList.add('active');
+        }else {
+            scheduleEl.classList.remove('active');
+        }
+    }
+}
 
 function onScheduleClicked() {
     const el = this;
     const id = el.id;
-    el.classList.add('active');
+    setActiveClass(id);
 
     const params = new URLSearchParams();
     params.append('id', id);
@@ -64,6 +75,8 @@ function onSchedulesReceived() {
         const addScheduleButtonEl = document.getElementById('addSchedule-button');
         addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
         tableDivEl.appendChild(createTaskTable(scheduleList[0].length));
+
+
     }
 }
 
