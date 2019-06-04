@@ -43,5 +43,5 @@ function createTaskTable(length) {
     tableEl.setAttribute('id', 'taskTable');
     tableEl.appendChild(createTableHead(length));
     tableEl.appendChild(createTableBody(length));
-    return tableEl;
+    tableDivEl.appendChild(tableEl);
 }

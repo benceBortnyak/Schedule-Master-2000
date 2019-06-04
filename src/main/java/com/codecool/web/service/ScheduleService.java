@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ScheduleService {
     
-    void addSchedule(int userId, String title, int length, ScheduleType scheduleType) throws SQLException, ServiceException;
+    Schedule addSchedule(int userId, String title, int length, ScheduleType scheduleType) throws SQLException, ServiceException;
     
     List<Schedule> findAll() throws SQLException, ServiceException;
     

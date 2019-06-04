@@ -45,7 +45,8 @@ public class SchedulesServlet extends AbstractServlet {
             int length = Integer.parseInt(req.getParameter("length"));
             int id = Integer.parseInt(req.getParameter("id"));
             ScheduleType type = ScheduleType.valueOf(req.getParameter("type"));
-            scheduleService.addSchedule(id, title, length, type);
+            Schedule schedule = scheduleService.addSchedule(id, title, length, type);
+            sendMessage(resp,HttpServletResponse.SC_OK, schedule);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ServiceException e) {

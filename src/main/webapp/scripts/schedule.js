@@ -1,6 +1,6 @@
 function onLoadSchedule() {
-    const schedule = JSON.parse(this.responseText);
-    tableDivEl.appendChild(createTaskTable(schedule.length));
+    activeSchedule = JSON.parse(this.responseText);
+    createTaskTable(activeSchedule.length);
 }
 function setActiveClass(ids) {
     const scheduleEls = document.getElementsByClassName('passive');
@@ -29,6 +29,7 @@ function onScheduleClicked() {
 }
 
 function onAddScheduleResponse() {
+    activeSchedule = JSON.parse(this.responseText);
     document.getElementById('sideNavList').remove();
     onLoadSchedules(getAuthorization().id);
 }
@@ -74,9 +75,10 @@ function onSchedulesReceived() {
         sideNavContentDivEl.appendChild(createScheduleList(scheduleList));
         const addScheduleButtonEl = document.getElementById('addSchedule-button');
         addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
-        tableDivEl.appendChild(createTaskTable(scheduleList[0].length));
-
-
+        if (activeSchedule === null) {
+            activeSchedule = scheduleList[0];
+        }
+        createTaskTable(activeSchedule.length);
     }
 }
 

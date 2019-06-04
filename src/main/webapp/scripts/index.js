@@ -12,6 +12,7 @@ let schedulesContentDivEl;
 let sideNavContentDivEl;
 let logoutContentDivEl;
 let tableDivEl;
+let activeSchedule;
 
 window.onclick = function (e) {
     if (!e.target.matches('.dropbtn')) {
@@ -113,6 +114,7 @@ function onLoad() {
     sideNavContentDivEl = document.getElementById('sidenav-content');
     logoutContentDivEl = document.getElementById('logout-content');
     tableDivEl = tableDivEl = document.getElementById('table-content');
+    activeSchedule = null;
 
     const signUpButtonEl = document.getElementById('signUp-button');
     signUpButtonEl.addEventListener('click', onSignUpButtonClicked);
