@@ -244,6 +244,10 @@ div.sidenav p:hover {
     width: 1%;
 }
 
+#g-signin {
+    padding: 0 35%;
+}
+
 #newScheduleButton {
     width: auto;
     margin: 0;

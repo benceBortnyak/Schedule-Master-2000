@@ -61,6 +61,11 @@
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-oauth2</artifactId>
+            <version>v1-rev155-1.25.0</version>
+        </dependency>
     </dependencies>
 
     <build>

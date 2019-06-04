@@ -3,7 +3,8 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta charset="UTF-8" name="google-signin-client_id" content="178796968342-imq5f33i7be8gplqutr2fqib887qgjkn.apps.googleusercontent.com">
     <title>Schedule-Master-2000</title>
     <link rel="stylesheet" type="text/css" href="index.css" media="all">
     <c:url value="/scripts/index.js" var="indexScriptUrl"/>
@@ -13,6 +14,7 @@
     <c:url value="/scripts/logout.js" var="logoutScriptUrl"/>
     <c:url value="/scripts/schedule.js" var="schedulesScriptUrl"/>
     <c:url value="/scripts/table.js" var="tableScriptUrl"/>
+    <c:url value="/scripts/google.js" var="googleScriptUrl"/>
     <c:url value="/scripts/display.js" var="sidenavScriptUrl"/>
     <script src="${sidenavScriptUrl}"></script>
     <script src="${tableScriptUrl}"></script>
@@ -22,6 +24,8 @@
     <script src="${signUpScriptUrl}"></script>
     <script src="${loginScriptUrl}"></script>
     <script src="${logoutScriptUrl}"></script>
+    <script src="${googleScriptUrl}"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -34,7 +38,7 @@
                 </input>
                 <div class="dropdown-content" id="myDropdown">
                     <button id="profile-button">Profile</button>
-                    <button id="logout-button">Logout</button>
+                    <button id="logout-button" onclick="signOut()">Logout</button>
                 </div>
             </div>
             <a>Home</a>
@@ -84,6 +88,9 @@
                 <p>Hit the sign up button to create a new account!</p>
                 <p style="padding: 0 20%">
                     <button id="signUp-button" type="submit">SIGN UP</button>
+                </p>
+                <p>
+                    <div id="g-signin" class="g-signin2" data-onsuccess="onSignIn"></div>
                 </p>
                 <p>Login as guest</p>
                 <p style="padding: 0 20%">
