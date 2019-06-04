@@ -57,5 +57,6 @@ function createScheduleList(scheduleList) {
 
     ulEl.appendChild(addSchedulePEl);
     ulEl.appendChild(createAddScheduleForm());
+
     return ulEl;
 }

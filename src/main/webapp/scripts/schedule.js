@@ -2,8 +2,9 @@ function onLoadSchedule() {
     activeSchedule = JSON.parse(this.responseText);
     createTaskTable(activeSchedule.length);
 }
-function setActiveClass(ids) {
-    const scheduleEls = document.getElementsByClassName('passive');
+
+function setActiveClass(elId, ids) {
+    const scheduleEls = document.getElementById(elId).getElementsByClassName('passive');
     for (let i = 0; i < scheduleEls.length; i++){
         const scheduleEl = scheduleEls[i];
         if(ids.includes(scheduleEl.id)){
@@ -17,7 +18,7 @@ function setActiveClass(ids) {
 function onScheduleClicked() {
     const el = this;
     const id = el.id;
-    setActiveClass(id);
+    setActiveClass('sideNavList', [id]);
 
     const params = new URLSearchParams();
     params.append('id', id);
@@ -72,12 +73,14 @@ function onNewScheduleButtonClicked() {
 function onSchedulesReceived() {
     if (this.status === OK) {
         const scheduleList = JSON.parse(this.responseText);
-        sideNavContentDivEl.appendChild(createScheduleList(scheduleList));
-        const addScheduleButtonEl = document.getElementById('addSchedule-button');
-        addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
         if (activeSchedule === null) {
             activeSchedule = scheduleList[0];
         }
+        sideNavContentDivEl.appendChild(createScheduleList(scheduleList));
+        setActiveClass('sideNavList', [activeSchedule.id]);
+        const addScheduleButtonEl = document.getElementById('addSchedule-button');
+        addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
+
         createTaskTable(activeSchedule.length);
     }
 }

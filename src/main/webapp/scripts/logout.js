@@ -3,13 +3,13 @@ function onLogoutResponse() {
         setUnauthorized();
         clearMessages();
         showContents(['welcome-content']);
+        document.getElementById('sideNavList').remove();
     } else {
         onOtherResponse(loginContentDivEl, this)
     }
 }
 
 function onLogoutButtonClicked() {
-    console.log('cat');
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onLogoutResponse);
     xhr.addEventListener('error', onNetworkError);
