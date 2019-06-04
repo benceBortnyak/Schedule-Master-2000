@@ -18,7 +18,7 @@ public class SimpleScheduleService implements ScheduleService {
     }
     
     @Override
-    public void addSchedule(int userId, String title, int length,ScheduleType scheduleType) throws SQLException, ServiceException {
+    public void addSchedule(int userId, String title, int length, ScheduleType scheduleType) throws SQLException, ServiceException {
         try {
             scheduleDao.add(userId, title, length, scheduleType);
         } catch (IllegalArgumentException ex){

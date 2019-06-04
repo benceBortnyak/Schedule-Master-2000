@@ -3,10 +3,19 @@ function onAddScheduleResponse() {
 }
 
 function newScheduleButtonClicked() {
-    const el = this;
-    const title = el.getAttribute('title');
-    const length = el.getAttribute('length');
-    const type = el.getAttribute('type');
+    const scheduleFormEl = document.forms['addSchedule-content'];
+    const scheduleTitleEl = scheduleFormEl.querySelector('input[name="scheduleTitle"]');
+    const scheduleLengthEl = scheduleFormEl.querySelector('select[name="scheduleLength"]');
+    const title = scheduleTitleEl.value;
+    const length = scheduleLengthEl.value;
+    let type;
+
+    if (document.getElementById('isPublished').checked === true) {
+        type = 'PUBLIC';
+    } else {
+        type = 'PRIVATE'
+    }
+
     const id = getAuthorization().id;
 
     const params = new URLSearchParams();
@@ -33,8 +42,9 @@ function createAddScheduleForm(){
     titleEl.setAttribute('name', 'scheduleTitle');
 
     const publishedEl = document.createElement('input');
-    publishedEl.setAttribute('name', 'isPublished');
     publishedEl.setAttribute('type', 'checkbox');
+    publishedEl.setAttribute('id', 'isPublished');
+
 
     const addButtonEl = document.createElement('button');
     addButtonEl.setAttribute('id', 'newScheduleButton');
@@ -62,24 +72,7 @@ function createAddScheduleForm(){
 function onNewScheduleButtonClicked() {
     document.getElementById('addSchedule-button').classList.add('hidden');
     document.getElementById('addSchedule-content').classList.remove('hidden');
-
-    const scheduleFormEl = document.forms['addSchedule-content'];
-    const scheduleTitleEl = scheduleFormEl.querySelector('input[name="scheduleTitle"]');
-    const scheduleLengthEl = scheduleFormEl.querySelector('select[name="scheduleLength"]');
-    const scheduleTypeEl = scheduleFormEl.querySelector('input[name="isPublished"]');
-    const title = scheduleTitleEl.value;
-    const length = scheduleLengthEl.value;
-    let type;
-    if (scheduleTypeEl.value) {
-        type = 'PUBLIC';
-    } else {
-        type = 'PRIVATE'
-    }
-
     const addScheduleButtonEl = document.getElementById('newScheduleButton');
-    addScheduleButtonEl.setAttribute('title', title);
-    addScheduleButtonEl.setAttribute('length', length);
-    addScheduleButtonEl.setAttribute('type', type);
     addScheduleButtonEl.addEventListener('click', newScheduleButtonClicked);
 }
 
