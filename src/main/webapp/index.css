@@ -209,3 +209,6 @@ div.sidenav p:hover{
 .timeIndicator{
     width: 1%;
 }
+#g-signin {
+    padding: 0 35%;
+}
