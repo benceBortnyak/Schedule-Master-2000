@@ -55,7 +55,7 @@ div.sidenav a {
 
 div.schedules {
     width: 60%;
-    height: 600px;
+    height: 580px;
     float: left;
     overflow: auto;
     text-decoration: none;
@@ -251,4 +251,8 @@ div.sidenav p:hover {
     border-radius: 50%;
     padding-top: 3%;
     padding-bottom: 4%;
+}
+
+.active{
+    background-color: white;
 }

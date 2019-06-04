@@ -6,6 +6,7 @@ function onLoadSchedule() {
 function onScheduleClicked() {
     const el = this;
     const id = el.id;
+    el.classList.add('active');
 
     const params = new URLSearchParams();
     params.append('id', id);
@@ -50,7 +51,7 @@ function newScheduleButtonClicked() {
 }
 
 function onNewScheduleButtonClicked() {
-    document.getElementById('addSchedule-button').classList.add('hidden');
+    document.getElementById('addSchedule-button').style.display = 'none';
     document.getElementById('addSchedule-content').classList.remove('hidden');
     const addScheduleButtonEl = document.getElementById('newScheduleButton');
     addScheduleButtonEl.addEventListener('click', newScheduleButtonClicked);
@@ -75,6 +76,3 @@ function onLoadSchedules(id) {
     xhr.open('GET', 'schedules?' + params.toString());
     xhr.send();
 }
-
-
-
