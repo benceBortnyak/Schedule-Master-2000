@@ -13,6 +13,8 @@
     <c:url value="/scripts/logout.js" var="logoutScriptUrl"/>
     <c:url value="/scripts/schedule.js" var="schedulesScriptUrl"/>
     <c:url value="/scripts/table.js" var="tableScriptUrl"/>
+    <c:url value="/scripts/display.js" var="sidenavScriptUrl"/>
+    <script src="${sidenavScriptUrl}"></script>
     <script src="${tableScriptUrl}"></script>
     <script src="${schedulesScriptUrl}"></script>
     <script src="${profileScriptUrl}"></script>

@@ -32,7 +32,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     @Override
     public Schedule findById(int scheduleId) throws SQLException {
         
-        String sqlString = "SELECT schedule_id,user_id,title,length FROM schedules WHERE schedule_id = ?";
+        String sqlString = "SELECT * FROM schedules WHERE schedule_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
             preparedStatement.setInt(1, scheduleId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
