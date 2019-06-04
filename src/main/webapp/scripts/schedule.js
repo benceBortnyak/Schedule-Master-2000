@@ -3,11 +3,11 @@ function onLoadSchedule() {
     createTaskTable(activeSchedule.length);
 }
 
-function setActiveClass(elId, ids) {
+function setActiveClass(elId, id) {
     const scheduleEls = document.getElementById(elId).getElementsByClassName('passive');
     for (let i = 0; i < scheduleEls.length; i++){
         const scheduleEl = scheduleEls[i];
-        if(ids.includes(scheduleEl.id)){
+        if(id === parseInt(scheduleEl.id)){
             scheduleEl.classList.add('active');
         }else {
             scheduleEl.classList.remove('active');
@@ -18,7 +18,7 @@ function setActiveClass(elId, ids) {
 function onScheduleClicked() {
     const el = this;
     const id = el.id;
-    setActiveClass('sideNavList', [id]);
+    setActiveClass('sideNavList', id);
 
     const params = new URLSearchParams();
     params.append('id', id);
@@ -77,7 +77,7 @@ function onSchedulesReceived() {
             activeSchedule = scheduleList[0];
         }
         sideNavContentDivEl.appendChild(createScheduleList(scheduleList));
-        setActiveClass('sideNavList', [activeSchedule.id]);
+        setActiveClass('sideNavList', activeSchedule.id);
         const addScheduleButtonEl = document.getElementById('addSchedule-button');
         addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
 

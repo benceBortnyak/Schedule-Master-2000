@@ -6,7 +6,6 @@ function onLoadProfile(user) {
     userforenameSpanEl.textContent = user.forename;
     userLastNameSpanEl.textContent = user.lastName;
     userEmailSpanEl.textContent = user.email;
-
     onLoadSchedules(user.id);
 }
 
