@@ -45,7 +45,7 @@ abstract class AbstractDao {
     
     public boolean checkInt(int value,int min,int max) throws IllegalArgumentException {
         try {
-            return (value < min || value > max);
+            return (value >= min || value <= max);
         }catch (IllegalArgumentException ex){
             throw ex;
         }

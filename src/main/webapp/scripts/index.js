@@ -11,6 +11,8 @@ let profileContentDivEl;
 let schedulesContentDivEl;
 let sideNavContentDivEl;
 let logoutContentDivEl;
+let tableDivEl;
+let activeSchedule;
 
 window.onclick = function (e) {
     if (!e.target.matches('.dropbtn')) {
@@ -84,7 +86,7 @@ function onNetworkError(response) {
     document.body.remove();
     const bodyEl = document.createElement('body');
     document.appendChild(bodyEl);
-    newError(bodyEl, 'Network error, please try reloaing the page');
+    newError(bodyEl, 'Network error, please try reloading the page');
 }
 
 function onOtherResponse(targetEl, xhr) {
@@ -111,6 +113,8 @@ function onLoad() {
     schedulesContentDivEl = document.getElementById('schedules-content');
     sideNavContentDivEl = document.getElementById('sidenav-content');
     logoutContentDivEl = document.getElementById('logout-content');
+    tableDivEl = tableDivEl = document.getElementById('table-content');
+    activeSchedule = null;
 
     const signUpButtonEl = document.getElementById('signUp-button');
     signUpButtonEl.addEventListener('click', onSignUpButtonClicked);
@@ -138,12 +142,6 @@ function onLoad() {
 
     const logoutButtonEl = document.getElementById('logout-button');
     logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
-
-
-
-    if (hasAuthorization()) {
-        onLoadProfile(getAuthorization());
-    }
 
 }
 

@@ -3,16 +3,18 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    overflow: hidden;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-/*    font-family: "Lato", sans-serif;*/
+    overflow: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /*    font-family: "Lato", sans-serif;*/
 }
-div.topnav{
+
+div.topnav {
     overflow: hidden;
     /*border: black 5px solid;*/
     background: #3d3d3d;
     color: black;
 }
+
 div.topnav ul {
     list-style: none;
     margin: 0;
@@ -22,7 +24,8 @@ div.topnav ul {
     display: inline;
 
 }
-div.topnav a{
+
+div.topnav a {
     float: left;
     padding: 2% 10%;
     font-size: 16px;
@@ -30,7 +33,8 @@ div.topnav a{
     text-decoration: none;
     display: block;
 }
-div.sidenav{
+
+div.sidenav {
     width: 20%;
     height: 500px;
     top: 13.5%;
@@ -40,25 +44,29 @@ div.sidenav{
     /*border: black 5px solid;*/
     float: left;
 }
-div.sidenav a{
+
+div.sidenav a {
     text-decoration: none;
     padding: 3%;
     color: black;
     font-size: 16px;
     display: block;
 }
-div.schedules{
+
+div.schedules {
     width: 60%;
-    height: 500px;
+    height: 580px;
     float: left;
     overflow: auto;
     text-decoration: none;
     /*border: black 5px solid;*/
     background: white;
 }
-div.schedules a{
+
+div.schedules a {
     padding: 0 20%;
 }
+
 input[type=text], input[type=password] {
     width: 80%;
     padding: 12px 20px;
@@ -67,6 +75,7 @@ input[type=text], input[type=password] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
 button {
     background-color: #1cd200;
     color: white;
@@ -77,9 +86,11 @@ button {
     cursor: pointer;
     width: 80%;
 }
-div.sidenav a:hover{
+
+div.sidenav a:hover {
     background: white;
 }
+
 /*#login-content{
     padding: 0px 40%;
     height: 50%;
@@ -88,22 +99,26 @@ div.sidenav a:hover{
     padding: 0px 40%;
     height: 50%;
 }*/
-#div1{
+#div1 {
     width: 50%;
     float: left;
 }
-#div2{
+
+#div2 {
     width: 50%;
     float: right;
 }
-#schedules{
+
+#schedules {
     padding-left: 20%;
 }
+
 .dropdown {
     float: left;
     overflow: hidden;
     display: inline;
 }
+
 .dropdown .dropbtn {
     cursor: pointer;
     font-size: 16px;
@@ -115,10 +130,12 @@ div.sidenav a:hover{
     background-color: inherit;
     font-family: inherit;
 }
+
 .dropdown:hover .dropbtn, .dropbtn:focus {
     background-color: white;
     color: white;
 }
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -128,6 +145,7 @@ div.sidenav a:hover{
     /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
      z-index: 1;*/
 }
+
 .dropdown-content a {
     float: none;
     color: black;
@@ -137,12 +155,15 @@ div.sidenav a:hover{
     display: block;
     text-align: left;
 }
+
 .dropdown-content a:hover {
     background-color: #ddd;
 }
+
 .show {
     display: block;
 }
+
 td {
     text-align: center;
     border: 1px dotted black;
@@ -151,9 +172,10 @@ td {
     padding: 0;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
+
 .modal {
     /*display:none;*/
     position: fixed;
@@ -163,8 +185,9 @@ td {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
+
 .modal-content {
     background-color: #888888;
     margin: 4% auto 15% auto;
@@ -174,6 +197,7 @@ td {
     padding-bottom: 30px;
     text-align: center;
 }
+
 .close {
     position: absolute;
     right: 25px;
@@ -182,33 +206,57 @@ td {
     font-size: 35px;
     font-weight: bold;
 }
-.close:hover,.close:focus {
+
+.close:hover, .close:focus {
     color: red;
     cursor: pointer;
 }
+
 .animate {
     animation: zoom 0.6s
 }
+
 @keyframes zoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1)
+    }
 }
+
 .imgcontainer {
     text-align: center;
     margin: 24px 0 12px 0;
     position: relative;
 }
-div.sidenav p{
+
+div.sidenav p {
     padding: 10px;
     margin: 0;
 }
-div.sidenav p:hover{
+
+div.sidenav p:hover {
     background: white;
 }
 
-.timeIndicator{
+.timeIndicator {
     width: 1%;
 }
+
 #g-signin {
     padding: 0 35%;
+}
+
+#newScheduleButton {
+    width: auto;
+    margin: 0;
+    padding: 5%;
+    border-radius: 50%;
+    padding-top: 3%;
+    padding-bottom: 4%;
+}
+
+.active{
+    background-color: white;
 }

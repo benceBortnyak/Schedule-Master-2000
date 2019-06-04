@@ -32,7 +32,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     @Override
     public Schedule findById(int scheduleId) throws SQLException {
         
-        String sqlString = "SELECT schedule_id,user_id,title,length FROM schedules WHERE schedule_id = ?";
+        String sqlString = "SELECT * FROM schedules WHERE schedule_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
             preparedStatement.setInt(1, scheduleId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -45,17 +45,16 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     }
     
     @Override
-    public Schedule add(int userId, String title, int length,ScheduleType scheduleType) throws SQLException {
+    public Schedule add(int userId, String title, int length, ScheduleType scheduleType) throws SQLException {
         if (checkInt(length,1,7)) {
-    
             boolean autoCommit = connection.getAutoCommit();
             connection.setAutoCommit(false);
-            String sqlString = "INSERT INTO schedules (user_id, title, length, type) VALUES(?, ?, ?, ?)";
+            String sqlString = "INSERT INTO schedules (user_id, title, length, type) VALUES (?, ?, ?, CAST(? AS schedule_type))";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setInt(1, userId);
                 preparedStatement.setString(2, title);
                 preparedStatement.setInt(3, length);
-                preparedStatement.setString(4,String.valueOf(scheduleType));
+                preparedStatement.setString(4, String.valueOf(scheduleType));
                 executeInsert(preparedStatement);
                 int id = fetchGeneratedId(preparedStatement);
                 return new Schedule(id, userId, title, length, scheduleType);
@@ -78,10 +77,10 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
             connection.setAutoCommit(false);
             String sqlString = "UPDATE schedules SET title = ?, length = ?,type = ? WHERE schedule_id = ?";
             try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
-                preparedStatement.setString(1,title);
-                preparedStatement.setInt(2,length);
-                preparedStatement.setString(3,String.valueOf(scheduleType));
-                preparedStatement.setInt(4,scheduleId);
+                preparedStatement.setString(1, title);
+                preparedStatement.setInt(2, length);
+                preparedStatement.setString(3, String.valueOf(scheduleType));
+                preparedStatement.setInt(4, scheduleId);
                 preparedStatement.executeUpdate();
             }catch (SQLException ex) {
                 connection.rollback();

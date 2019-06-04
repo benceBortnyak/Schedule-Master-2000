@@ -35,8 +35,13 @@ function createTableBody(length) {
 }
 
 function createTaskTable(length) {
+    if(document.getElementById('taskTable') !== null) {
+        document.getElementById('taskTable').remove();
+    }
+
     const tableEl = document.createElement('table');
+    tableEl.setAttribute('id', 'taskTable');
     tableEl.appendChild(createTableHead(length));
     tableEl.appendChild(createTableBody(length));
-    return tableEl;
+    tableDivEl.appendChild(tableEl);
 }

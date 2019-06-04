@@ -15,6 +15,8 @@
     <c:url value="/scripts/schedule.js" var="schedulesScriptUrl"/>
     <c:url value="/scripts/table.js" var="tableScriptUrl"/>
     <c:url value="/scripts/google.js" var="googleScriptUrl"/>
+    <c:url value="/scripts/display.js" var="sidenavScriptUrl"/>
+    <script src="${sidenavScriptUrl}"></script>
     <script src="${tableScriptUrl}"></script>
     <script src="${schedulesScriptUrl}"></script>
     <script src="${profileScriptUrl}"></script>
@@ -35,7 +37,6 @@
                 <i class="fa fa-caret-down"></i>
                 </input>
                 <div class="dropdown-content" id="myDropdown">
-                    <a>Name</a>
                     <button id="profile-button">Profile</button>
                     <button id="logout-button" onclick="signOut()">Logout</button>
                 </div>
@@ -126,20 +127,6 @@
             </p>
         </form>
     </div>
-</div>
-
-<div id="addSchedule-content" style="display: none">
-    <p><input type="text" placeholder="Type schedule tile">
-        <select name="schedule-length">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-        </select>
-    <button id="addScheduleButton" style="width: auto; margin: 0; padding: 5%; border-radius: 50%;padding-top: 3%;padding-bottom: 4%;" >+</button></p>
 </div>
 
 </body>
