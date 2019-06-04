@@ -36,6 +36,7 @@ function createTableBody(length) {
 
 function createTaskTable(length) {
     const tableEl = document.createElement('table');
+    tableEl.setAttribute('id', 'taskTable');
     tableEl.appendChild(createTableHead(length));
     tableEl.appendChild(createTableBody(length));
     return tableEl;

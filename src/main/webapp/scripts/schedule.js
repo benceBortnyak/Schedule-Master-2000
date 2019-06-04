@@ -1,5 +1,8 @@
 function onAddScheduleResponse() {
-    console.log('ok');
+    document.getElementById('sideNavList').remove();
+    document.getElementById('taskTable').remove();
+    onLoadSchedules(getAuthorization().id);
+
 }
 
 function newScheduleButtonClicked() {
@@ -78,6 +81,7 @@ function onNewScheduleButtonClicked() {
 
 function createScheduleList(scheduleList) {
     const ulEl = document.createElement('ul');
+    ulEl.setAttribute('id', 'sideNavList');
     for (let i = 0; i < scheduleList.length; i++) {
         const schedule = scheduleList[i];
         const pEl = document.createElement('a');
