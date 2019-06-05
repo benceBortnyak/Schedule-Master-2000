@@ -7,6 +7,8 @@ import com.codecool.web.model.enums.ScheduleType;
 import com.codecool.web.service.ScheduleService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleScheduleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +21,9 @@ import java.util.List;
 
 @WebServlet("/schedules")
 public class SchedulesServlet extends AbstractServlet {
+    
+    private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
@@ -47,6 +52,7 @@ public class SchedulesServlet extends AbstractServlet {
             ScheduleType type = ScheduleType.valueOf(req.getParameter("type"));
             Schedule schedule = scheduleService.addSchedule(id, title, length, type);
             sendMessage(resp,HttpServletResponse.SC_OK, schedule);
+            logger.info("Schedule with id: "+ id +" added as: " + title);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ServiceException e) {

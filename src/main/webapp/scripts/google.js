@@ -10,7 +10,7 @@ function onSignIn(googleUser) {
     console.log("Email: " + profile.getEmail());
 
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onLoginResponse);
+    xhr.addEventListener('load', onGoogleResponse);
     xhr.open('POST', 'GoogleSignIn');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send('idtoken=' + id_token);
@@ -21,4 +21,17 @@ function signOut() {
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
+}
+
+function onGoogleResponse() {
+    if (this.status === OK) {
+        const user = JSON.parse(this.responseText);
+        setAuthorization(user);
+        if (hasAuthorization()) {
+            showContents(['main-content']);
+            onLoadProfile(getAuthorization());
+        }
+    }else if(this.status === UNAUTHORIZED){
+        alert("Your email address or password was incorrect!");
+    }
 }

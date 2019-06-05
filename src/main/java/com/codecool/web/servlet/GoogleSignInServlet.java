@@ -22,12 +22,15 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @WebServlet("/GoogleSignIn")
 public class GoogleSignInServlet extends AbstractServlet {
     
     JacksonFactory jsonFactory = new JacksonFactory();
+    private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,11 +54,13 @@ public class GoogleSignInServlet extends AbstractServlet {
                     User user = userService.loginUser(email,psw);
                     req.getSession().setAttribute("user", user);
                     sendMessage(resp, HttpServletResponse.SC_OK, user);
+                    logger.info(givenName +" logged in");
                 } else {
                     userService.addUser(givenName,familyName,email,psw);
                     User user = userService.loginUser(email,psw);
                     req.getSession().setAttribute("user", user);
                     sendMessage(resp, HttpServletResponse.SC_OK, user);
+                    logger.info(givenName +" logged in");
                 }
             } else {
                 System.out.println("Invalid ID token.");
