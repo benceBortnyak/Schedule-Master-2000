@@ -8,7 +8,8 @@ function mouseOverCell() {
     const addTaskButton = document.createElement('button');
     addTaskButton.setAttribute('id', 'addTaskButton');
     addTaskButton.textContent = '+';
-    addTaskButton.addEventListener('click', onTaskButtonClicked);
+    const cellId = el.id;
+    addTaskButton.addEventListener('click', function(){onTaskButtonClicked(cellId)});
     el.appendChild(addTaskButton);
 }
 

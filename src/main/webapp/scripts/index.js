@@ -146,6 +146,8 @@ function onLoad() {
     const closeNewTaskButtonEl = document.getElementById('closeNewTask-button');
     closeNewTaskButtonEl.addEventListener('click', onNewTaskCloseClicked);
 
+
+
 }
 
 document.addEventListener('DOMContentLoaded', onLoad);
