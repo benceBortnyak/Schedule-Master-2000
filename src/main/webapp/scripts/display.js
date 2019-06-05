@@ -9,28 +9,35 @@ function createAddScheduleForm(){
     titleEl.setAttribute('placeholder', 'Type your schedule title');
     titleEl.setAttribute('name', 'scheduleTitle');
 
-    const publishedEl = document.createElement('input');
-    publishedEl.setAttribute('type', 'checkbox');
-    publishedEl.setAttribute('id', 'isPublished');
+    const checkboxEl = document.createElement('input');
+    checkboxEl.setAttribute('type', 'checkbox');
+    checkboxEl.setAttribute('id', 'isPublished');
+
+    const labelEl1 = document.createElement('label');
+    labelEl1.textContent = 'public';
+    labelEl1.appendChild(checkboxEl);
 
     const addButtonEl = document.createElement('button');
     addButtonEl.setAttribute('id', 'newScheduleButton');
     addButtonEl.textContent = '+';
 
-    const lengthEl = document.createElement('select');
-    lengthEl.setAttribute('name', 'scheduleLength');
-    lengthEl.textContent = 'Length';
+    const selectEl = document.createElement('select');
+    selectEl.setAttribute('name', 'scheduleLength');
+
+    const labelEl2 = document.createElement('label');
+    labelEl2.textContent = 'length';
+    labelEl2.appendChild(selectEl);
 
     for(let i=1; i<=7; i++){
         const opEl = document.createElement('option');
         opEl.setAttribute('value', i);
         opEl.textContent = i;
-        lengthEl.appendChild(opEl);
+        selectEl.appendChild(opEl);
     }
 
     formEl.appendChild(titleEl);
-    formEl.appendChild(lengthEl);
-    formEl.appendChild(publishedEl);
+    formEl.appendChild(labelEl2);
+    formEl.appendChild(labelEl1);
     formEl.appendChild(addButtonEl);
 
     return formEl;

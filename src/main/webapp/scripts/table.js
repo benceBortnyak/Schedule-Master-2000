@@ -1,10 +1,10 @@
-function createTableHead(length) {
+function createTableHead() {
     const daysOfTheWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const theadEl = document.createElement('thead');
     const emptyTdEl = document.createElement('td');
     emptyTdEl.classList.add('timeIndicator');
     theadEl.appendChild(emptyTdEl);
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < activeSchedule.length; i++) {
         const currentDay = daysOfTheWeek[i];
         const tdEl = document.createElement('td');
         tdEl.textContent = currentDay;
@@ -13,35 +13,54 @@ function createTableHead(length) {
     return theadEl;
 }
 
-function createTableBody(length) {
+function createTableBody() {
+
+    let totalLength = 0;
+    for (let i = 0; i < scheduleList.length; i++) {
+        if (activeSchedule.id === scheduleList[i].id) {
+            break;
+        }
+        totalLength += parseInt(scheduleList[i].length) * 24;
+    }
+
+    let loopVar = 0;
     const tbodyEl = document.createElement('tbody');
-    for (let i = 1; i <= 24; i++) {
+
+    if (totalLength === 1) {
+        loopVar = totalLength * 24 + 1;
+    } else {
+        loopVar = totalLength + 1;
+    }
+
+    let hour = 1;
+    for (let i = loopVar; i < loopVar + 24; i++) {
         const trEl = document.createElement('tr');
-        for (let j = 0; j <= length; j++) {
+        for (let j = 0; j <= activeSchedule.length; j++) {
             const tdEl = document.createElement('td');
             if (j === 0) {
-                tdEl.textContent = i;
+                tdEl.textContent = hour;
                 tdEl.classList.add('timeIndicator');
             } else if (j === 1) {
                 tdEl.setAttribute('id', i);
-            } else {
+            } else if (j > 1) {
                 tdEl.setAttribute('id', (i + (j - 1) * 24));
             }
             trEl.appendChild(tdEl);
         }
+        hour++;
         tbodyEl.appendChild(trEl);
     }
     return tbodyEl;
 }
 
-function createTaskTable(length) {
-    if(document.getElementById('taskTable') !== null) {
+function createTaskTable() {
+    if (document.getElementById('taskTable') !== null) {
         document.getElementById('taskTable').remove();
     }
 
     const tableEl = document.createElement('table');
     tableEl.setAttribute('id', 'taskTable');
-    tableEl.appendChild(createTableHead(length));
-    tableEl.appendChild(createTableBody(length));
+    tableEl.appendChild(createTableHead());
+    tableEl.appendChild(createTableBody());
     tableDivEl.appendChild(tableEl);
 }

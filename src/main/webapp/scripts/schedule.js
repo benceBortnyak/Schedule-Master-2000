@@ -1,13 +1,15 @@
+let scheduleList;
+
 function onLoadSchedule() {
     activeSchedule = JSON.parse(this.responseText);
-    createTaskTable(activeSchedule.length);
+    createTaskTable();
 }
 
 function setActiveClass(elId, id) {
     const scheduleEls = document.getElementById(elId).getElementsByClassName('passive');
     for (let i = 0; i < scheduleEls.length; i++){
         const scheduleEl = scheduleEls[i];
-        if(id === parseInt(scheduleEl.id)){
+        if(id == scheduleEl.id) {
             scheduleEl.classList.add('active');
         }else {
             scheduleEl.classList.remove('active');
@@ -72,7 +74,7 @@ function onNewScheduleButtonClicked() {
 
 function onSchedulesReceived() {
     if (this.status === OK) {
-        const scheduleList = JSON.parse(this.responseText);
+        scheduleList = JSON.parse(this.responseText);
         if (activeSchedule === null) {
             activeSchedule = scheduleList[0];
         }
@@ -80,8 +82,7 @@ function onSchedulesReceived() {
         setActiveClass('sideNavList', activeSchedule.id);
         const addScheduleButtonEl = document.getElementById('addSchedule-button');
         addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
-
-        createTaskTable(activeSchedule.length);
+        createTaskTable();
     }
 }
 
