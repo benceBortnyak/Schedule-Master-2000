@@ -17,6 +17,8 @@
     <c:url value="/scripts/table.js" var="tableScriptUrl"/>
     <c:url value="/scripts/google.js" var="googleScriptUrl"/>
     <c:url value="/scripts/display.js" var="sidenavScriptUrl"/>
+    <c:url value="/scripts/task.js" var="taskScriptUrl"/>
+    <script src="${taskScriptUrl}"></script>
     <script src="${sidenavScriptUrl}"></script>
     <script src="${tableScriptUrl}"></script>
     <script src="${schedulesScriptUrl}"></script>
