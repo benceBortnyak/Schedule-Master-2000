@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TaskService {
     
-    void addTask(int userId,String title,String content) throws SQLException, ServiceException;
+    Task addTask(int userId,String title,String content) throws SQLException, ServiceException;
     
     List<Task> wiewTasks(int scheduleId) throws SQLException, ServiceException;
 
@@ -15,7 +15,7 @@ public interface TaskService {
 
     void deleteTask(int taskId) throws SQLException, ServiceException;
 
-    void addToSlot(int slotId, int taskId) throws SQLException, ServiceException;
+    void addToSlot(int slotId, int taskId, int len) throws SQLException, ServiceException;
 
     Task findById(int taskId) throws SQLException,ServiceException;
 

@@ -8,6 +8,8 @@ function mouseOverCell() {
     const addTaskButton = document.createElement('button');
     addTaskButton.setAttribute('id', 'addTaskButton');
     addTaskButton.textContent = '+';
+    const cellId = el.id;
+    addTaskButton.addEventListener('click', function(){onTaskButtonClicked(cellId)});
     el.appendChild(addTaskButton);
 }
 
@@ -32,7 +34,7 @@ function createAddScheduleForm(){
 
     const addButtonEl = document.createElement('button');
     addButtonEl.setAttribute('id', 'newScheduleButton');
-    addButtonEl.textContent = '+';
+    addButtonEl.textContent = ' +';
 
     const selectEl = document.createElement('select');
     selectEl.setAttribute('name', 'scheduleLength');

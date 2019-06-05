@@ -143,6 +143,11 @@ function onLoad() {
     const logoutButtonEl = document.getElementById('logout-button');
     logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
 
+    const closeNewTaskButtonEl = document.getElementById('closeNewTask-button');
+    closeNewTaskButtonEl.addEventListener('click', onNewTaskCloseClicked);
+
+
+
 }
 
 document.addEventListener('DOMContentLoaded', onLoad);

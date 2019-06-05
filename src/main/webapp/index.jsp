@@ -4,7 +4,8 @@
 <html lang="en">
 <head>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta charset="UTF-8" name="google-signin-client_id" content="178796968342-imq5f33i7be8gplqutr2fqib887qgjkn.apps.googleusercontent.com">
+    <meta charset="UTF-8" name="google-signin-client_id"
+          content="178796968342-imq5f33i7be8gplqutr2fqib887qgjkn.apps.googleusercontent.com">
     <title>Schedule-Master-2000</title>
     <link rel="stylesheet" type="text/css" href="index.css" media="all">
     <c:url value="/scripts/index.js" var="indexScriptUrl"/>
@@ -16,6 +17,8 @@
     <c:url value="/scripts/table.js" var="tableScriptUrl"/>
     <c:url value="/scripts/google.js" var="googleScriptUrl"/>
     <c:url value="/scripts/display.js" var="sidenavScriptUrl"/>
+    <c:url value="/scripts/task.js" var="taskScriptUrl"/>
+    <script src="${taskScriptUrl}"></script>
     <script src="${sidenavScriptUrl}"></script>
     <script src="${tableScriptUrl}"></script>
     <script src="${schedulesScriptUrl}"></script>
@@ -53,11 +56,22 @@
     </div>
     <div id="profile-content" class="hidden content modal">
         <form class="modal-content animate" action="/action_page.php">
-            <div class="imgcontainer"><span style="width: 2%; float: right" id="closeProfile-button" title="Close PopUp"
-                                            class="close">&times;</span>
-                <p>LastName: <span id="user-lastName"></span></p>
+            <div class="imgcontainer"><span style="width: 2%; float: right" id="closeProfile-button" title="Close PopUp" class="close">&times;</span>
+                <p>LastName: 📆<span id="user-lastName"></span></p>
                 <p>Forename: <span id="user-forename"></span></p>
                 <p>Email: <span id="user-email"></span></p>
+            </div>
+        </form>
+    </div>
+    <div id="newTask-content" class="hidden content modal">
+        <form accept-charset=utf-8 id='addTask-form' onsubmit="return false;" class="modal-content animate"
+              action="/action_page.php">
+            <div class="imgcontainer">
+                <span style="width: 2%; float: right" id="closeNewTask-button" title="Close PopUp" class="close">&times;</span>
+                <input name="taskTitle" type="text" placeholder="Type here the title of the task: " required/>
+                <input name="taskContent" type="text" placeholder="Type here the content of the task: " required/>
+                <input name="taskLen" type="number" required/>
+                <button id="newTaskButton">Add task</button>
             </div>
         </form>
     </div>
@@ -90,7 +104,7 @@
                     <button id="signUp-button" type="submit">SIGN UP</button>
                 </p>
                 <p>
-                    <div id="g-signin" class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div id="g-signin" class="g-signin2" data-onsuccess="onSignIn"></div>
                 </p>
                 <p>Login as guest</p>
                 <p style="padding: 0 20%">
