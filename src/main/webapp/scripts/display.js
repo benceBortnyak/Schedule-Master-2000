@@ -32,7 +32,7 @@ function createAddScheduleForm(){
 
     const addButtonEl = document.createElement('button');
     addButtonEl.setAttribute('id', 'newScheduleButton');
-    addButtonEl.textContent = '+';
+    addButtonEl.textContent = ' +';
 
     const selectEl = document.createElement('select');
     selectEl.setAttribute('name', 'scheduleLength');

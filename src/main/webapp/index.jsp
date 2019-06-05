@@ -55,7 +55,7 @@
         <form class="modal-content animate" action="/action_page.php">
             <div class="imgcontainer"><span style="width: 2%; float: right" id="closeProfile-button" title="Close PopUp"
                                             class="close">&times;</span>
-                <p>LastName: <span id="user-lastName"></span></p>
+                <p>LastName: 📆<span id="user-lastName"></span></p>
                 <p>Forename: <span id="user-forename"></span></p>
                 <p>Email: <span id="user-email"></span></p>
             </div>
@@ -97,6 +97,10 @@
                     <button id="loginGuest-button" type="submit">I'm a guest</button>
                 </p>
             </div>
+        </form>
+        <form accept-charset=utf-8 id='addTask-form' onsubmit="return false;" class="modal-content animate"
+              action="/action_page.php">
+
         </form>
     </div>
 

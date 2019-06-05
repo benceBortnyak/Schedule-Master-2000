@@ -51,6 +51,10 @@ div.sidenav a {
     color: black;
     font-size: 16px;
     display: block;
+    text-align: end;
+    /*kúp formáció*/
+/*    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;*/
 }
 
 div.schedules {
