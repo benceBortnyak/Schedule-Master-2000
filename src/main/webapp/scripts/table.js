@@ -42,8 +42,13 @@ function createTableBody() {
                 tdEl.classList.add('timeIndicator');
             } else if (j === 1) {
                 tdEl.setAttribute('id', i);
+                tdEl.addEventListener('mouseover', mouseOverCell);
+                tdEl.addEventListener('mouseout', mouseOutCell);
             } else if (j > 1) {
                 tdEl.setAttribute('id', (i + (j - 1) * 24));
+                tdEl.addEventListener('mouseover', mouseOverCell);
+                tdEl.addEventListener('mouseout', mouseOutCell);
+
             }
             trEl.appendChild(tdEl);
         }

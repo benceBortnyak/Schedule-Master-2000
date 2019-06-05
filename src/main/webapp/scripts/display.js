@@ -1,3 +1,16 @@
+function mouseOutCell() {
+    const el = this;
+    el.removeChild(el.firstChild);
+}
+
+function mouseOverCell() {
+    const el = this;
+    const addTaskButton = document.createElement('button');
+    addTaskButton.setAttribute('id', 'addTaskButton');
+    addTaskButton.textContent = '+';
+    el.appendChild(addTaskButton);
+}
+
 function createAddScheduleForm(){
     const formEl = document.createElement('form');
     formEl.classList.add('hidden');
