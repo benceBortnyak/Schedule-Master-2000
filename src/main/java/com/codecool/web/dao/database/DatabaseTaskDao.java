@@ -74,10 +74,10 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         
         boolean autoCommit= connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sqlString = "INSERT INTO slots_tasks(slot_id,task_id) VALUES (?, ?)";
+        String sqlString = "UPDATE slots_tasks SET task_id = ? WHERE slot_id = ?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)){
-            preparedStatement.setInt(1,slotId);
-            preparedStatement.setInt(2,taskId);
+            preparedStatement.setInt(1,taskId);
+            preparedStatement.setInt(2,slotId);
             preparedStatement.executeUpdate();
         }catch (SQLException ex){
             connection.rollback();
