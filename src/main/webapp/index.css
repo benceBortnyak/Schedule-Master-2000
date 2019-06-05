@@ -264,3 +264,7 @@ div.sidenav p:hover {
 .active{
     background-color: white;
 }
+#addTaskButton{
+    padding: 0;
+    margin: 0;
+}

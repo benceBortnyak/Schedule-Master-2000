@@ -63,7 +63,7 @@
             </div>
         </form>
     </div>
-    <div id="newTask" class="hidden content modal">
+    <div id="newTask-content" class="hidden content modal">
         <form accept-charset=utf-8 id='addTask-form' onsubmit="return false;" class="modal-content animate"
               action="/action_page.php">
             <div class="imgcontainer">
@@ -71,6 +71,7 @@
                 <input name="taskTitle" type="text" placeholder="Type here the title of the task: " required/>
                 <input name="taskContent" type="text" placeholder="Type here the content of the task: " required/>
                 <input name="taskLen" type="number" required/>
+                <button id="newTaskButton">Add task</button>
             </div>
         </form>
     </div>
