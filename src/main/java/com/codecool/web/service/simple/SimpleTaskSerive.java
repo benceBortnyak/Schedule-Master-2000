@@ -54,9 +54,11 @@ public class SimpleTaskSerive  implements TaskService {
     }
 
     @Override
-    public void addToSlot(int slotId, int taskId) throws SQLException, ServiceException {
+    public void addToSlot(int slotId, int taskId, int len) throws SQLException, ServiceException {
         try{
-            taskDao.addToSlot(slotId,taskId);
+            for(int i = 0; i < len; i++) {
+                taskDao.addToSlot(slotId + i, taskId);
+            }
         }catch (IllegalArgumentException e ){
             throw new ServiceException(e.getMessage());
         }

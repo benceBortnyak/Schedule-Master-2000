@@ -15,7 +15,7 @@ public interface TaskService {
 
     void deleteTask(int taskId) throws SQLException, ServiceException;
 
-    void addToSlot(int slotId, int taskId) throws SQLException, ServiceException;
+    void addToSlot(int slotId, int taskId, int len) throws SQLException, ServiceException;
 
     Task findById(int taskId) throws SQLException,ServiceException;
 
