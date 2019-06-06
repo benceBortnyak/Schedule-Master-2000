@@ -155,12 +155,31 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         return taskList;
     }
     
+    @Override
+    public List<Integer> findSlotIdByTaskId(int taskId) throws SQLException {
+        List<Integer> taskIds = new ArrayList<>();
+        String sqlStatement = "SELECT * FROM slots_tasks WHERE task_id = ?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
+            preparedStatement.setInt(1,taskId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    taskIds.add(fetchTaskIds(resultSet));
+                }
+            }
+        }
+        return taskIds;
+    }
+    
     private Task fetchTask(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt("id");
+        int id = resultSet.getInt("task_id");
         int userId = resultSet.getInt("user_id");
         String title = resultSet.getString("title");
         String content = resultSet.getString("content");
         logger.info("New task created");
         return new Task(id, userId, title, content);
+    }
+    private Integer fetchTaskIds(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("task_id");
+        return id;
     }
 }

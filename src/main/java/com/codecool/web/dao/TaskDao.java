@@ -21,4 +21,6 @@ public interface TaskDao {
 
     List<Task> findAll()throws SQLException;
     
+    List<Integer> findSlotIdByTaskId(int taskId) throws SQLException;
+    
 }
