@@ -5,6 +5,7 @@ function mouseOutCell() {
 
 function mouseOverCell() {
     const el = this;
+
     const addTaskButton = document.createElement('button');
     addTaskButton.setAttribute('id', 'addTaskButton');
     addTaskButton.textContent = '+';
