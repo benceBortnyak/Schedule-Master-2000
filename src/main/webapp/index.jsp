@@ -57,7 +57,7 @@
     <div id="profile-content" class="hidden content modal">
         <form class="modal-content animate" action="/action_page.php">
             <div class="imgcontainer"><span style="width: 2%; float: right" id="closeProfile-button" title="Close PopUp" class="close">&times;</span>
-                <p>LastName: 📆<span id="user-lastName"></span></p>
+                <p>LastName: <span id="user-lastName"></span></p>
                 <p>Forename: <span id="user-forename"></span></p>
                 <p>Email: <span id="user-email"></span></p>
             </div>
