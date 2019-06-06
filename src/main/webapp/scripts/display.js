@@ -10,7 +10,7 @@ function mouseOverCell() {
     addTaskButton.setAttribute('id', 'addTaskButton');
     addTaskButton.textContent = '+';
     const cellId = el.id;
-    addTaskButton.addEventListener('click', function(){onTaskButtonClicked(cellId)}, false);
+    addTaskButton.addEventListener('click', function(){onTaskButtonClicked(cellId)});
     el.appendChild(addTaskButton);
 }
 

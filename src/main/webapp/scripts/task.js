@@ -8,7 +8,7 @@ function onAddTaskResponse() {
 }
 
 function onNewTaskButtonClicked(cellId) {
-    this.removeEventListener('click', function (){onNewTaskButtonClicked(cellId)});
+
     const addTaskFormEl = document.forms['addTask-form'];
     const taskTitleEl = addTaskFormEl.querySelector('input[name="taskTitle"]');
     const taskContentEl = addTaskFormEl.querySelector('input[name="taskContent"]');
@@ -38,5 +38,6 @@ function onNewTaskCloseClicked() {
 function onTaskButtonClicked(cellId) {
     showContents(['main-content', 'newTask-content']);
     const newTaskButtonEl = document.getElementById('newTaskButton');
-    newTaskButtonEl.addEventListener('click', function (){onNewTaskButtonClicked(cellId)});
+    newTaskButtonEl.addEventListener('click', function callback() {onNewTaskButtonClicked(cellId);
+    newTaskButtonEl.removeEventListener('click', callback)});
 }
