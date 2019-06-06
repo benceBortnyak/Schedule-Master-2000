@@ -34,6 +34,7 @@ public class GoogleSignInServlet extends AbstractServlet {
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), jsonFactory)
                 .setAudience(Collections.singletonList("178796968342-imq5f33i7be8gplqutr2fqib887qgjkn.apps.googleusercontent.com"))
                 .build();
