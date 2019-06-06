@@ -30,7 +30,8 @@ public class TaskServlet extends AbstractServlet {
             int user_id = Integer.parseInt(req.getParameter("user_id"));
             Task task = taskService.addTask(user_id, title, content);
             taskService.addToSlot(slotId, task.getId(), len);
-            System.out.println("test");
+            sendMessage(resp, HttpServletResponse.SC_OK, task);
+            System.out.println("fasz");
 
         }catch (SQLException e){
             e.printStackTrace();

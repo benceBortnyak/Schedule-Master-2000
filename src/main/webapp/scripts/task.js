@@ -1,3 +1,12 @@
+function onAddTaskResponse() {
+    if (this.status === OK) {
+        document.getElementById('addTask-form').reset();
+        showContents(['main-content']);
+    } else if (this.status === BAD_REQUEST) {
+        alert("You've provided invalid data");
+    }
+}
+
 function onNewTaskButtonClicked(cellId) {
     const addTaskFormEl = document.forms['addTask-form'];
     const taskTitleEl = addTaskFormEl.querySelector('input[name="taskTitle"]');
@@ -16,6 +25,7 @@ function onNewTaskButtonClicked(cellId) {
     params.append('user_id', getAuthorization().id);
 
     const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onAddTaskResponse);
     xhr.open('POST', 'task');
     xhr.send(params);
 }
@@ -27,5 +37,5 @@ function onNewTaskCloseClicked() {
 function onTaskButtonClicked(cellId) {
     showContents(['main-content', 'newTask-content']);
     const newTaskButtonEl = document.getElementById('newTaskButton');
-    newTaskButtonEl.addEventListener('click', function (){onNewTaskButtonClicked(cellId)});
+    newTaskButtonEl.addEventListener('click', function (){onNewTaskButtonClicked(cellId)}, false);
 }

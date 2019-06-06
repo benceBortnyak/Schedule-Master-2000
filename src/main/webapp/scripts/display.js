@@ -10,7 +10,7 @@ function mouseOverCell() {
     addTaskButton.setAttribute('id', 'addTaskButton');
     addTaskButton.textContent = '+';
     const cellId = el.id;
-    addTaskButton.addEventListener('click', function(){onTaskButtonClicked(cellId)});
+    addTaskButton.addEventListener('click', function(){onTaskButtonClicked(cellId)}, false);
     el.appendChild(addTaskButton);
 }
 
@@ -24,6 +24,7 @@ function createAddScheduleForm(){
     titleEl.setAttribute('type', 'text');
     titleEl.setAttribute('placeholder', 'Type your schedule title');
     titleEl.setAttribute('name', 'scheduleTitle');
+    titleEl.required = true;
 
     const checkboxEl = document.createElement('input');
     checkboxEl.setAttribute('type', 'checkbox');

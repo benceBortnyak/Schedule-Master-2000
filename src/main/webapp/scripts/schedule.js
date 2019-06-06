@@ -75,14 +75,23 @@ function onNewScheduleButtonClicked() {
 function onSchedulesReceived() {
     if (this.status === OK) {
         scheduleList = JSON.parse(this.responseText);
-        if (activeSchedule === null) {
-            activeSchedule = scheduleList[0];
-        }
         sideNavContentDivEl.appendChild(createScheduleList(scheduleList));
-        setActiveClass('sideNavList', activeSchedule.id);
-        const addScheduleButtonEl = document.getElementById('addSchedule-button');
-        addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
-        createTaskTable();
+        if (activeSchedule === null) {
+            if(scheduleList.length === 0){
+                activeSchedule = sideNavContentDivEl.firstChild;
+            }else {
+                activeSchedule = scheduleList[0];
+
+            }setActiveClass('sideNavList', activeSchedule.id);
+            const addScheduleButtonEl = document.getElementById('addSchedule-button');
+            addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
+        }else {
+            setActiveClass('sideNavList', activeSchedule.id);
+            const addScheduleButtonEl = document.getElementById('addSchedule-button');
+            addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
+            createTaskTable();
+        }
+
     }
 }
 
