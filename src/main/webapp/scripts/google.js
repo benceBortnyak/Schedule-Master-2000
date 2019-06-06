@@ -1,24 +1,19 @@
 function onSignIn(googleUser) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'GoogleSingIn');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function () {
-        console.log('Signed in as: ' + xhr.responseText);
-    }
-    xhr.send('idtoken=' + id_token);
 
     // Useful data for your client-side scripts:
     const profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    const id_token = googleUser.getAuthResponse().id_token;
     console.log('Full Name: ' + profile.getName());
     console.log('Given Name: ' + profile.getGivenName());
     console.log('Family Name: ' + profile.getFamilyName());
     console.log("Image URL: " + profile.getImageUrl());
     console.log("Email: " + profile.getEmail());
 
-    // The ID token you need to pass to your backend:
-    const id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onGoogleResponse);
+    xhr.open('POST', 'GoogleSignIn');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send('idtoken=' + id_token);
 }
 
 function signOut() {
@@ -26,4 +21,17 @@ function signOut() {
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
+}
+
+function onGoogleResponse() {
+    if (this.status === OK) {
+        const user = JSON.parse(this.responseText);
+        setAuthorization(user);
+        if (hasAuthorization()) {
+            showContents(['main-content']);
+            onLoadProfile(getAuthorization());
+        }
+    }else if(this.status === UNAUTHORIZED){
+        alert("Your email address or password was incorrect!");
+    }
 }

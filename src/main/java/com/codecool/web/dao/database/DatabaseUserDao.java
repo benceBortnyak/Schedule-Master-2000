@@ -35,7 +35,7 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
 
     @Override
     public void add(String forename, String lastName, String email, String password) throws SQLException {
-        if (email == null || "".equals(email) || password == null || "".equals(password)) {
+        if (email == null || "".equals(email) || password == null)  {
             throw new IllegalArgumentException("Password or email cannot be null or empty");
         }
         String sql = "INSERT INTO users (forename, lastName, email, password, user_type) VALUES (?, ?, ?, ?, 'USER')";

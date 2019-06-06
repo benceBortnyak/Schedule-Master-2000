@@ -67,10 +67,6 @@ create table slots_tasks (
     FOREIGN KEY (task_id) REFERENCES  tasks(task_id)
 );
 
-CREATE TRIGGER day_trigger
-    AFTER INSERT ON schedules
-    FOR EACH ROW EXECUTE PROCEDURE day_column();
-
 CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS '
 
     DECLARE
@@ -89,6 +85,10 @@ CREATE OR REPLACE FUNCTION day_column() RETURNS trigger AS '
         RETURN null;
     END
 ' LANGUAGE plpgsql;
+
+CREATE TRIGGER day_trigger
+    AFTER INSERT ON schedules
+    FOR EACH ROW EXECUTE PROCEDURE day_column();
 
 insert into users (forename, lastName, email, password, user_type) values ('AdminForename','AdminLastName','admin@admin.com', 'Admin1234', 'ADMIN');
 insert into users(email, password, user_type) VALUES ('user1@user1.com', 'user1234', 'USER');

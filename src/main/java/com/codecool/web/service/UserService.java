@@ -11,4 +11,5 @@ public interface UserService {
 
     void addUser(String forename, String lastName, String email, String password) throws SQLException, ServiceException;
 
+    boolean emailVerify(String email) throws SQLException, ServiceException;
 }
