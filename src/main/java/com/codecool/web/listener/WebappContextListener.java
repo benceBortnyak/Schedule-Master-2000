@@ -1,6 +1,9 @@
 package com.codecool.web.listener;
 
 
+import com.codecool.web.servlet.LoginServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 
@@ -16,12 +19,14 @@ import java.sql.Connection;
 
 @WebListener
 public final class WebappContextListener implements ServletContextListener {
+    private static final Logger logger = LoggerFactory.getLogger(WebappContextListener.class);
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         registerCharacterEncodingFilter(sce);
         DataSource dataSource = putDataSourceToServletContext(sce);
         runDatabaseInitScript(dataSource, "/init.sql");
+        logger.info("Init script ran");
     }
 
     private void registerCharacterEncodingFilter(ServletContextEvent sce) {
@@ -38,6 +43,7 @@ public final class WebappContextListener implements ServletContextListener {
             return dataSource;
         } catch (NamingException ex) {
             ex.printStackTrace();
+            logger.debug("Data Source failed");
             throw new IllegalStateException(ex);
         }
     }
@@ -47,6 +53,7 @@ public final class WebappContextListener implements ServletContextListener {
             ScriptUtils.executeSqlScript(connection, new ClassPathResource(resource));
         } catch (Throwable t) {
             t.printStackTrace();
+            logger.debug("Init script run failed");
             throw new IllegalStateException(t);
         }
     }

@@ -34,8 +34,10 @@ public class SchedulesServlet extends AbstractServlet {
             List<Schedule> scheduleList = scheduleService.findAllByUserId(id);
             sendMessage(resp,HttpServletResponse.SC_OK, scheduleList);
         } catch (SQLException e) {
+            logger.debug(e.getMessage());
             e.printStackTrace();
         } catch (ServiceException e) {
+            logger.debug(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -54,8 +56,10 @@ public class SchedulesServlet extends AbstractServlet {
             sendMessage(resp,HttpServletResponse.SC_OK, schedule);
             logger.info("Schedule with id: "+ id +" added as: " + title);
         } catch (SQLException e) {
+            logger.debug(e.getMessage());
             e.printStackTrace();
         } catch (ServiceException e) {
+            logger.debug(e.getMessage());
             e.printStackTrace();
         }
     }

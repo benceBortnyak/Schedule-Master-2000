@@ -5,6 +5,8 @@ import com.codecool.web.dao.database.DatabaseUserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.service.UserService;
 import com.codecool.web.service.exception.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
@@ -15,6 +17,8 @@ public class SimpleUserService implements UserService {
     public SimpleUserService(UserDao userDao) {
         this.userDao = userDao;
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(SimpleUserService.class);
     
     @Override
     public User loginUser(String email, String password) throws SQLException, ServiceException {
@@ -25,6 +29,7 @@ public class SimpleUserService implements UserService {
             }
             return user;
         } catch (IllegalArgumentException ex) {
+            logger.debug(ex.getMessage());
             throw new ServiceException(ex.getMessage());
         }
     }
@@ -34,6 +39,7 @@ public class SimpleUserService implements UserService {
         try {
             userDao.add(forename, lastName, email, password);
         } catch (IllegalArgumentException ex) {
+            logger.debug(ex.getMessage());
             throw new ServiceException(ex.getMessage());
         }
     }
@@ -47,6 +53,7 @@ public class SimpleUserService implements UserService {
                 return false;
             }
         }catch (IllegalArgumentException ex) {
+            logger.debug(ex.getMessage());
             throw new ServiceException(ex.getMessage());
         }
     }

@@ -4,6 +4,8 @@ import com.codecool.web.dao.TaskDao;
 import com.codecool.web.model.Task;
 import com.codecool.web.service.TaskService;
 import com.codecool.web.service.exception.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,12 +18,15 @@ public class SimpleTaskSerive  implements TaskService {
         this.taskDao =taskDao;
     }
 
+    private static final Logger logger = LoggerFactory.getLogger(SimpleTaskSerive.class);
+
 
     @Override
     public Task addTask(int userId, String title, String content) throws SQLException, ServiceException {
         try {
             return taskDao.add(userId, title, content);
         }catch (IllegalArgumentException e ){
+            logger.debug(e.getMessage());
             throw new ServiceException(e.getMessage());
         }
     }
@@ -31,6 +36,7 @@ public class SimpleTaskSerive  implements TaskService {
         try{
             return taskDao.findAllByScheduleId(scheduleId);
         }catch(IllegalArgumentException e ){
+            logger.debug(e.getMessage());
             throw new ServiceException(e.getMessage());
         }
     }
@@ -40,6 +46,7 @@ public class SimpleTaskSerive  implements TaskService {
         try{
             taskDao.updateTask(taskId,title,content);
         }catch (IllegalArgumentException e ){
+            logger.debug(e.getMessage());
             throw new ServiceException(e.getMessage());
         }
     }
@@ -49,6 +56,7 @@ public class SimpleTaskSerive  implements TaskService {
         try{
             taskDao.deleteTask(taskId);
         }catch (IllegalArgumentException e ){
+            logger.debug(e.getMessage());
             throw new ServiceException(e.getMessage());
         }
     }
@@ -60,6 +68,7 @@ public class SimpleTaskSerive  implements TaskService {
                 taskDao.addToSlot(slotId + i, taskId);
             }
         }catch (IllegalArgumentException e ){
+            logger.debug(e.getMessage());
             throw new ServiceException(e.getMessage());
         }
     }
@@ -69,6 +78,7 @@ public class SimpleTaskSerive  implements TaskService {
         try{
             return taskDao.findById(taskId);
         }catch (IllegalArgumentException e){
+            logger.debug(e.getMessage());
             throw new ServiceException(e.getMessage());
         }
     }
@@ -78,6 +88,7 @@ public class SimpleTaskSerive  implements TaskService {
         try{
             return taskDao.findAll();
         }catch (IllegalArgumentException e){
+            logger.debug(e.getMessage());
             throw new ServiceException(e.getMessage());
         }
     }

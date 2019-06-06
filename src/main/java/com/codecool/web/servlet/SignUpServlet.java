@@ -35,8 +35,10 @@ public class SignUpServlet extends AbstractServlet {
             sendMessage(resp, HttpServletResponse.SC_OK, "Sign Up complete");
             logger.info(forename + " User with " + email + " signed up");
         } catch (ServiceException ex) {
+            logger.debug(ex.getMessage());
             sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
         } catch (SQLException ex) {
+            logger.debug(ex.getMessage());
             handleSqlError(resp, ex);
         }
     }

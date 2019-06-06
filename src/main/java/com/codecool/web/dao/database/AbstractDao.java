@@ -28,6 +28,7 @@ abstract class AbstractDao {
                 id = resultSet.getInt(1);
             } else {
                 connection.rollback();
+
                 throw new SQLException("Expected 1 result");
             }
         }

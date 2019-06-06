@@ -7,6 +7,8 @@ import com.codecool.web.model.Task;
 import com.codecool.web.service.TaskService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleTaskSerive;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +21,11 @@ import java.util.List;
 
 @WebServlet("/tasks")
 public class TasksServlet extends AbstractServlet {
+
+
+    private static final Logger logger = LoggerFactory.getLogger(TasksServlet.class);
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
@@ -28,11 +35,13 @@ public class TasksServlet extends AbstractServlet {
             int id = Integer.parseInt(req.getParameter("id"));
             List<Task> taskList = taskService.findAll();
             sendMessage(resp,HttpServletResponse.SC_OK, taskList);
+            logger.info("Tasks sent");
         }catch (SQLException e){
+            logger.debug(e.getMessage());
             e.printStackTrace();
         }catch (ServiceException e){
+            logger.debug(e.getMessage());
             e.printStackTrace();
         }
     }
-
 }
