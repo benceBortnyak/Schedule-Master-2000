@@ -20,5 +20,7 @@ public interface TaskService {
     Task findById(int taskId) throws SQLException,ServiceException;
 
     List<Task> findAll() throws SQLException,ServiceException;
+
+    List<Integer> findSlotIdByTaskId(int taskId) throws SQLException,ServiceException;
     
 }
