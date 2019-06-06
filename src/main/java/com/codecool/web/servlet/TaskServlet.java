@@ -25,11 +25,12 @@ public class TaskServlet extends AbstractServlet {
             TaskService taskService = new SimpleTaskSerive(taskDao);
             String title = req.getParameter("title");
             String content = req.getParameter("content");
-            int slotId = Integer.parseInt(req.getParameter("slotId"));
+            int slotId = Integer.parseInt(req.getParameter("cellId"));
             int len = Integer.parseInt(req.getParameter("len"));
             int user_id = Integer.parseInt(req.getParameter("user_id"));
             Task task = taskService.addTask(user_id, title, content);
             taskService.addToSlot(slotId, task.getId(), len);
+            System.out.println("test");
 
         }catch (SQLException e){
             e.printStackTrace();

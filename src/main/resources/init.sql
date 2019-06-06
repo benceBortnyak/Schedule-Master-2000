@@ -95,4 +95,4 @@ insert into users(email, password, user_type) VALUES ('user1@user1.com', 'user12
 insert into schedules(user_id, title, length,type) values (1, 'Weekly routine',7, 'PUBLIC');
 insert into schedules(user_id, title, length, type) values (1, 'Class schedule',4, 'PUBLIC');
 insert into schedules(user_id, title, length, type) values (1, 'Time table',2, 'PUBLIC');
-insert into tasks(task_id,user_id,title,content) values(1, 2, 'Gardening', 'I really love gardening!');
+insert into tasks(user_id,title,content) values(2, 'Gardening', 'I really love gardening!');
