@@ -96,7 +96,7 @@ public class SimpleTaskSerive  implements TaskService {
     @Override
     public List<Integer> findSlotIdByTaskId(int taskId) throws SQLException,ServiceException {
         try{
-            taskDao.findSlotIdByTaskI(taskId);
+            return taskDao.findSlotIdByTaskId(taskId);
         }catch (IllegalArgumentException e ){
             logger.debug(e.getMessage());
             throw new ServiceException(e.getMessage());
