@@ -81,7 +81,7 @@ function onSchedulesReceived() {
                 activeSchedule = sideNavContentDivEl.firstChild;
             }else {
                 activeSchedule = scheduleList[0];
-
+                createTaskTable();
             }setActiveClass('sideNavList', activeSchedule.id);
             const addScheduleButtonEl = document.getElementById('addSchedule-button');
             addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
