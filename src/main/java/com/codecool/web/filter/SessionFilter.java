@@ -22,6 +22,7 @@ public final class SessionFilter implements Filter {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+
         } else {
             chain.doFilter(req, resp);
         }

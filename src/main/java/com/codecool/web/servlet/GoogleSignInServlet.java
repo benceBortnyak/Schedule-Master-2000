@@ -67,10 +67,13 @@ public class GoogleSignInServlet extends AbstractServlet {
                 System.out.println("Invalid ID token.");
             }
         } catch (GeneralSecurityException ex) {
+            logger.debug(ex.getMessage());
             sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
         } catch (ServiceException ex) {
+            logger.debug(ex.getMessage());
             sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
         } catch (SQLException ex) {
+            logger.debug(ex.getMessage());
             handleSqlError(resp, ex);
         }
     }

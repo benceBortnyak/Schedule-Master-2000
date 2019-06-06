@@ -2,11 +2,16 @@ package com.codecool.web.dao.database;
 
 import com.codecool.web.dao.TaskDao;
 import com.codecool.web.model.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseTaskDao extends AbstractDao implements TaskDao {
+
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseTaskDao.class);
     
     public DatabaseTaskDao(Connection connection) {
         super(connection);
@@ -31,6 +36,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
                 }
             }
         }
+        logger.info("Task list returned");
         return taskList;
     }
     
@@ -46,6 +52,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
                 }
             }
         }
+        logger.info("Task not found(by id)");
         return null;
     }
     
@@ -60,8 +67,10 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             preparedStatement.setString(3, content);
             executeInsert(preparedStatement);
             int id = fetchGeneratedId(preparedStatement);
+            logger.debug("Task added");
             return new Task(id, userId, title, content);
         } catch (SQLException ex) {
+            logger.debug(ex.getMessage());
             connection.rollback();
             throw ex;
         } finally {
@@ -79,7 +88,9 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             preparedStatement.setInt(1,taskId);
             preparedStatement.setInt(2,slotId);
             preparedStatement.executeUpdate();
+            logger.info("Task added to slot");
         }catch (SQLException ex){
+            logger.debug(ex.getMessage());
             connection.rollback();
             throw ex;
         }finally {
@@ -95,7 +106,9 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)){
             preparedStatement.setInt(1,taskId);
             preparedStatement.executeUpdate();
+            logger.info("Task deleted");
         }catch (SQLException e ){
+            logger.debug(e.getMessage());
             connection.rollback();
             throw e;
         }finally {
@@ -113,7 +126,9 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             preparedStatement.setString(2,content);
             preparedStatement.setInt(3,taskId);
             preparedStatement.executeUpdate();
+            logger.info("Task updated");
         }catch (SQLException e ){
+            logger.debug(e.getMessage());
             connection.rollback();
             throw e;
         } finally {
@@ -133,8 +148,10 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             }
         }
         catch (SQLException e ){
+            logger.debug(e.getMessage());
                 connection.rollback();
         }
+        logger.info("Tasks returned");
         return taskList;
     }
     
@@ -143,8 +160,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         int userId = resultSet.getInt("user_id");
         String title = resultSet.getString("title");
         String content = resultSet.getString("content");
-        
+        logger.info("New task created");
         return new Task(id, userId, title, content);
     }
-
 }

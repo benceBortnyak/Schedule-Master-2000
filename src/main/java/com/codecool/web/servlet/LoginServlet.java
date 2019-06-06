@@ -35,9 +35,10 @@ public class LoginServlet extends AbstractServlet {
             sendMessage(resp,HttpServletResponse.SC_OK, user);
             logger.info(user.getForename() +" logged in");
         }catch (SQLException e ){
+            logger.debug(e.getMessage());
             handleSqlError(resp, e);
         }catch (ServiceException e ){
-            e.printStackTrace();
+            logger.debug(e.getMessage());
             sendMessage(resp,HttpServletResponse.SC_UNAUTHORIZED,e.getMessage());
         }
     }

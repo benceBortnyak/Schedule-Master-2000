@@ -3,6 +3,8 @@ package com.codecool.web.dao.database;
 import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 import com.codecool.web.model.enums.UserType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +16,7 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
     public DatabaseUserDao(Connection connection) {
         super(connection);
     }
-
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseUserDao.class);
 
     @Override
     public User findByEmail(String email) throws SQLException {
@@ -30,6 +32,7 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
                 }
             }
         }
+        logger.info("Email not found");
         return null;
     }
 
@@ -45,6 +48,7 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
             statement.setString(3, email);
             statement.setString(4, password);
             executeInsert(statement);
+            logger.info("User added");
         }
     }
 
@@ -60,6 +64,8 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
         String email = resultSet.getString("email");
         String password = resultSet.getString("password");
         UserType userType = UserType.valueOf(resultSet.getString("user_type"));
+        logger.info("New user created");
         return new User(id, forename, lastName, email, password, userType);
+
     }
 }

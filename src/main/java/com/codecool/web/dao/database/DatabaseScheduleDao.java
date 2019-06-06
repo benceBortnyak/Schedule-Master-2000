@@ -3,6 +3,8 @@ package com.codecool.web.dao.database;
 import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.model.Schedule;
 import com.codecool.web.model.enums.ScheduleType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.sql.*;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
+
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseScheduleDao.class);
     
     public DatabaseScheduleDao(Connection connection) {
         super(connection);
@@ -25,7 +29,9 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
             while (resultSet.next()) {
                 scheduleList.add(fetchSchedule(resultSet));
             }
+
         }
+        logger.info("Schedule list returned");
         return scheduleList;
     }
     
@@ -37,10 +43,12 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
             preparedStatement.setInt(1, scheduleId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
+                    logger.info("Schedule found");
                     return fetchSchedule(resultSet);
                 }
             }
         }
+        logger.info("Schedule not found");
         return null;
     }
     
@@ -56,9 +64,11 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
                 preparedStatement.setInt(3, length);
                 preparedStatement.setString(4, String.valueOf(scheduleType));
                 executeInsert(preparedStatement);
+                logger.info("Schedule added");
                 int id = fetchGeneratedId(preparedStatement);
                 return new Schedule(id, userId, title, length, scheduleType);
             } catch (SQLException ex) {
+                logger.debug(ex.getMessage());
                 connection.rollback();
                 throw ex;
             } finally {
@@ -82,8 +92,10 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
                 preparedStatement.setString(3, String.valueOf(scheduleType));
                 preparedStatement.setInt(4, scheduleId);
                 preparedStatement.executeUpdate();
+                logger.info("Schedule updated");
             }catch (SQLException ex) {
                 connection.rollback();
+                logger.debug(ex.getMessage());
                 throw ex;
             } finally {
                 connection.setAutoCommit(autoCommit);
@@ -102,7 +114,9 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
             preparedStatement.setInt(1, scheduleId);
             preparedStatement.execute();
+            logger.info("Schedule deleted");
         } catch (SQLException ex) {
+            logger.debug(ex.getMessage());
             connection.rollback();
             throw ex;
         } finally {
@@ -121,6 +135,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
                 scheduleList.add(fetchSchedule(resultSet));
             }
         }
+        logger.info("User specified Schedule list returned");
         return scheduleList;
     }
     
@@ -131,10 +146,12 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
             preparedStatement.setString(1,"PUBLIC");
             ResultSet resultSet = preparedStatement.executeQuery();
+
             while(resultSet.next()) {
                 scheduleList.add(fetchSchedule(resultSet));
             }
         }
+        logger.info("Public schedule list returned");
         return scheduleList;
     }
     
@@ -144,10 +161,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         String title = resultSet.getString("title");
         int length = resultSet.getInt("length");
         ScheduleType scheduleType = ScheduleType.valueOf(resultSet.getString("type"));
-        
+        logger.info("New schedule added");
         return new Schedule(scheduleId, userId, title, length, scheduleType);
     }
-
-
-
 }
