@@ -1,3 +1,5 @@
+let globalTask;
+
 function onCellIdListReceived() {
     const cellIdList = JSON.parse(this.responseText);
     const tdList = document.getElementsByTagName('td');
@@ -5,6 +7,9 @@ function onCellIdListReceived() {
         const tdEl = tdList[i];
         if (tdEl.id == cellIdList[0]) {
             tdEl.setAttribute("rowspan", cellIdList.length);
+            tdEl.textContent = globalTask.title;
+            tdEl.removeEventListener('mouseover', mouseOverCell);
+            tdEl.removeEventListener('mouseout', mouseOutCell);
             for (let j = 1; j <= cellIdList.length; j++) {
                 let cellIdToRemove = cellIdList[j];
                 for (let k = 0; k < tdList.length; k++) {
@@ -33,8 +38,8 @@ function loadCellIdList(task) {
 function onLoadTasks() {
     activeTasksList = JSON.parse(this.responseText);
     for (let i = 0; i < activeTasksList.length; i++) {
-        const task = activeTasksList[i];
-        loadCellIdList(task);
+        globalTask = activeTasksList[i];
+        loadCellIdList(globalTask);
     }
 }
 
