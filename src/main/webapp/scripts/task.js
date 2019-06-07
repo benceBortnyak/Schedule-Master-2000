@@ -1,11 +1,20 @@
-
 function onCellIdListReceived() {
     const cellIdList = JSON.parse(this.responseText);
     const tdList = document.getElementsByTagName('td');
-    for (let j = 0; j < tdList.length; j++) {
-        const tdEl = tdList[j];
+    for (let i = 0; i < tdList.length; i++) {
+        const tdEl = tdList[i];
         if (tdEl.id == cellIdList[0]) {
             tdEl.setAttribute("rowspan", cellIdList.length);
+            for (let j = 1; j <= cellIdList.length; j++) {
+                let cellIdToRemove = cellIdList[j];
+                for (let k = 0; k < tdList.length; k++) {
+                    let cell = tdList[k];
+                    if (cell.id == cellIdToRemove) {
+                        cell.remove();
+                        tdList.splice(k, 1);
+                    }
+                }
+            }
         }
     }
 }
