@@ -7,11 +7,11 @@ function onLoadSchedule() {
 
 function setActiveClass(elId, id) {
     const scheduleEls = document.getElementById(elId).getElementsByClassName('passive');
-    for (let i = 0; i < scheduleEls.length; i++){
+    for (let i = 0; i < scheduleEls.length; i++) {
         const scheduleEl = scheduleEls[i];
-        if(id == scheduleEl.id) {
+        if (id == scheduleEl.id) {
             scheduleEl.classList.add('active');
-        }else {
+        } else {
             scheduleEl.classList.remove('active');
         }
     }
@@ -77,21 +77,21 @@ function onSchedulesReceived() {
         scheduleList = JSON.parse(this.responseText);
         sideNavContentDivEl.appendChild(createScheduleList(scheduleList));
         if (activeSchedule === null) {
-            if(scheduleList.length === 0){
+            if (scheduleList.length === 0) {
                 activeSchedule = sideNavContentDivEl.firstChild;
-            }else {
+            } else {
                 activeSchedule = scheduleList[0];
                 createTaskTable();
-            }setActiveClass('sideNavList', activeSchedule.id);
+            }
+            setActiveClass('sideNavList', activeSchedule.id);
             const addScheduleButtonEl = document.getElementById('addSchedule-button');
             addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
-        }else {
+        } else {
             setActiveClass('sideNavList', activeSchedule.id);
             const addScheduleButtonEl = document.getElementById('addSchedule-button');
             addScheduleButtonEl.addEventListener('click', onNewScheduleButtonClicked);
             createTaskTable();
         }
-
     }
 }
 

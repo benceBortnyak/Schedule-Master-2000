@@ -32,7 +32,7 @@ public class SimpleTaskSerive  implements TaskService {
     }
 
     @Override
-    public List<Task> wiewTasks(int scheduleId) throws SQLException, ServiceException {
+    public List<Task> findAllByScheduleId(int scheduleId) throws SQLException, ServiceException {
         try{
             return taskDao.findAllByScheduleId(scheduleId);
         }catch(IllegalArgumentException e ){

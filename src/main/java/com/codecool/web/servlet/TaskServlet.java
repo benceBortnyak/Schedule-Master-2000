@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet("/task")
 public class TaskServlet extends AbstractServlet {
@@ -42,6 +43,25 @@ public class TaskServlet extends AbstractServlet {
             e.printStackTrace();
         }catch (ServiceException e){
             logger.debug(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection connection = getConnection(req.getServletContext())) {
+            resp.setContentType("text/html;charset=UTF-8");
+            TaskDao taskDao = new DatabaseTaskDao(connection);
+            TaskService taskService = new SimpleTaskSerive(taskDao);
+
+            int id = Integer.parseInt(req.getParameter("id"));
+            List<Integer> cellIdList = taskService.findSlotIdByTaskId(id);
+            System.out.println(cellIdList);
+            sendMessage(resp, HttpServletResponse.SC_OK, cellIdList);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
     }

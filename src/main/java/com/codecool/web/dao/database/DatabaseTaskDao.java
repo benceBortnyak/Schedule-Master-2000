@@ -157,17 +157,17 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     
     @Override
     public List<Integer> findSlotIdByTaskId(int taskId) throws SQLException {
-        List<Integer> taskIds = new ArrayList<>();
-        String sqlStatement = "SELECT * FROM slots_tasks WHERE task_id = ?";
+        List<Integer> slotIdList = new ArrayList<>();
+        String sqlStatement = "SELECT slot_id FROM slots_tasks WHERE task_id = ?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
             preparedStatement.setInt(1,taskId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    taskIds.add(fetchTaskIds(resultSet));
+                    slotIdList.add(fetchTaskIds(resultSet));
                 }
             }
         }
-        return taskIds;
+        return slotIdList;
     }
     
     private Task fetchTask(ResultSet resultSet) throws SQLException {
@@ -179,7 +179,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         return new Task(id, userId, title, content);
     }
     private Integer fetchTaskIds(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt("task_id");
+        int id = resultSet.getInt("slot_id");
         return id;
     }
 }

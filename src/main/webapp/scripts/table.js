@@ -1,3 +1,5 @@
+
+
 function createTableHead() {
     const daysOfTheWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const theadEl = document.createElement('thead');
@@ -59,10 +61,10 @@ function createTableBody() {
 }
 
 function createTaskTable() {
+    loadTasks();
     if (document.getElementById('taskTable') !== null) {
         document.getElementById('taskTable').remove();
     }
-
     const tableEl = document.createElement('table');
     tableEl.setAttribute('id', 'taskTable');
     tableEl.appendChild(createTableHead());

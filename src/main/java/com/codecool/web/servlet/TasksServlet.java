@@ -22,9 +22,7 @@ import java.util.List;
 @WebServlet("/tasks")
 public class TasksServlet extends AbstractServlet {
 
-
     private static final Logger logger = LoggerFactory.getLogger(TasksServlet.class);
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +31,7 @@ public class TasksServlet extends AbstractServlet {
             TaskDao taskDao = new DatabaseTaskDao(connection);
             TaskService taskService = new SimpleTaskSerive(taskDao);
             int id = Integer.parseInt(req.getParameter("id"));
-            List<Task> taskList = taskService.findAll();
+            List<Task> taskList = taskService.findAllByScheduleId(id);
             sendMessage(resp,HttpServletResponse.SC_OK, taskList);
             logger.info("Tasks sent");
         }catch (SQLException e){

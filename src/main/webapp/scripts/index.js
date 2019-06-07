@@ -13,6 +13,7 @@ let sideNavContentDivEl;
 let logoutContentDivEl;
 let tableDivEl;
 let activeSchedule;
+let activeTasksList;
 
 window.onclick = function (e) {
     if (!e.target.matches('.dropbtn')) {
@@ -145,8 +146,6 @@ function onLoad() {
 
     const closeNewTaskButtonEl = document.getElementById('closeNewTask-button');
     closeNewTaskButtonEl.addEventListener('click', onNewTaskCloseClicked);
-
-
 
 }
 

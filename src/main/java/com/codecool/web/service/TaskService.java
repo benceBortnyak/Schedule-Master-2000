@@ -9,7 +9,7 @@ public interface TaskService {
     
     Task addTask(int userId,String title,String content) throws SQLException, ServiceException;
     
-    List<Task> wiewTasks(int scheduleId) throws SQLException, ServiceException;
+    List<Task> findAllByScheduleId(int scheduleId) throws SQLException, ServiceException;
 
     void updateTask(int taskId, String title, String content) throws SQLException,ServiceException;
 
