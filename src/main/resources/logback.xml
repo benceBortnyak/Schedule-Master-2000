@@ -39,7 +39,7 @@
     </appender>
 
     <appender name="HTML_FILE" class="ch.qos.logback.core.FileAppender">
-        <file>html-log.html</file>
+        <file>${catalina.base}/logs/SM2000.html</file>
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="ch.qos.logback.classic.html.HTMLLayout">
                 <pattern>%relative%thread%mdc%level%logger%msg</pattern>
@@ -75,5 +75,7 @@
     <root level="ERROR">
         <appender-ref ref="FILE"/>
         <appender-ref ref="XML_FILE"/>
+        <appender-ref ref="HTML_FILE"/>
     </root>
+
 </configuration>
