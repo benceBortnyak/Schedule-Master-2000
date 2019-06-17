@@ -1,5 +1,5 @@
 
-function createScheduleDropdown(id) {
+function createScheduleDropdown(scheduleList) {
     const divEl = document.createElement('div');
     divEl.classList.add('dropdown-content');
     divEl.setAttribute('id', 'scheduleDropdown');
@@ -11,7 +11,7 @@ function createScheduleDropdown(id) {
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = "Delete schedule";
 
-    deleteButtonEl.addEventListener('click', () =>{onDeleteScheduleClicked(id)});
+    deleteButtonEl.addEventListener('click', () =>{onDeleteScheduleClicked(scheduleList)});
     divEl.appendChild(updateButtonEl);
     divEl.appendChild(deleteButtonEl);
 
@@ -97,15 +97,14 @@ function createScheduleList(scheduleList) {
         menuButton.textContent = 'X';
         menuButton.classList.add('newScheduleButton');
         menuButton.classList.add('dropbtn');
-        menuButton.addEventListener('click', showScheduleDropdown);
         menuButton.setAttribute('id',schedule.id);
+        menuButton.addEventListener('click', showScheduleDropdown);
 
         const pEl = document.createElement('p');
-        pEl.setAttribute('id', schedule.id);
         pEl.appendChild(menuButton);
         pEl.classList.add('passive');
         pEl.appendChild(aEl);
-        ulEl.appendChild(createScheduleDropdown(schedule.id));
+        ulEl.appendChild(createScheduleDropdown(scheduleList));
         ulEl.appendChild(pEl);
     }
 

@@ -105,12 +105,20 @@ function onLoadSchedules(id) {
     xhr.send();
 }
 
-function onDeleteScheduleClicked(id) {
-
-    const params = new URLSearchParams();
-    params.append('id', id);
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'delete_schedule');
-    xhr.send(params);
+function onDeleteScheduleClicked(scheduleList) {
+    for (let i = 0; i < scheduleList.length; i++) {
+        let schedule = scheduleList[i];
+        const buttonEl = document.getElementsByTagName("button");
+        let button = buttonEl.getElementById();
+        console.log(button);
+        console.log(schedule.id);
+        if (button.id == schedule.id) {
+            const params = new URLSearchParams();
+            params.append('id', schedule.id);
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'delete_schedule');
+            xhr.send(params);
+        }
+    }
+}
 }
