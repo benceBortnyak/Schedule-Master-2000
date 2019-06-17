@@ -10,7 +10,7 @@ function createScheduleDropdown(id) {
 
     const updateButtonEl = document.createElement('button');
     updateButtonEl.textContent = "Update schedule";
-    //updateButtonEl.addEventListener('click', onUpdateButtonClicked);
+    updateButtonEl.addEventListener('click', onUpdateScheduleClicked);
 
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = "Delete schedule";
