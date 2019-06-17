@@ -1,4 +1,21 @@
 
+function createScheduleDropdown() {
+    const divEl = document.createElement('div');
+    divEl.classList.add('dropdown-content');
+    divEl.setAttribute('id', 'scheduleDropdown');
+
+    const updateButtonEl = document.createElement('button');
+    updateButtonEl.textContent = "Update schedule";
+    //updateButtonEl.addEventListener('click', onUpdateButtonClicked);
+
+    const deleteButtonEl = document.createElement('button');
+    deleteButtonEl.textContent = "Delete schedule";
+    //deleteButtonEl.addEventListener('click', onDeleteButtonClicked);
+    divEl.appendChild(updateButtonEl);
+    divEl.appendChild(deleteButtonEl);
+
+    return divEl;
+}
 
 function mouseOutCell() {
     const el = this;
@@ -90,17 +107,16 @@ function createScheduleList(scheduleList) {
 
         aEl.addEventListener('click', onScheduleClicked);
 
-        const deleteButtonEl = document.createElement('button');
-        deleteButtonEl.textContent = 'X';
-        deleteButtonEl.classList.add('newScheduleButton');
-        deleteButtonEl.setAttribute('id',schedule.id);
+        const menuButton = document.createElement('button');
+        menuButton.textContent = 'X';
+        menuButton.classList.add('newScheduleButton');
+        menuButton.addEventListener('click', showScheduleDropdown);
 
         const pEl = document.createElement('p');
         pEl.setAttribute('id', schedule.id);
-        pEl.appendChild(deleteButtonEl);
+        pEl.appendChild(menuButton);
         pEl.classList.add('passive');
         pEl.appendChild(aEl);
-
 
         ulEl.appendChild(pEl);
     }
@@ -112,6 +128,6 @@ function createScheduleList(scheduleList) {
 
     ulEl.appendChild(addSchedulePEl);
     ulEl.appendChild(createAddScheduleForm());
-
+    ulEl.appendChild(createScheduleDropdown());
     return ulEl;
 }
