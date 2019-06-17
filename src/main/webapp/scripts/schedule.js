@@ -105,11 +105,10 @@ function onLoadSchedules(id) {
     xhr.send();
 }
 
-function onDeleteScheduleClicked(id) {
-
+function onDeleteScheduleClicked() {
     const params = new URLSearchParams();
-    params.append('id', id);
-
+    params.append('id', sid);
+    console.log(sid);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'delete_schedule');
     xhr.send(params);
