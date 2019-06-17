@@ -1,5 +1,5 @@
 
-function createScheduleDropdown() {
+function createScheduleDropdown(id) {
     const divEl = document.createElement('div');
     divEl.classList.add('dropdown-content');
     divEl.setAttribute('id', 'scheduleDropdown');
@@ -10,7 +10,8 @@ function createScheduleDropdown() {
 
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = "Delete schedule";
-    //deleteButtonEl.addEventListener('click', onDeleteButtonClicked);
+
+    deleteButtonEl.addEventListener('click', () =>{onDeleteScheduleClicked(id)});
     divEl.appendChild(updateButtonEl);
     divEl.appendChild(deleteButtonEl);
 
@@ -79,17 +80,6 @@ function createAddScheduleForm(){
     return formEl;
 }
 
-function createDeleteScheduleForm() {
-
-    const formEl = document.createElement('form');
-    formEl.setAttribute('onsubmit','return false;');
-
-    const inputEl = document.createElement('input');
-    inputEl.setAttribute('type','text');
-    inputEl.setAttribute()
-
-}
-
 function createScheduleList(scheduleList) {
     const ulEl = document.createElement('ul');
     ulEl.setAttribute('id', 'sideNavList');
@@ -117,7 +107,7 @@ function createScheduleList(scheduleList) {
         pEl.appendChild(menuButton);
         pEl.classList.add('passive');
         pEl.appendChild(aEl);
-
+        ulEl.appendChild(createScheduleDropdown(schedule.id));
         ulEl.appendChild(pEl);
     }
 
@@ -128,6 +118,5 @@ function createScheduleList(scheduleList) {
 
     ulEl.appendChild(addSchedulePEl);
     ulEl.appendChild(createAddScheduleForm());
-    ulEl.appendChild(createScheduleDropdown());
     return ulEl;
 }

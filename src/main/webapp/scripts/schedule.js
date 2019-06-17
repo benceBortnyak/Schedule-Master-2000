@@ -37,10 +37,6 @@ function onAddScheduleResponse() {
     onLoadSchedules(getAuthorization().id);
 }
 
-function deleteScheduleButtonClicked() {
-
-}
-
 function newScheduleButtonClicked() {
     const scheduleFormEl = document.forms['addSchedule-content'];
     const scheduleTitleEl = scheduleFormEl.querySelector('input[name="scheduleTitle"]');
@@ -107,4 +103,14 @@ function onLoadSchedules(id) {
     xhr.addEventListener('load', onSchedulesReceived);
     xhr.open('GET', 'schedules?' + params.toString());
     xhr.send();
+}
+
+function onDeleteScheduleClicked(id) {
+
+    const params = new URLSearchParams();
+    params.append('id', id);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'delete_schedule');
+    xhr.send(params);
 }

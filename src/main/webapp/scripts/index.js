@@ -24,14 +24,14 @@ window.onclick = function (e) {
     }
 }
 
-/*window.onclick = function (e) {
+window.onclick = function (e) {
     if (!e.target.matches('.dropbtn')) {
         var myDropdown = document.getElementById("scheduleDropdown");
         if (myDropdown.classList.contains('show')) {
             myDropdown.classList.remove('show');
         }
     }
-}*/
+}
 
 function showDropdown() {
     document.getElementById("myDropdown").classList.toggle("show");

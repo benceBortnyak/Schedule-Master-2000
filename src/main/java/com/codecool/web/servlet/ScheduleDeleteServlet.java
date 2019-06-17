@@ -10,12 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+@WebServlet("/delete_schedule")
 public class ScheduleDeleteServlet extends AbstractServlet {
     private static final Logger logger = LoggerFactory.getLogger(ScheduleDeleteServlet.class);
 
@@ -24,7 +26,7 @@ public class ScheduleDeleteServlet extends AbstractServlet {
         try(Connection connection = getConnection(req.getServletContext())){
             ScheduleDao scheduleDao = new DatabaseScheduleDao(connection);
             ScheduleService scheduleService = new SimpleScheduleService(scheduleDao);
-            int scheduleId =Integer.valueOf(req.getParameter("scheduleId"));
+            int scheduleId =Integer.valueOf(req.getParameter("id"));
             scheduleService.deleteSchedule(scheduleId);
             sendMessage(resp, HttpServletResponse.SC_OK,scheduleId);
 
