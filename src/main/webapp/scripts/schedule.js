@@ -37,6 +37,10 @@ function onAddScheduleResponse() {
     onLoadSchedules(getAuthorization().id);
 }
 
+function deleteScheduleButtonClicked() {
+
+}
+
 function newScheduleButtonClicked() {
     const scheduleFormEl = document.forms['addSchedule-content'];
     const scheduleTitleEl = scheduleFormEl.querySelector('input[name="scheduleTitle"]');

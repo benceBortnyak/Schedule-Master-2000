@@ -37,6 +37,7 @@ public class TaskServlet extends AbstractServlet {
             Task task = taskService.addTask(user_id, title, content);
             taskService.addToSlot(slotId, task.getId(), len);
             sendMessage(resp, HttpServletResponse.SC_OK, task);
+            sendMessage(resp, HttpServletResponse.SC_OK, len);
             logger.info("Task added to slot");
         }catch (SQLException e){
             logger.debug(e.getMessage());
