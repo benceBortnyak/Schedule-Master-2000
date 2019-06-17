@@ -272,3 +272,8 @@ div.sidenav p:hover {
     padding: 0;
     margin: 0;
 }
+
+.deleteButton {
+    padding: 0;
+    margin: 0;
+}

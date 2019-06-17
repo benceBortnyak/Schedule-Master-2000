@@ -68,12 +68,20 @@ function createScheduleList(scheduleList) {
     for (let i = 0; i < scheduleList.length; i++) {
         const schedule = scheduleList[i];
         const aEl = document.createElement('a');
+        const buttonEl = document.createElement('button');
+        const spanEl = document.createElement('span');
+        buttonEl.textContent = "X";
+        buttonEl.classList.add('deleteButton');
+        buttonEl.setAttribute('id',schedule.id);
+        //buttonEl.addEventListener('click',
         aEl.textContent = schedule.title;
         aEl.setAttribute('href', 'javascript:void(0);');
         aEl.setAttribute('id', schedule.id);
         aEl.classList.add('passive');
         aEl.addEventListener('click', onScheduleClicked);
-        ulEl.appendChild(aEl);
+        spanEl.appendChild(buttonEl);
+        spanEl.appendChild(aEl);
+        ulEl.appendChild(spanEl);
     }
 
     const addSchedulePEl = document.createElement('a');
