@@ -16,7 +16,7 @@ function onCellIdListReceived() {
                     let cell = tdList[k];
                     if (cell.id == cellIdToRemove) {
                         cell.remove();
-                        tdList.splice(k, 1);
+                        //tdList.splice(k, 1);
                     }
                 }
             }
