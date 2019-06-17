@@ -1,9 +1,7 @@
 
 let sid;
 function createScheduleDropdown(id) {
-    console.log(id);
     sid = id;
-    console.log(sid);
     const divEl = document.createElement('div');
     divEl.classList.add('dropdown-content');
     divEl.setAttribute('id', 'scheduleDropdown');
