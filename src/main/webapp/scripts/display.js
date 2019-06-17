@@ -7,7 +7,6 @@ function mouseOutCell() {
 
 function mouseOverCell() {
     const el = this;
-
     const addTaskButton = document.createElement('button');
     addTaskButton.setAttribute('id', 'addTaskButton');
     addTaskButton.textContent = '+';
@@ -37,7 +36,8 @@ function createAddScheduleForm(){
     labelEl1.appendChild(checkboxEl);
 
     const addButtonEl = document.createElement('button');
-    addButtonEl.setAttribute('id', 'newScheduleButton');
+    addButtonEl.classList.add('newScheduleButton');
+    addButtonEl.setAttribute("id","newScheduleButton");
     addButtonEl.textContent = ' +';
 
     const selectEl = document.createElement('select');
@@ -62,6 +62,17 @@ function createAddScheduleForm(){
     return formEl;
 }
 
+function createDeleteScheduleForm() {
+
+    const formEl = document.createElement('form');
+    formEl.setAttribute('onsubmit','return false;');
+
+    const inputEl = document.createElement('input');
+    inputEl.setAttribute('type','text');
+    inputEl.setAttribute()
+
+}
+
 function createScheduleList(scheduleList) {
     const ulEl = document.createElement('ul');
     ulEl.setAttribute('id', 'sideNavList');
@@ -69,7 +80,6 @@ function createScheduleList(scheduleList) {
         const schedule = scheduleList[i];
         const aEl = document.createElement('a');
         const buttonEl = document.createElement('button');
-        const spanEl = document.createElement('span');
         buttonEl.textContent = "X";
         buttonEl.classList.add('deleteButton');
         buttonEl.setAttribute('id',schedule.id);
@@ -77,11 +87,22 @@ function createScheduleList(scheduleList) {
         aEl.textContent = schedule.title;
         aEl.setAttribute('href', 'javascript:void(0);');
         aEl.setAttribute('id', schedule.id);
-        aEl.classList.add('passive');
+
         aEl.addEventListener('click', onScheduleClicked);
-        spanEl.appendChild(buttonEl);
-        spanEl.appendChild(aEl);
-        ulEl.appendChild(spanEl);
+
+        const deleteButtonEl = document.createElement('button');
+        deleteButtonEl.textContent = 'X';
+        deleteButtonEl.classList.add('newScheduleButton');
+        deleteButtonEl.setAttribute('id',schedule.id);
+
+        const pEl = document.createElement('p');
+        pEl.setAttribute('id', schedule.id);
+        pEl.appendChild(deleteButtonEl);
+        pEl.classList.add('passive');
+        pEl.appendChild(aEl);
+
+
+        ulEl.appendChild(pEl);
     }
 
     const addSchedulePEl = document.createElement('a');
