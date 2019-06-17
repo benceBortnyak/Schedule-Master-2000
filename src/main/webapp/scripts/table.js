@@ -50,7 +50,6 @@ function createTableBody() {
                 tdEl.setAttribute('id', (i + (j - 1) * 24));
                 tdEl.addEventListener('mouseover', mouseOverCell);
                 tdEl.addEventListener('mouseout', mouseOutCell);
-
             }
             trEl.appendChild(tdEl);
         }
