@@ -1,16 +1,14 @@
 
 let sid;
 function createScheduleDropdown(id) {
-    console.log(id);
     sid = id;
-    console.log(sid);
     const divEl = document.createElement('div');
     divEl.classList.add('dropdown-content');
     divEl.setAttribute('id', 'scheduleDropdown');
 
     const updateButtonEl = document.createElement('button');
     updateButtonEl.textContent = "Update schedule";
-    //updateButtonEl.addEventListener('click', onUpdateButtonClicked);
+    updateButtonEl.addEventListener('click', onUpdateScheduleClicked);
 
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = "Delete schedule";

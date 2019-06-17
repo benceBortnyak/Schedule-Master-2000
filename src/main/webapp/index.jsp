@@ -75,6 +75,18 @@
             </div>
         </form>
     </div>
+    <div id="scheduleUpdate-content" class="hidden content modal">
+        <form accept-charset=utf-8 id='scheduleUpdate-form' onsubmit="return false;" class="modal-content animate"
+              action="/action_page.php">
+            <div class="imgcontainer">
+                <span style="width: 2%; float: right" id="closeUpdate-button" title="Close PopUp" class="close">&times;</span>
+                <input name="scheduleTitle" type="text" required/>
+                <input name="scheduleLen" type="number" required/>
+                <input id="published" type="checkbox"/>
+                <button id="updateButton">Update schedule</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <div id="welcome-content" class="content">
