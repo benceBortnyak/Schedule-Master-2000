@@ -31,7 +31,7 @@ function onScheduleClicked() {
     xhr.send();
 }
 
-function onAddScheduleResponse() {
+function onScheduleResponse() {
     activeSchedule = JSON.parse(this.responseText);
     document.getElementById('sideNavList').remove();
     onLoadSchedules(getAuthorization().id);
@@ -60,7 +60,7 @@ function newScheduleButtonClicked() {
     params.append('id', id);
 
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onAddScheduleResponse);
+    xhr.addEventListener('load', onScheduleResponse);
     xhr.open('POST', 'schedules');
     xhr.send(params);
 }
@@ -105,12 +105,12 @@ function onLoadSchedules(id) {
     xhr.send();
 }
 
-function onDeleteScheduleClicked(id) {
-
+function onDeleteScheduleClicked() {
     const params = new URLSearchParams();
-    params.append('id', id);
-
+    params.append('id', sid);
+    console.log(sid);
     const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onScheduleResponse);
     xhr.open('POST', 'delete_schedule');
     xhr.send(params);
 }
