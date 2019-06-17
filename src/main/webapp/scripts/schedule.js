@@ -31,7 +31,7 @@ function onScheduleClicked() {
     xhr.send();
 }
 
-function onAddScheduleResponse() {
+function onScheduleResponse() {
     activeSchedule = JSON.parse(this.responseText);
     document.getElementById('sideNavList').remove();
     onLoadSchedules(getAuthorization().id);
@@ -60,7 +60,7 @@ function newScheduleButtonClicked() {
     params.append('id', id);
 
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onAddScheduleResponse);
+    xhr.addEventListener('load', onScheduleResponse);
     xhr.open('POST', 'schedules');
     xhr.send(params);
 }
@@ -105,20 +105,12 @@ function onLoadSchedules(id) {
     xhr.send();
 }
 
-function onDeleteScheduleClicked(scheduleList) {
-    for (let i = 0; i < scheduleList.length; i++) {
-        let schedule = scheduleList[i];
-        const buttonEl = document.getElementsByTagName("button");
-        let button = buttonEl.getElementById();
-        console.log(button);
-        console.log(schedule.id);
-        if (button.id == schedule.id) {
-            const params = new URLSearchParams();
-            params.append('id', schedule.id);
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'delete_schedule');
-            xhr.send(params);
-        }
-    }
-}
+function onDeleteScheduleClicked() {
+    const params = new URLSearchParams();
+    params.append('id', sid);
+    console.log(sid);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onScheduleResponse);
+    xhr.open('POST', 'delete_schedule');
+    xhr.send(params);
 }
