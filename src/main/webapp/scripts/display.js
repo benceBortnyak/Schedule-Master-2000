@@ -86,10 +86,6 @@ function createScheduleList(scheduleList) {
     for (let i = 0; i < scheduleList.length; i++) {
         const schedule = scheduleList[i];
         const aEl = document.createElement('a');
-        const buttonEl = document.createElement('button');
-        buttonEl.textContent = "X";
-        buttonEl.classList.add('deleteButton');
-        buttonEl.setAttribute('id',schedule.id);
         //buttonEl.addEventListener('click',
         aEl.textContent = schedule.title;
         aEl.setAttribute('href', 'javascript:void(0);');
@@ -100,7 +96,9 @@ function createScheduleList(scheduleList) {
         const menuButton = document.createElement('button');
         menuButton.textContent = 'X';
         menuButton.classList.add('newScheduleButton');
+        menuButton.classList.add('dropbtn');
         menuButton.addEventListener('click', showScheduleDropdown);
+        menuButton.setAttribute('id',schedule.id);
 
         const pEl = document.createElement('p');
         pEl.setAttribute('id', schedule.id);
