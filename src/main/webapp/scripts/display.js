@@ -7,7 +7,6 @@ function mouseOutCell() {
 
 function mouseOverCell() {
     const el = this;
-
     const addTaskButton = document.createElement('button');
     addTaskButton.setAttribute('id', 'addTaskButton');
     addTaskButton.textContent = '+';
@@ -37,7 +36,7 @@ function createAddScheduleForm(){
     labelEl1.appendChild(checkboxEl);
 
     const addButtonEl = document.createElement('button');
-    addButtonEl.setAttribute('id', 'newScheduleButton');
+    addButtonEl.classList.add('newScheduleButton');
     addButtonEl.textContent = ' +';
 
     const selectEl = document.createElement('select');
@@ -71,9 +70,21 @@ function createScheduleList(scheduleList) {
         aEl.textContent = schedule.title;
         aEl.setAttribute('href', 'javascript:void(0);');
         aEl.setAttribute('id', schedule.id);
-        aEl.classList.add('passive');
+
         aEl.addEventListener('click', onScheduleClicked);
-        ulEl.appendChild(aEl);
+
+        const deleteButtonEl = document.createElement('button');
+        deleteButtonEl.textContent = 'X';
+        deleteButtonEl.classList.add('newScheduleButton');
+
+        const pEl = document.createElement('p');
+        pEl.setAttribute('id', schedule.id);
+        pEl.appendChild(deleteButtonEl);
+        pEl.classList.add('passive');
+        pEl.appendChild(aEl);
+
+
+        ulEl.appendChild(pEl);
     }
 
     const addSchedulePEl = document.createElement('a');
