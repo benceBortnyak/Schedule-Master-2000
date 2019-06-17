@@ -89,6 +89,7 @@ function onNewTaskCloseClicked() {
 function onTaskButtonClicked(cellId) {
     showContents(['main-content', 'newTask-content']);
     const newTaskButtonEl = document.getElementById('newTaskButton');
+    const tableEl = document.getElementById('')
     newTaskButtonEl.addEventListener('click', function callback() {
         onNewTaskButtonClicked(cellId);
         newTaskButtonEl.removeEventListener('click', callback)
