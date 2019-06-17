@@ -154,10 +154,10 @@ function onUpdateScheduleButtonClicked() {
         published = 'PRIVATE'
     }
     const params = new URLSearchParams();
-    params.append('id', sid);
+    params.append('scheduleId', sid);
     params.append('title', title);
     params.append('length', len);
-    params.append('published', published);
+    params.append('scheduleType', published);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'update_schedule');
     xhr.send(params);
