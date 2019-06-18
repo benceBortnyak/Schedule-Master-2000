@@ -1,12 +1,10 @@
-let taskIndex;
-
 function onCellIdListReceived() {
     const cellIdList = JSON.parse(this.responseText);
     const tdList = document.getElementsByTagName('td');
     for (let i = 0; i < tdList.length; i++) {
         const tdEl = tdList[i];
         if (tdEl.id == cellIdList[0]) {
-            tdEl.textContent = activeTasksList[taskIndex].title;
+            tdEl.textContent = activeTask.title;
             tdEl.setAttribute("rowspan", cellIdList.length);
             tdEl.removeEventListener('mouseover', mouseOverCell);
             tdEl.removeEventListener('mouseout', mouseOutCell);
@@ -31,6 +29,7 @@ function loadCellIdList(task) {
     params.append('id', id);
 
     const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', () => {activeTask = task;});
     xhr.addEventListener('load', onCellIdListReceived);
     xhr.open('GET', 'task?' + params.toString());
     xhr.send();
@@ -38,10 +37,8 @@ function loadCellIdList(task) {
 
 function onLoadTasks() {
     activeTasksList = JSON.parse(this.responseText);
-    console.log(activeTasksList.length);
     for (let i = 0; i < activeTasksList.length; i++) {
-        const activeTask = activeTasksList[i];
-        loadCellIdList(activeTask);
+        loadCellIdList(activeTasksList[i]);
     }
 }
 

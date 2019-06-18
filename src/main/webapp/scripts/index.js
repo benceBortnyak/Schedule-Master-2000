@@ -13,7 +13,7 @@ let sideNavContentDivEl;
 let logoutContentDivEl;
 let tableDivEl;
 let activeSchedule;
-let activeTasksList;
+let activeTask;
 
 window.onclick = function (e) {
     if (!e.target.matches('.dropbtn')) {
