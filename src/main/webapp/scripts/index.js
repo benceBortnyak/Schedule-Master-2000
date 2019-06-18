@@ -172,7 +172,6 @@ function onLoad() {
 
     const closeUpdateScheduleButtonEl = document.getElementById('closeUpdate-button');
     closeUpdateScheduleButtonEl.addEventListener('click', onCloseToMainClicked);
-
 }
 
 document.addEventListener('DOMContentLoaded', onLoad);

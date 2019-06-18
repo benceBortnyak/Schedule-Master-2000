@@ -31,14 +31,8 @@ function onScheduleClicked() {
     xhr.send();
 }
 
-function onAddScheduleResponse() {
+function onScheduleResponse() {
     activeSchedule = JSON.parse(this.responseText);
-    document.getElementById('sideNavList').remove();
-    onLoadSchedules(getAuthorization().id);
-}
-
-function onDeleteScheduleResponse() {
-    activeSchedule = scheduleList[0];
     document.getElementById('sideNavList').remove();
     onLoadSchedules(getAuthorization().id);
 }
@@ -66,7 +60,7 @@ function newScheduleButtonClicked() {
     params.append('id', id);
 
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onAddScheduleResponse);
+    xhr.addEventListener('load', onScheduleResponse);
     xhr.open('POST', 'schedules');
     xhr.send(params);
 }
@@ -115,7 +109,7 @@ function onDeleteScheduleClicked() {
     const params = new URLSearchParams();
     params.append('id', sid);
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onDeleteScheduleResponse);
+    xhr.addEventListener('load', onScheduleResponse);
     xhr.open('POST', 'delete_schedule');
     xhr.send(params);
 }
@@ -165,7 +159,11 @@ function onUpdateScheduleButtonClicked() {
     params.append('length', len);
     params.append('scheduleType', published);
     const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onScheduleResponse);
     xhr.open('POST', 'update_schedule');
     xhr.send(params);
 
+}
+function onUpdateScheduleCloseClicked() {
+    showContents(['main-content']);
 }
