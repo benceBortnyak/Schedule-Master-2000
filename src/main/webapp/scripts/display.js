@@ -30,6 +30,7 @@ function mouseOverCell() {
     const addTaskButton = document.createElement('button');
     addTaskButton.setAttribute('id', 'addTaskButton');
     addTaskButton.textContent = '+';
+    /*addTaskButton.classList.add('newScheduleButton');*/
     const cellId = el.id;
     addTaskButton.addEventListener('click', function(){onTaskButtonClicked(cellId)});
     el.appendChild(addTaskButton);
@@ -88,11 +89,9 @@ function createScheduleList(scheduleList) {
     for (let i = 0; i < scheduleList.length; i++) {
         const schedule = scheduleList[i];
         const aEl = document.createElement('a');
-        //buttonEl.addEventListener('click',
         aEl.textContent = schedule.title;
         aEl.setAttribute('href', 'javascript:void(0);');
         aEl.setAttribute('id', schedule.id);
-
         aEl.addEventListener('click', onScheduleClicked);
 
         let menuButton = document.createElement('button');
@@ -104,6 +103,7 @@ function createScheduleList(scheduleList) {
         menuButton.setAttribute('id',schedule.id);
 
         const pEl = document.createElement('p');
+        pEl.setAttribute('id', schedule.id);
         pEl.appendChild(menuButton);
         pEl.classList.add('passive');
         pEl.appendChild(aEl);

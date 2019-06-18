@@ -33,12 +33,14 @@ function onScheduleClicked() {
 
 function onAddScheduleResponse() {
     activeSchedule = JSON.parse(this.responseText);
+    //setActiveClass('sideNavList', activeSchedule.id);
     document.getElementById('sideNavList').remove();
     onLoadSchedules(getAuthorization().id);
 }
 
 function onDeleteScheduleResponse() {
     activeSchedule = scheduleList[0];
+    //setActiveClass('sideNavList', activeSchedule.id);
     document.getElementById('sideNavList').remove();
     onLoadSchedules(getAuthorization().id);
 }
