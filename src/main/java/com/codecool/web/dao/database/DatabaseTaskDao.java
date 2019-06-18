@@ -158,7 +158,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     @Override
     public List<Integer> findSlotIdByTaskId(int taskId) throws SQLException {
         List<Integer> slotIdList = new ArrayList<>();
-        String sqlStatement = "SELECT slot_id FROM slots_tasks WHERE task_id = ?";
+        String sqlStatement = "SELECT slot_id FROM slots_tasks WHERE task_id = ? order by slot_id";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)){
             preparedStatement.setInt(1,taskId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {

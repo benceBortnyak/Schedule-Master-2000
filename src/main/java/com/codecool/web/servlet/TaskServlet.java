@@ -57,7 +57,6 @@ public class TaskServlet extends AbstractServlet {
 
             int id = Integer.parseInt(req.getParameter("id"));
             List<Integer> cellIdList = taskService.findSlotIdByTaskId(id);
-            System.out.println(cellIdList);
             sendMessage(resp, HttpServletResponse.SC_OK, cellIdList);
 
         } catch (SQLException e) {

@@ -95,19 +95,14 @@ insert into users(email, password, user_type) VALUES ('user1@user1.com', 'user12
 insert into schedules(user_id, title, length,type) values (1, 'Weekly routine',7, 'PUBLIC');
 insert into schedules(user_id, title, length, type) values (1, 'Class schedule',4, 'PUBLIC');
 insert into schedules(user_id, title, length, type) values (1, 'Time table',2, 'PUBLIC');
-insert into tasks(user_id,title,content) values(1, 'Gardening', 'I really love gardening!');insert into tasks(user_id,title,content) values(1, 'Cooking', 'I really love cooking!');
-insert into slots_tasks (slot_id, task_id)
-values (1,1);
-insert into slots_tasks (slot_id, task_id)
-values (2,1);
-insert into slots_tasks (slot_id, task_id)
-values (3,1);
-insert into slots_tasks (slot_id, task_id)
-values (6,2);
-insert into slots_tasks (slot_id, task_id)
-values (7,2);
-insert into slots_tasks (slot_id, task_id)
-values (8,2);
+ insert into tasks(user_id,title,content) values(1, 'Gardening', 'I really love gardening!');
+insert into tasks(user_id,title,content) values(1, 'Cooking', 'I really love cooking!');
+insert into slots_tasks (slot_id, task_id) values (1,1);
+insert into slots_tasks (slot_id, task_id) values (2,1);
+insert into slots_tasks (slot_id, task_id) values (3,1);
+insert into slots_tasks (slot_id, task_id) values (6,2);
+insert into slots_tasks (slot_id, task_id) values (7,2);
+insert into slots_tasks (slot_id, task_id) values (8,2);
 
 
 
