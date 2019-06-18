@@ -87,6 +87,18 @@
             </div>
         </form>
     </div>
+    <div id="taskContent" class="hidden content modal">
+        <form accept-charset=utf-8 id='task-form' onsubmit="return false;" class="modal-content animate"
+              action="/action_page.php">
+            <div class="imgcontainer">
+                <span style="width: 2%; float: right" id="closeTask-button" title="Close PopUp" class="close">&times;</span>
+                <input name="taskTitle" type="text" required/>
+                <input name="task-content" type="text" required/>
+                <button id="taskSave-button">Save</button>
+                <button id="taskDelete-button">&#128465; Trash</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <div id="welcome-content" class="content">

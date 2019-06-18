@@ -103,7 +103,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     public void deleteTask(int taskId) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sqlString = "UPDATE slots_tasks set task_id = null where task_id = ?";
+        String sqlString = "DELETE FROM slots_tasks CASCADE where task_id = ?";
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)){
             preparedStatement.setInt(1,taskId);
             preparedStatement.executeUpdate();

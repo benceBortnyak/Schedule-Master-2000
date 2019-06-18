@@ -14,6 +14,7 @@ let logoutContentDivEl;
 let tableDivEl;
 let activeSchedule;
 let activeTask;
+let activeTasksList;
 
 window.onclick = function (e) {
     if (!e.target.matches('.dropbtn')) {
@@ -172,6 +173,9 @@ function onLoad() {
 
     const closeUpdateScheduleButtonEl = document.getElementById('closeUpdate-button');
     closeUpdateScheduleButtonEl.addEventListener('click', onCloseToMainClicked);
+
+    const closeTaskButtonEL = document.getElementById('closeTask-button');
+    closeTaskButtonEL.addEventListener('click', onCloseToMainClicked);
 }
 
 document.addEventListener('DOMContentLoaded', onLoad);

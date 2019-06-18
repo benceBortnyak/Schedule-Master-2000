@@ -1,4 +1,43 @@
 
+
+
+function onTaskDeleted() {
+    showContents(['main-content']);
+    createTaskTable();
+}
+
+function onDeleteTaskButtonClicked() {
+    const id = this.getAttribute('taskId');
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'update_task?id='+id);
+    xhr.addEventListener('load', onTaskDeleted);
+    xhr.send();
+}
+
+function showTaskPopUp(task) {
+    showContents(['main-content', 'taskContent']);
+    const taskFormEl = document.forms['task-form'];
+    const taskTitleEl = taskFormEl.querySelector('input[name="taskTitle"]');
+    const taskContentEl = taskFormEl.querySelector('input[name="task-content"]');
+    taskTitleEl.value = task.title;
+    taskContentEl.value = task.content;
+    const updateButtonEl = document.getElementById('taskSave-button');
+    //updateButtonEl.addEventListener('click', onUpdateTaskButtonClicked);
+    const deleteButtonEl = document.getElementById('taskDelete-button');
+    deleteButtonEl.setAttribute('taskId', task.id);
+    deleteButtonEl.addEventListener('click', onDeleteTaskButtonClicked);
+}
+
+function onCellClicked() {
+    const id = this.getAttribute('taskId');
+    for (let i = 0; i<activeTasksList.length; i++) {
+        if(id == activeTasksList[i].id){
+            showTaskPopUp(activeTasksList[i]);
+        }
+    }
+
+}
+
 function onCellIdListReceived() {
     const cellIdList = JSON.parse(this.responseText);
     const tdList = document.getElementsByTagName('td');
@@ -9,6 +48,9 @@ function onCellIdListReceived() {
             tdEl.setAttribute("rowspan", cellIdList.length);
             tdEl.removeEventListener('mouseover', mouseOverCell);
             tdEl.removeEventListener('mouseout', mouseOutCell);
+            tdEl.setAttribute('href', 'javascript:void(0);');
+            tdEl.setAttribute('taskId', activeTask.id);
+            tdEl.addEventListener('click', onCellClicked);
             tdEl.classList.add('activeTaskBg');
             for (let j = 1; j <= cellIdList.length; j++) {
                 let cellIdToRemove = cellIdList[j];
@@ -37,7 +79,7 @@ function loadCellIdList(task) {
 }
 
 function onLoadTasks() {
-    let activeTasksList = JSON.parse(this.responseText);
+    activeTasksList = JSON.parse(this.responseText);
     for (let i = 0; i < activeTasksList.length; i++) {
         loadCellIdList(activeTasksList[i]);
     }
