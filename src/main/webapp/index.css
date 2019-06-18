@@ -50,11 +50,24 @@ div.sidenav a {
     padding: 3%;
     color: black;
     font-size: 16px;
-    display: block;
+    display: inline-block;
     text-align: end;
     /*kúp formáció*/
 /*    border-bottom-left-radius: 50%;
     border-top-left-radius: 50%;*/
+}
+
+div.sidenav a:hover {
+    background: white;
+}
+
+div.sidenav p {
+    padding: 10px;
+    margin: 0;
+}
+
+div.sidenav p:hover {
+    background: white;
 }
 
 div.schedules {
@@ -94,18 +107,6 @@ button {
     width: 80%;
 }
 
-div.sidenav a:hover {
-    background: white;
-}
-
-/*#login-content{
-    padding: 0px 40%;
-    height: 50%;
-}
-#signUp-content{
-    padding: 0px 40%;
-    height: 50%;
-}*/
 #div1 {
     width: 50%;
     float: left;
@@ -239,15 +240,6 @@ td {
     position: relative;
 }
 
-div.sidenav p {
-    padding: 10px;
-    margin: 0;
-}
-
-div.sidenav p:hover {
-    background: white;
-}
-
 .timeIndicator {
     width: 1%;
 }
@@ -256,7 +248,7 @@ div.sidenav p:hover {
     padding: 0 35%;
 }
 
-#newScheduleButton {
+.newScheduleButton {
     width: auto;
     margin: 0;
     padding: 5%;
@@ -269,6 +261,11 @@ div.sidenav p:hover {
     background-color: white;
 }
 #addTaskButton{
+    padding: 0;
+    margin: 0;
+}
+
+.deleteButton {
     padding: 0;
     margin: 0;
 }

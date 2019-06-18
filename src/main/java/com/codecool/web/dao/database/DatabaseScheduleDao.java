@@ -82,14 +82,42 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     @Override
     public void update(int scheduleId, String title, int length, ScheduleType scheduleType) throws SQLException {
         if(checkInt(length,1,7)) {
-            
+            String newTitle;
+            int newLength;
+            ScheduleType newScheduleType;
+            Schedule actualSchedule = findById(scheduleId);
+            Schedule newSchedule = new Schedule(-1,-1,title,length,scheduleType);
+
+
+
+
+            if(actualSchedule.getTitle().equals(newSchedule.getTitle())){
+                newTitle = title;
+            }else{
+                newTitle = newSchedule.getTitle();
+            }
+
+            if(actualSchedule.getLength() == newSchedule.getLength()){
+                newLength = length;
+            }else{
+                newLength = newSchedule.getLength();
+            }
+
+            if(actualSchedule.getScheduleType().equals(newSchedule.getScheduleType())){
+                newScheduleType = scheduleType;
+            }else {
+                newScheduleType = newSchedule.getScheduleType();
+            }
+
+
+
             boolean autoCommit = connection.getAutoCommit();
             connection.setAutoCommit(false);
             String sqlString = "UPDATE schedules SET title = ?, length = ?,type = ? WHERE schedule_id = ?";
             try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
-                preparedStatement.setString(1, title);
-                preparedStatement.setInt(2, length);
-                preparedStatement.setString(3, String.valueOf(scheduleType));
+                preparedStatement.setString(1, newTitle);
+                preparedStatement.setInt(2, newLength);
+                preparedStatement.setString(3, String.valueOf(newScheduleType));
                 preparedStatement.setInt(4, scheduleId);
                 preparedStatement.executeUpdate();
                 logger.info("Schedule updated");

@@ -31,7 +31,7 @@ function onScheduleClicked() {
     xhr.send();
 }
 
-function onAddScheduleResponse() {
+function onScheduleResponse() {
     activeSchedule = JSON.parse(this.responseText);
     document.getElementById('sideNavList').remove();
     onLoadSchedules(getAuthorization().id);
@@ -60,7 +60,7 @@ function newScheduleButtonClicked() {
     params.append('id', id);
 
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onAddScheduleResponse);
+    xhr.addEventListener('load', onScheduleResponse);
     xhr.open('POST', 'schedules');
     xhr.send(params);
 }
@@ -103,4 +103,63 @@ function onLoadSchedules(id) {
     xhr.addEventListener('load', onSchedulesReceived);
     xhr.open('GET', 'schedules?' + params.toString());
     xhr.send();
+}
+
+function onDeleteScheduleClicked() {
+    const params = new URLSearchParams();
+    params.append('id', sid);
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onScheduleResponse);
+    xhr.open('POST', 'delete_schedule');
+    xhr.send(params);
+}
+
+function onUpdateScheduleClicked() {
+    let active;
+    for(let i = 0; i<scheduleList.length; i++){
+        const schedule = scheduleList[i];
+        if(sid == schedule.id){
+            active = schedule;
+        }
+    }
+    showContents(['main-content', 'scheduleUpdate-content']);
+    const scheduleUpdateFormEl = document.forms['scheduleUpdate-form'];
+    const scheduleTitleEl = scheduleUpdateFormEl.querySelector('input[name="scheduleTitle"]');
+    const scheduleLenEl = scheduleUpdateFormEl.querySelector('input[name="scheduleLen"]');
+    scheduleTitleEl.value = active.title;
+    scheduleLenEl.value = active.length;
+    const updateButtonEl = document.getElementById('updateButton');
+    updateButtonEl.addEventListener('click', onUpdateScheduleButtonClicked)
+}
+
+function onUpdateScheduleButtonClicked() {
+    let active;
+    for(let i = 0; i<scheduleList.length; i++){
+        const schedule = scheduleList[i];
+        if(sid == schedule.id){
+            active = schedule;
+        }
+    }
+    const scheduleUpdateFormEl = document.forms['scheduleUpdate-form'];
+    const scheduleTitleEl = scheduleUpdateFormEl.querySelector('input[name="scheduleTitle"]');
+    const scheduleLenEl = scheduleUpdateFormEl.querySelector('input[name="scheduleLen"]');
+    const title = scheduleTitleEl.value;
+    const len = scheduleLenEl.value;
+    let published;
+
+
+    if (document.getElementById('published').checked === true) {
+        published = 'PUBLIC';
+    } else {
+        published = 'PRIVATE'
+    }
+    const params = new URLSearchParams();
+    params.append('scheduleId', sid);
+    params.append('title', title);
+    params.append('length', len);
+    params.append('scheduleType', published);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'update_schedule');
+    xhr.send(params);
+
 }

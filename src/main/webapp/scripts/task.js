@@ -2,7 +2,6 @@ let globalTask;
 
 function onCellIdListReceived() {
     const cellIdList = JSON.parse(this.responseText);
-    //const cellEl = document.querySelector(`td[id="${tdEl.id}"]`)
     const tdList = document.getElementsByTagName('td');
     for (let i = 0; i < tdList.length; i++) {
         const tdEl = tdList[i];
@@ -95,6 +94,7 @@ function onNewTaskCloseClicked() {
 function onTaskButtonClicked(cellId) {
     showContents(['main-content', 'newTask-content']);
     const newTaskButtonEl = document.getElementById('newTaskButton');
+    const tableEl = document.getElementById('table-content');
     newTaskButtonEl.addEventListener('click', function callback() {
         onNewTaskButtonClicked(cellId);
         newTaskButtonEl.removeEventListener('click', callback)
