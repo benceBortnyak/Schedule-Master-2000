@@ -103,6 +103,10 @@ insert into slots_tasks (slot_id, task_id) values (3,1);
 insert into slots_tasks (slot_id, task_id) values (6,2);
 insert into slots_tasks (slot_id, task_id) values (7,2);
 insert into slots_tasks (slot_id, task_id) values (8,2);
+insert into slots_tasks (slot_id, task_id) values (9,2);
+insert into slots_tasks (slot_id, task_id) values (10,2);
+
+
 
 
 
