@@ -1,4 +1,5 @@
 let globalTask;
+let activeTasksList;
 
 function onCellIdListReceived() {
     const cellIdList = JSON.parse(this.responseText);
