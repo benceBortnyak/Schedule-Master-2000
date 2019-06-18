@@ -121,6 +121,14 @@ function onOtherResponse(targetEl, xhr) {
     }
 }
 
+function onCloseToMainClicked() {
+    showContents(['main-content']);
+}
+
+function onCloseToWelcomeClicked() {
+    showContents(['welcome-content'])
+}
+
 function onLoad() {
     loginContentDivEl = document.getElementById('login-content');
     mainContentDivEl = document.getElementById('main-content');
@@ -151,16 +159,19 @@ function onLoad() {
     closeProfileButtonEl.addEventListener('click', onCloseProfileButtonClicked);
 
     const closeLoginButtonEl = document.getElementById('closeLogin-button');
-    closeLoginButtonEl.addEventListener('click', onCloseLoginButtonClicked);
+    closeLoginButtonEl.addEventListener('click', onCloseToWelcomeClicked);
 
     const closeSignUpButtonEl = document.getElementById('closeSignUp-button');
-    closeSignUpButtonEl.addEventListener('click', onCloseSignUpButtonClicked);
+    closeSignUpButtonEl.addEventListener('click', onCloseToWelcomeClicked);
 
     const logoutButtonEl = document.getElementById('logout-button');
     logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
 
     const closeNewTaskButtonEl = document.getElementById('closeNewTask-button');
-    closeNewTaskButtonEl.addEventListener('click', onNewTaskCloseClicked);
+    closeNewTaskButtonEl.addEventListener('click', onCloseToMainClicked);
+
+    const closeUpdateScheduleButtonEl = document.getElementById('closeUpdate-button');
+    closeUpdateScheduleButtonEl.addEventListener('click', onCloseToMainClicked);
 
 }
 

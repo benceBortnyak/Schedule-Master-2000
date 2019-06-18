@@ -35,10 +35,6 @@ function backToLoginButtonClicked() {
     showContents(['login-content', 'welcome-content']);
 }
 
-function onCloseSignUpButtonClicked() {
-    showContents(['welcome-content']);
-}
-
 function onSignUpButtonClicked() {
     showContents(['signUp-content', 'welcome-content']);
 

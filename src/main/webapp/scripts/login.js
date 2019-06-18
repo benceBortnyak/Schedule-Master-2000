@@ -1,6 +1,3 @@
-function onCloseLoginButtonClicked() {
-    showContents(['welcome-content']);
-}
 
 function onLoginResponse() {
     if (this.status === OK) {
