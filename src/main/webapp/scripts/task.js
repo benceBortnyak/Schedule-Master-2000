@@ -87,10 +87,6 @@ function onNewTaskButtonClicked(cellId) {
     xhr.send(params);
 }
 
-function onNewTaskCloseClicked() {
-    showContents(['main-content']);
-}
-
 function onTaskButtonClicked(cellId) {
     showContents(['main-content', 'newTask-content']);
     const newTaskButtonEl = document.getElementById('newTaskButton');
