@@ -2,6 +2,7 @@ let globalTask;
 
 function onCellIdListReceived() {
     const cellIdList = JSON.parse(this.responseText);
+    //const cellEl = document.querySelector(`td[id="${tdEl.id}"]`)
     const tdList = document.getElementsByTagName('td');
     for (let i = 0; i < tdList.length; i++) {
         const tdEl = tdList[i];
@@ -13,10 +14,10 @@ function onCellIdListReceived() {
             for (let j = 1; j <= cellIdList.length; j++) {
                 let cellIdToRemove = cellIdList[j];
                 for (let k = 0; k < tdList.length; k++) {
-                    let cell = tdList[k];
+                    const cell = tdList[k];
                     if (cell.id == cellIdToRemove) {
                         cell.remove();
-                        tdList.splice(k, 1);
+                        delete tdList[k];
                     }
                 }
             }
