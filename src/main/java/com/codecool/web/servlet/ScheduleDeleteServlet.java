@@ -28,7 +28,7 @@ public class ScheduleDeleteServlet extends AbstractServlet {
             ScheduleService scheduleService = new SimpleScheduleService(scheduleDao);
             int scheduleId =Integer.valueOf(req.getParameter("id"));
             scheduleService.deleteSchedule(scheduleId);
-            sendMessage(resp, HttpServletResponse.SC_OK,scheduleId);
+            sendMessage(resp, HttpServletResponse.SC_OK, scheduleId);
 
         }catch (SQLException ex){
             logger.debug(ex.getMessage());
