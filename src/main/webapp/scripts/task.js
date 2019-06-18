@@ -61,6 +61,7 @@ function onAddTaskResponse() {
     } else if (this.status === BAD_REQUEST) {
         alert("You've provided invalid data");
     }
+    createTaskTable();
 }
 
 function onNewTaskButtonClicked(cellId) {
