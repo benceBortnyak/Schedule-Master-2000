@@ -27,7 +27,8 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
                 "JOIN slots AS s ON s.column_id = c.column_id " +
                 "JOIN slots_tasks AS st ON st.slot_id = s.slot_id " +
                 "JOIN tasks AS t ON t.task_id = st.task_id " +
-                "WHERE sche.schedule_id = ?";
+                "WHERE sche.schedule_id = ?" +
+                "GROUP BY sche.schedule_id, t.task_id";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
             preparedStatement.setInt(1, scheduleId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
