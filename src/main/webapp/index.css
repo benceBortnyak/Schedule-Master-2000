@@ -269,3 +269,7 @@ td {
     padding: 0;
     margin: 0;
 }
+
+.activeTaskBg {
+    background: rgba(28, 210, 0, 0.5);
+}

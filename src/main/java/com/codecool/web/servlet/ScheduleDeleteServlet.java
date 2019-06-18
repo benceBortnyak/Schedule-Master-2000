@@ -23,12 +23,13 @@ public class ScheduleDeleteServlet extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
         try(Connection connection = getConnection(req.getServletContext())){
             ScheduleDao scheduleDao = new DatabaseScheduleDao(connection);
             ScheduleService scheduleService = new SimpleScheduleService(scheduleDao);
             int scheduleId =Integer.valueOf(req.getParameter("id"));
             scheduleService.deleteSchedule(scheduleId);
-            sendMessage(resp, HttpServletResponse.SC_OK,scheduleId);
+            sendMessage(resp, HttpServletResponse.SC_OK, scheduleId);
 
         }catch (SQLException ex){
             logger.debug(ex.getMessage());
