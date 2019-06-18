@@ -167,6 +167,7 @@ function onUpdateScheduleButtonClicked() {
     params.append('length', len);
     params.append('scheduleType', published);
     const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onScheduleResponse);
     xhr.open('POST', 'update_schedule');
     xhr.send(params);
 

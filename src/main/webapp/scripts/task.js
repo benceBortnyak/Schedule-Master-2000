@@ -1,3 +1,4 @@
+
 function onCellIdListReceived() {
     const cellIdList = JSON.parse(this.responseText);
     const tdList = document.getElementsByTagName('td');
@@ -36,7 +37,7 @@ function loadCellIdList(task) {
 }
 
 function onLoadTasks() {
-    activeTasksList = JSON.parse(this.responseText);
+    let activeTasksList = JSON.parse(this.responseText);
     for (let i = 0; i < activeTasksList.length; i++) {
         loadCellIdList(activeTasksList[i]);
     }
