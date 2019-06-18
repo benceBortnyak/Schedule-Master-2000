@@ -1,11 +1,13 @@
 function onCellIdListReceived() {
+    let taskIndex = 0;
     const cellIdList = JSON.parse(this.responseText);
     const tdList = document.getElementsByTagName('td');
     for (let i = 0; i < tdList.length; i++) {
         const tdEl = tdList[i];
         if (tdEl.id == cellIdList[0]) {
             tdEl.setAttribute("rowspan", cellIdList.length);
-            // tdEl.textContent = globalTask.title;
+            tdEl.textContent = activeTasksList[taskIndex].title;
+            taskIndex++;
             tdEl.removeEventListener('mouseover', mouseOverCell);
             tdEl.removeEventListener('mouseout', mouseOutCell);
             tdEl.classList.add('activeTaskBg');
