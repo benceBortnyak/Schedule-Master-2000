@@ -1,3 +1,28 @@
+function onTaskUpdateResponse() {
+    showContents(['main-content']);
+    createTaskTable();
+}
+
+function onUpdateTaskButtonClicked() {
+    const id = this.getAttribute('taskId');
+    const taskFormEl = document.forms['task-form'];
+    const taskTitleEl = taskFormEl.querySelector('input[name="taskTitle"]');
+    const taskContentEl = taskFormEl.querySelector('input[name="task-content"]');
+    const title = taskTitleEl.value;
+    const content = taskContentEl.value;
+
+    const params = new URLSearchParams();
+    params.append('taskId', id);
+    params.append('title', title);
+    params.append('content', content);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onTaskUpdateResponse);
+    xhr.open('POST', 'update_task');
+    xhr.send(params);
+
+}
+
 function onTaskDeleted() {
     showContents(['main-content']);
     createTaskTable();
@@ -19,59 +44,10 @@ function showTaskPopUp(task) {
     taskTitleEl.value = task.title;
     taskContentEl.value = task.content;
     const updateButtonEl = document.getElementById('taskSave-button');
-    //updateButtonEl.addEventListener('click', onUpdateTaskButtonClicked);
+    updateButtonEl.addEventListener('click', onUpdateTaskButtonClicked);
     const deleteButtonEl = document.getElementById('taskDelete-button');
     deleteButtonEl.setAttribute('taskId', task.id);
     deleteButtonEl.addEventListener('click', onDeleteTaskButtonClicked);
-}
-
-function onCellClicked() {
-    const id = this.getAttribute('taskId');
-    for (let i = 0; i<activeTasksList.length; i++) {
-        if(id == activeTasksList[i].id){
-            showTaskPopUp(activeTasksList[i]);
-        }
-    }
-}
-
-function onCellIdListReceived() {
-    const cellIdList = JSON.parse(this.responseText);
-    const tdList = document.getElementsByTagName('td');
-    for (let i = 0; i < tdList.length; i++) {
-        const tdEl = tdList[i];
-        if (tdEl.id == cellIdList[0]) {
-            tdEl.textContent = activeTask.title;
-            tdEl.setAttribute("rowspan", cellIdList.length);
-            tdEl.removeEventListener('mouseover', mouseOverCell);
-            tdEl.removeEventListener('mouseout', mouseOutCell);
-            tdEl.setAttribute('href', 'javascript:void(0);');
-            tdEl.setAttribute('taskId', activeTask.id);
-            tdEl.addEventListener('click', onCellClicked);
-            tdEl.classList.add('activeTaskBg');
-            for (let j = 1; j <= cellIdList.length; j++) {
-                let cellIdToRemove = cellIdList[j];
-                for (let k = 0; k < tdList.length; k++) {
-                    const cell = tdList[k];
-                    if (cell.id == cellIdToRemove) {
-                        cell.remove();
-                        delete tdList[k];
-                    }
-                }
-            }
-        }
-    }
-}
-
-function loadCellIdList(task) {
-    const id = task.id;
-    const params = new URLSearchParams();
-    params.append('id', id);
-
-    const xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', () => {activeTask = task;});
-    xhr.addEventListener('load', onCellIdListReceived);
-    xhr.open('GET', 'task?' + params.toString());
-    xhr.send();
 }
 
 function onLoadTasks() {
