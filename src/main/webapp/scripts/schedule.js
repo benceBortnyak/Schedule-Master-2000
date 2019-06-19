@@ -137,18 +137,12 @@ function onDeleteScheduleClicked() {
 function onUpdateScheduleClicked() {
     sid = this.getAttribute('scheduleId');
     showContents(['main-content', 'scheduleUpdate-content']);
-    let active;
-    for(let i = 0; i<scheduleList.length; i++){
-        const schedule = scheduleList[i];
-        if(sid == schedule.id){
-            active = schedule;
-        }
-    }
+
     const scheduleUpdateFormEl = document.forms['scheduleUpdate-form'];
     const scheduleTitleEl = scheduleUpdateFormEl.querySelector('input[name="scheduleTitle"]');
     const scheduleLenEl = scheduleUpdateFormEl.querySelector('input[name="scheduleLen"]');
-    scheduleTitleEl.value = active.title;
-    scheduleLenEl.value = active.length;
+    scheduleTitleEl.value = activeSchedule.title;
+    scheduleLenEl.value = activeSchedule.length;
 
     const updateButtonEl = document.getElementById('updateButton');
     updateButtonEl.addEventListener('click', onUpdateScheduleButtonClicked);
@@ -158,20 +152,13 @@ function onUpdateScheduleClicked() {
 }
 
 function onUpdateScheduleButtonClicked() {
-    let active;
-    for(let i = 0; i<scheduleList.length; i++){
-        const schedule = scheduleList[i];
-        if(sid == schedule.id){
-            active = schedule;
-        }
-    }
+
     const scheduleUpdateFormEl = document.forms['scheduleUpdate-form'];
     const scheduleTitleEl = scheduleUpdateFormEl.querySelector('input[name="scheduleTitle"]');
     const scheduleLenEl = scheduleUpdateFormEl.querySelector('input[name="scheduleLen"]');
     const title = scheduleTitleEl.value;
     const len = scheduleLenEl.value;
     let published;
-
 
     if (document.getElementById('published').checked === true) {
         published = 'PUBLIC';

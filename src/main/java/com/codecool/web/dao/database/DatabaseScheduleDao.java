@@ -23,7 +23,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     public List<Schedule> findAll() throws SQLException {
         
         List<Schedule> scheduleList = new ArrayList<>();
-        String sqlString = "SELECT * FROM schedules";
+        String sqlString = "SELECT * FROM schedules order by schedule_id";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sqlString)) {
             while (resultSet.next()) {
@@ -88,9 +88,6 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
             Schedule actualSchedule = findById(scheduleId);
             Schedule newSchedule = new Schedule(-1,-1,title,length,scheduleType);
 
-
-
-
             if(actualSchedule.getTitle().equals(newSchedule.getTitle())){
                 newTitle = title;
             }else{
@@ -113,7 +110,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
 
             boolean autoCommit = connection.getAutoCommit();
             connection.setAutoCommit(false);
-            String sqlString = "UPDATE schedules SET title = ?, length = ?,type = ? WHERE schedule_id = ?";
+            String sqlString = "UPDATE schedules SET title = ?, length = ?,type = CAST(? AS schedule_type) WHERE schedule_id = ?";
             try(PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
                 preparedStatement.setString(1, newTitle);
                 preparedStatement.setInt(2, newLength);
@@ -155,7 +152,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     @Override
     public List<Schedule> findAllByUserId(int userId) throws SQLException {
         List<Schedule> scheduleList = new ArrayList<>();
-        String sqlString = "SELECT * FROM schedules WHERE user_id = ?";
+        String sqlString = "SELECT * FROM schedules WHERE user_id = ? ORDER BY schedule_id";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlString)) {
              preparedStatement.setInt(1,userId);
              ResultSet resultSet = preparedStatement.executeQuery();
