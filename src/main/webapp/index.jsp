@@ -84,6 +84,7 @@
                 <input name="scheduleLen" type="number" required/>
                 <input id="published" type="checkbox"/>
                 <button id="updateButton">Update schedule</button>
+                <button id="deleteButton">Delete schedule</button>
             </div>
         </form>
     </div>

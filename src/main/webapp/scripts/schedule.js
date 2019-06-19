@@ -33,14 +33,12 @@ function onScheduleClicked() {
 
 function onAddScheduleResponse() {
     activeSchedule = JSON.parse(this.responseText);
-    //setActiveClass('sideNavList', activeSchedule.id);
     document.getElementById('sideNavList').remove();
     onLoadSchedules(getAuthorization().id);
 }
 
 function onDeleteScheduleResponse() {
     activeSchedule = scheduleList[0];
-    //setActiveClass('sideNavList', activeSchedule.id);
     document.getElementById('sideNavList').remove();
     onLoadSchedules(getAuthorization().id);
 }
@@ -114,6 +112,7 @@ function onLoadSchedules(id) {
 }
 
 function onDeleteScheduleClicked() {
+    showContents(['main-content']);
     const params = new URLSearchParams();
     params.append('id', sid);
     const xhr = new XMLHttpRequest();
@@ -123,6 +122,9 @@ function onDeleteScheduleClicked() {
 }
 
 function onUpdateScheduleClicked() {
+    sid = this.getAttribute('scheduleId');
+    console.log(sid);
+    showContents(['main-content', 'scheduleUpdate-content']);
     let active;
     for(let i = 0; i<scheduleList.length; i++){
         const schedule = scheduleList[i];
@@ -130,14 +132,17 @@ function onUpdateScheduleClicked() {
             active = schedule;
         }
     }
-    showContents(['main-content', 'scheduleUpdate-content']);
     const scheduleUpdateFormEl = document.forms['scheduleUpdate-form'];
     const scheduleTitleEl = scheduleUpdateFormEl.querySelector('input[name="scheduleTitle"]');
     const scheduleLenEl = scheduleUpdateFormEl.querySelector('input[name="scheduleLen"]');
     scheduleTitleEl.value = active.title;
     scheduleLenEl.value = active.length;
+
     const updateButtonEl = document.getElementById('updateButton');
-    updateButtonEl.addEventListener('click', onUpdateScheduleButtonClicked)
+    updateButtonEl.addEventListener('click', onUpdateScheduleButtonClicked);
+
+    const deleteButtonEl = document.getElementById('deleteButton');
+    deleteButtonEl.addEventListener('click', onDeleteScheduleClicked);
 }
 
 function onUpdateScheduleButtonClicked() {

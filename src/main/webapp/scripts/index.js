@@ -25,24 +25,11 @@ window.onclick = function (e) {
     }
 }
 
-window.onclick = function (e) {
-    if (!e.target.matches('.dropbtn')) {
-        var myDropdown = document.getElementById("scheduleDropdown");
-        if(myDropdown != null) {
-            if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
-            }
-        }
-    }
-}
 
 function showDropdown() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
-function showScheduleDropdown() {
-    document.getElementById("scheduleDropdown").classList.toggle("show");
-}
 
 function hasAuthorization() {
     return localStorage.getItem('user') !== null;
