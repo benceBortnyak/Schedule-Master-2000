@@ -44,6 +44,7 @@ function showTaskPopUp(task) {
     taskTitleEl.value = task.title;
     taskContentEl.value = task.content;
     const updateButtonEl = document.getElementById('taskSave-button');
+    updateButtonEl.setAttribute("taskId", task.id);
     updateButtonEl.addEventListener('click', onUpdateTaskButtonClicked);
     const deleteButtonEl = document.getElementById('taskDelete-button');
     deleteButtonEl.setAttribute('taskId', task.id);
