@@ -77,6 +77,7 @@ function createScheduleList(scheduleList) {
         pEl.setAttribute('id', schedule.id);
         /*pEl.appendChild(menuButton);*/
         pEl.classList.add('passive');
+        pEl.classList.add('schedule');
         pEl.appendChild(aEl);
         pEl.addEventListener('click', onScheduleClicked);
 

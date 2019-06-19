@@ -76,7 +76,6 @@ function loadCellIdList(task) {
 
 function onLoadTasks() {
     activeTasksList = JSON.parse(this.responseText);
-    console.log(activeTasksList);
     for (let i = 0; i < activeTasksList.length; i++) {
         loadCellIdList(activeTasksList[i]);
     }
@@ -121,7 +120,6 @@ function onNewTaskButtonClicked(cellId) {
     params.append('len', len);
     params.append('cellId', cellId);
     params.append('user_id', getAuthorization().id);
-
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onAddTaskResponse);
     xhr.open('POST', 'task');

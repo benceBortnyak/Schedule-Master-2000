@@ -140,12 +140,40 @@ function onLoadSchedules(id) {
 
 function onDeleteScheduleClicked() {
     showContents(['main-content']);
-    const params = new URLSearchParams();
+    const scheduleEls = document.getElementById('sideNavList').getElementsByClassName('schedule');
+    for(let i = 0; i<scheduleEls.length; i++){
+        let scheduleEl = scheduleEls[i];
+        if(scheduleEl.id == activeSchedule.id){
+            scheduleEl.style.display= 'none';
+        }
+    }
+    for (let i = 0; i<scheduleEls.length; i++){
+        let scheduleEL = scheduleEls[i];
+        if(!scheduleEL.hasAttribute('style')){
+            for(let j = 0; j<scheduleList.length; j++){
+                if(scheduleEL.id == scheduleList[j].id){
+                    activeSchedule = scheduleList[j];
+                    setActiveClass('sideNavList', activeSchedule.id);
+                    createTaskTable();
+                }
+            }
+            break;
+        }
+    }
+    /*for(let j = 0; j<scheduleList.length; j++){
+        if(scheduleEl.id == scheduleList[j].id){
+            if(!scheduleEl.hasAttribute('style')){
+
+            }
+        }
+    }*/
+    /*const params = new URLSearchParams();
     params.append('id', sid);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onDeleteScheduleResponse);
     xhr.open('POST', 'delete_schedule');
-    xhr.send(params);
+    xhr.send(params);*/
+
 }
 
 function onUpdateScheduleClicked() {
