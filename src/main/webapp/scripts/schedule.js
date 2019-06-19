@@ -9,10 +9,23 @@ function setActiveClass(elId, id) {
     const scheduleEls = document.getElementById(elId).getElementsByClassName('passive');
     for (let i = 0; i < scheduleEls.length; i++) {
         const scheduleEl = scheduleEls[i];
+        let menuButton = document.createElement('button');
+        menuButton.innerHTML = "&#9881";
+        menuButton.classList.add('newScheduleButton');
+        menuButton.setAttribute('scheduleId', scheduleEl.id);
+        menuButton.addEventListener('click', onUpdateScheduleClicked);
+        /*menuButton.setAttribute('id',schedule.id);*/
         if (id == scheduleEl.id) {
             scheduleEl.classList.add('active');
+            if(scheduleEl.childNodes.length < 2) {
+                scheduleEl.insertBefore(menuButton, scheduleEl.firstChild);
+            }
         } else {
             scheduleEl.classList.remove('active');
+            if(scheduleEl.childNodes.length > 1) {
+                scheduleEl.removeChild(scheduleEl.firstChild);
+            }
+
         }
     }
 }
@@ -123,7 +136,6 @@ function onDeleteScheduleClicked() {
 
 function onUpdateScheduleClicked() {
     sid = this.getAttribute('scheduleId');
-    console.log(sid);
     showContents(['main-content', 'scheduleUpdate-content']);
     let active;
     for(let i = 0; i<scheduleList.length; i++){

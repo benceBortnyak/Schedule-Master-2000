@@ -73,21 +73,12 @@ function createScheduleList(scheduleList) {
         aEl.setAttribute('href', 'javascript:void(0);');
         aEl.setAttribute('id', schedule.id);
 
-        let menuButton = document.createElement('button');
-        menuButton.innerHTML = "&#9881";
-        menuButton.classList.add('newScheduleButton');
-        menuButton.setAttribute('scheduleId', schedule.id);
-        menuButton.addEventListener('click', onUpdateScheduleClicked);
-        menuButton.setAttribute('id',schedule.id);
-
-
         const pEl = document.createElement('p');
         pEl.setAttribute('id', schedule.id);
-        pEl.appendChild(menuButton);
+        /*pEl.appendChild(menuButton);*/
         pEl.classList.add('passive');
         pEl.appendChild(aEl);
         pEl.addEventListener('click', onScheduleClicked);
-
 
         ulEl.appendChild(pEl);
     }
