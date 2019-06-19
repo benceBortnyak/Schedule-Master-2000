@@ -51,9 +51,23 @@ function onAddScheduleResponse() {
 }
 
 function onDeleteScheduleResponse() {
-    activeSchedule = scheduleList[0];
-    document.getElementById('sideNavList').remove();
-    onLoadSchedules(getAuthorization().id);
+    if(this.status == OK){
+        for(let i = 0; i<scheduleList.length; i++){
+            const schedule = scheduleList[i];
+            if(activeSchedule.id == schedule.id){
+                scheduleList.splice(i, 1);
+            }
+        }
+        if(scheduleList.length > 0){
+            activeSchedule = scheduleList[0];
+        }else {
+            activeSchedule = null;
+        }
+        document.getElementById('sideNavList').remove();
+        onLoadSchedules(getAuthorization().id);
+
+    }
+
 }
 
 function newScheduleButtonClicked() {
@@ -137,7 +151,6 @@ function onDeleteScheduleClicked() {
 function onUpdateScheduleClicked() {
     sid = this.getAttribute('scheduleId');
     showContents(['main-content', 'scheduleUpdate-content']);
-
     const scheduleUpdateFormEl = document.forms['scheduleUpdate-form'];
     const scheduleTitleEl = scheduleUpdateFormEl.querySelector('input[name="scheduleTitle"]');
     const scheduleLenEl = scheduleUpdateFormEl.querySelector('input[name="scheduleLen"]');
@@ -152,7 +165,7 @@ function onUpdateScheduleClicked() {
 }
 
 function onUpdateScheduleButtonClicked() {
-
+    showContents(['main-content']);
     const scheduleUpdateFormEl = document.forms['scheduleUpdate-form'];
     const scheduleTitleEl = scheduleUpdateFormEl.querySelector('input[name="scheduleTitle"]');
     const scheduleLenEl = scheduleUpdateFormEl.querySelector('input[name="scheduleLen"]');
@@ -171,7 +184,7 @@ function onUpdateScheduleButtonClicked() {
     params.append('length', len);
     params.append('scheduleType', published);
     const xhr = new XMLHttpRequest();
-    //xhr.addEventListener('load', onUpdateScheduleResponse);
+    xhr.addEventListener('load', onAddScheduleResponse);
     xhr.open('POST', 'update_schedule');
     xhr.send(params);
 

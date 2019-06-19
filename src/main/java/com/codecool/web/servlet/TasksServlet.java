@@ -32,6 +32,7 @@ public class TasksServlet extends AbstractServlet {
             TaskService taskService = new SimpleTaskSerive(taskDao);
             int id = Integer.parseInt(req.getParameter("id"));
             List<Task> taskList = taskService.findAllByScheduleId(id);
+            System.out.println(taskList);
             sendMessage(resp,HttpServletResponse.SC_OK, taskList);
             logger.info("Tasks sent");
         }catch (SQLException e){

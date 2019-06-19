@@ -80,6 +80,7 @@ function loadCellIdList(task) {
 
 function onLoadTasks() {
     activeTasksList = JSON.parse(this.responseText);
+    console.log(activeTasksList);
     for (let i = 0; i < activeTasksList.length; i++) {
         loadCellIdList(activeTasksList[i]);
     }
@@ -87,6 +88,7 @@ function onLoadTasks() {
 
 function loadTasks() {
     const id = activeSchedule.id;
+
     const params = new URLSearchParams();
     params.append('id', id);
 
