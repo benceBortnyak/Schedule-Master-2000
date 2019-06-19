@@ -1,6 +1,3 @@
-
-
-
 function onTaskDeleted() {
     showContents(['main-content']);
     createTaskTable();
@@ -35,7 +32,6 @@ function onCellClicked() {
             showTaskPopUp(activeTasksList[i]);
         }
     }
-
 }
 
 function onCellIdListReceived() {

@@ -97,14 +97,18 @@ insert into schedules(user_id, title, length, type) values (1, 'Class schedule',
 insert into schedules(user_id, title, length, type) values (1, 'Time table',2, 'PUBLIC');
  insert into tasks(user_id,title,content) values(1, 'Gardening', 'I really love gardening!');
 insert into tasks(user_id,title,content) values(1, 'Cooking', 'I really love cooking!');
-insert into slots_tasks (slot_id, task_id) values (1,1);
-insert into slots_tasks (slot_id, task_id) values (2,1);
-insert into slots_tasks (slot_id, task_id) values (3,1);
-insert into slots_tasks (slot_id, task_id) values (6,2);
-insert into slots_tasks (slot_id, task_id) values (7,2);
-insert into slots_tasks (slot_id, task_id) values (8,2);
-insert into slots_tasks (slot_id, task_id) values (9,2);
-insert into slots_tasks (slot_id, task_id) values (10,2);
+
+update slots_tasks set task_id = 1 where slot_id = 1;
+update slots_tasks set task_id = 1 where slot_id = 2;
+update slots_tasks set task_id = 1 where slot_id = 3;
+
+update slots_tasks set task_id = 2 where slot_id = 6;
+update slots_tasks set task_id = 2 where slot_id = 7;
+update slots_tasks set task_id = 2 where slot_id = 8;
+update slots_tasks set task_id = 2 where slot_id = 9;
+update slots_tasks set task_id = 2 where slot_id = 10;
+
+
 
 
 
