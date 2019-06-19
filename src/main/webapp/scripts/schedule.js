@@ -50,7 +50,7 @@ function onAddScheduleResponse() {
     onLoadSchedules(getAuthorization().id);
 }
 
-function onDeleteScheduleResponse() {
+/*function onDeleteScheduleResponse() {
     if(this.status == OK){
         for(let i = 0; i<scheduleList.length; i++){
             const schedule = scheduleList[i];
@@ -68,7 +68,7 @@ function onDeleteScheduleResponse() {
 
     }
 
-}
+}*/
 
 function newScheduleButtonClicked() {
     const scheduleFormEl = document.forms['addSchedule-content'];
@@ -160,13 +160,6 @@ function onDeleteScheduleClicked() {
             break;
         }
     }
-    /*for(let j = 0; j<scheduleList.length; j++){
-        if(scheduleEl.id == scheduleList[j].id){
-            if(!scheduleEl.hasAttribute('style')){
-
-            }
-        }
-    }*/
     /*const params = new URLSearchParams();
     params.append('id', sid);
     const xhr = new XMLHttpRequest();
