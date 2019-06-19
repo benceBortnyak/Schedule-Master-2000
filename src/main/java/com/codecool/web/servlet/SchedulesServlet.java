@@ -57,9 +57,11 @@ public class SchedulesServlet extends AbstractServlet {
             logger.info("Schedule with id: "+ id +" added as: " + title);
         } catch (SQLException e) {
             logger.debug(e.getMessage());
+            sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
             e.printStackTrace();
         } catch (ServiceException e) {
             logger.debug(e.getMessage());
+            sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
             e.printStackTrace();
         }
     }
