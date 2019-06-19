@@ -34,9 +34,11 @@ public class ScheduleServlet extends AbstractServlet {
             logger.info("Schedule found and sent");
         } catch (SQLException e) {
             logger.debug(e.getMessage());
+            sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
             e.printStackTrace();
         } catch (ServiceException e) {
             logger.debug(e.getMessage());
+            sendMessage(resp, HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
             e.printStackTrace();
         }
     }
