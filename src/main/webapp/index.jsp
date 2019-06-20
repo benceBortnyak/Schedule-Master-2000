@@ -104,8 +104,7 @@
 
 <div id="welcome-content" class="content">
     <div style="float: left; width: 50%; padding: 20% 0">
-        <p>Welcome to our schedule manager apps!<br>
-            You can manage daily tasks</p>
+        <p style="font-family: 'futura'; font-size: 42px">Welcome to Schedule Ninja 3000!</p>
         <button style="width: 30%" id="toLogin-button">Press to Login</button>
         <button style="width: 30%" id="toSignUp-button">Press to Sign Up</button>
     </div>
