@@ -2,17 +2,19 @@ let sid;
 
 function mouseOutCell() {
     const el = this;
-    el.removeChild(el.firstChild);
+    /*el.removeChild(el.firstChild);*/
+    el.classList.remove('activeTaskBg');
 }
 
 function mouseOverCell(){
     const el = this;
-    const addTaskButton = document.createElement('button');
+    /*const addTaskButton = document.createElement('button');
     addTaskButton.setAttribute('id', 'addTaskButton');
-    addTaskButton.textContent = '+';
+    addTaskButton.textContent = '+';*/
+    el.classList.add('activeTaskBg');
     const cellId = el.id;
-    addTaskButton.addEventListener('click', function(){onTaskButtonClicked(cellId)});
-    el.appendChild(addTaskButton);
+    el.addEventListener('click', function(){onTaskButtonClicked(cellId)});
+    /*el.appendChild(addTaskButton);*/
 }
 
 
