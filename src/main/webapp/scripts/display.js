@@ -5,7 +5,7 @@ function mouseOutCell() {
     el.removeChild(el.firstChild);
 }
 
-function mouseOverCell() {
+function mouseOverCell(){
     const el = this;
     const addTaskButton = document.createElement('button');
     addTaskButton.setAttribute('id', 'addTaskButton');
@@ -14,6 +14,7 @@ function mouseOverCell() {
     addTaskButton.addEventListener('click', function(){onTaskButtonClicked(cellId)});
     el.appendChild(addTaskButton);
 }
+
 
 function createAddScheduleForm(){
     const formEl = document.createElement('form');

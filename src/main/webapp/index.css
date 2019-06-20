@@ -3,7 +3,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
+    margin: 0;
     overflow: auto;
+    max-height: 768px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     /*    font-family: "Lato", sans-serif;*/
 }
@@ -27,7 +29,7 @@ div.topnav ul {
 
 div.topnav a {
     float: left;
-    padding: 2% 10%;
+    padding: 1% 10%;
     font-size: 16px;
     text-align: center;
     text-decoration: none;
@@ -134,7 +136,7 @@ button {
     color: white;
     padding: 0;
     margin: 0;
-    width: 100%;
+    width: 80%;
     background-color: inherit;
     font-family: inherit;
 }

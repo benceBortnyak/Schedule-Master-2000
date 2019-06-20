@@ -37,4 +37,22 @@ public class UpdateTaskServlet extends AbstractServlet {
             e.printStackTrace();
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+        try (Connection connection = getConnection(req.getServletContext())) {
+            TaskDao taskDao = new DatabaseTaskDao(connection);
+            TaskService taskService = new SimpleTaskSerive(taskDao);
+            int taskId = Integer.parseInt(req.getParameter("taskId"));
+            String title = req.getParameter("title");
+            String content = req.getParameter("content");
+            taskService.updateTask(taskId, title, content);
+            sendMessage(resp, HttpServletResponse.SC_OK, "task updated");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+    }
 }
