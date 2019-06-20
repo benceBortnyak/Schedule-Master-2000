@@ -164,6 +164,12 @@
             </p>
         </form>
     </div>
+    <div id = "log" class = "hidden content modal">
+
+
+
+    </div>
+
 </div>
 
 </body>
