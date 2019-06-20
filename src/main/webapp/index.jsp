@@ -44,8 +44,6 @@
                     <button id="logout-button" onclick="signOut()">Logout</button>
                 </div>
             </div>
-            <a>Home</a>
-            <a style="float: right">Schedules</a>
         </ul>
     </div>
     <div id="schedules">

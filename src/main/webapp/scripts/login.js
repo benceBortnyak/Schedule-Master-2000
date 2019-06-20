@@ -5,7 +5,9 @@ function onLoginResponse() {
         setAuthorization(user);
         if (hasAuthorization()) {
             showContents(['main-content']);
+            createDrop();
             onLoadProfile(getAuthorization());
+
         }
     }else if(this.status === UNAUTHORIZED){
         alert("Your email address or password was incorrect!");
