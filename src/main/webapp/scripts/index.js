@@ -15,6 +15,7 @@ let tableDivEl;
 let activeSchedule;
 let activeTask;
 let activeTasksList;
+let dropEl;
 
 window.onclick = function (e) {
     if (!e.target.matches('.dropbtn')) {
@@ -117,7 +118,20 @@ function onCloseToWelcomeClicked() {
     showContents(['welcome-content'])
 }
 
+function createDrop() {
+    const adminButtonEl = document.createElement('button');
+    adminButtonEl.setAttribute('id', 'adminButton');
+    adminButtonEl.textContent = 'Logging';
+    //adminButtonEl.addEventListener('click', onAdminButtonClicked);
+    console.log(adminButtonEl);
+    if(getAuthorization().userType == 'ADMIN'){
+        dropEl.appendChild(adminButtonEl);
+    }
+
+}
+
 function onLoad() {
+    dropEl = document.getElementById('myDropdown');
     loginContentDivEl = document.getElementById('login-content');
     mainContentDivEl = document.getElementById('main-content');
     signUpContentDivEl = document.getElementById('signUp-content');
@@ -128,14 +142,17 @@ function onLoad() {
     tableDivEl = tableDivEl = document.getElementById('table-content');
     activeSchedule = null;
 
-    const signUpButtonEl = document.getElementById('signUp-button');
+    const profileButtonEl = document.getElementById('profile-button');
+    profileButtonEl.addEventListener('click', onProfileButtonClicked);
+
+    const logoutButtonEl = document.getElementById('logout-button');
+    logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
+
+    const signUpButtonEl = document.createElement('signUp-button');
     signUpButtonEl.addEventListener('click', onSignUpButtonClicked);
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
-
-    const profileButtonEl = document.getElementById('profile-button');
-    profileButtonEl.addEventListener('click', onProfileButtonClicked);
 
     const toLoginButtonEl = document.getElementById('toLogin-button');
     toLoginButtonEl.addEventListener('click', backToLoginButtonClicked);
@@ -151,9 +168,6 @@ function onLoad() {
 
     const closeSignUpButtonEl = document.getElementById('closeSignUp-button');
     closeSignUpButtonEl.addEventListener('click', onCloseToWelcomeClicked);
-
-    const logoutButtonEl = document.getElementById('logout-button');
-    logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
 
     const closeNewTaskButtonEl = document.getElementById('closeNewTask-button');
     closeNewTaskButtonEl.addEventListener('click', onCloseToMainClicked);
