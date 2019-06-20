@@ -4,6 +4,7 @@ function mouseOutCell() {
     const el = this;
     /*el.removeChild(el.firstChild);*/
     el.classList.remove('activeTaskBg');
+    el.textContent = "";
 }
 
 function mouseOverCell(){
@@ -11,6 +12,7 @@ function mouseOverCell(){
     /*const addTaskButton = document.createElement('button');
     addTaskButton.setAttribute('id', 'addTaskButton');
     addTaskButton.textContent = '+';*/
+    el.textContent = '+';
     el.classList.add('activeTaskBg');
     const cellId = el.id;
     el.addEventListener('click', function(){onTaskButtonClicked(cellId)});
