@@ -10,6 +10,7 @@ function onLogoutResponse() {
 }
 
 function onLogoutButtonClicked() {
+    activeSchedule = null;
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onLogoutResponse);
     xhr.addEventListener('error', onNetworkError);

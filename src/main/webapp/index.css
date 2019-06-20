@@ -1,11 +1,11 @@
+
 body {
-    background: #cccccc;
+    background: #ccc6;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
     margin: 0;
     overflow: auto;
-    max-height: 768px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     /*    font-family: "Lato", sans-serif;*/
 }
@@ -74,7 +74,7 @@ div.sidenav p:hover {
 
 div.schedules {
     width: 60%;
-    height: 580px;
+    height: 655px;
     float: left;
     overflow: auto;
     text-decoration: none;
@@ -83,6 +83,7 @@ div.schedules {
     background-color: rgba(255,255,255,0.6);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 div.schedules a {
@@ -275,3 +276,14 @@ td {
 .activeTaskBg {
     background: rgba(28, 210, 0, 0.5);
 }
+
+table {
+    height: 100%;
+    border-collapse: collapse;
+    border: 0.5px solid #363030;
+}
+
+th, td {
+    border: 0.5px solid #363030;
+}
+
