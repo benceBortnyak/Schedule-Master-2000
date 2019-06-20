@@ -64,6 +64,9 @@ function createTaskTable() {
     if (document.getElementById('taskTable') !== null) {
         document.getElementById('taskTable').remove();
     }
+    if (document.getElementById('logTable') !== null) {
+        document.getElementById('logTable').remove();
+    }
     const tableEl = document.createElement('table');
     tableEl.setAttribute('id', 'taskTable');
     tableEl.appendChild(createTableHead());
