@@ -90,7 +90,7 @@ function onCellIdListReceived() {
             tdEl.setAttribute("rowspan", cellIdList.length);
             tdEl.removeEventListener('mouseover', mouseOverCell);
             tdEl.removeEventListener('mouseout', mouseOutCell);
-            tdEl.setAttribute('href', 'javascript:void(0);');
+            /*tdEl.setAttribute('href', 'javascript:void(0);');*/
             tdEl.setAttribute('taskId', activeTask.id);
             tdEl.addEventListener('click', onCellClicked);
             tdEl.classList.add('activeTaskBg');

@@ -22,18 +22,23 @@ function createAddScheduleForm(){
     formEl.setAttribute('onsubmit','return false;');
     formEl.setAttribute('id', 'addSchedule-content');
 
+    const p1El = document.createElement('p');
+    const p2El = document.createElement('p');
+
     const titleEl = document.createElement('input');
     titleEl.setAttribute('type', 'text');
     titleEl.setAttribute('placeholder', 'Type your schedule title');
     titleEl.setAttribute('name', 'scheduleTitle');
     titleEl.required = true;
 
+    p1El.appendChild(titleEl);
+
     const checkboxEl = document.createElement('input');
     checkboxEl.setAttribute('type', 'checkbox');
     checkboxEl.setAttribute('id', 'isPublished');
 
     const labelEl1 = document.createElement('label');
-    labelEl1.textContent = 'public';
+    labelEl1.innerHTML = '&nbsp; &nbsp; &#127866;';
     labelEl1.appendChild(checkboxEl);
 
     const addButtonEl = document.createElement('button');
@@ -45,8 +50,16 @@ function createAddScheduleForm(){
     selectEl.setAttribute('name', 'scheduleLength');
 
     const labelEl2 = document.createElement('label');
-    labelEl2.textContent = 'length';
+    labelEl2.innerHTML = '&#128197;';
     labelEl2.appendChild(selectEl);
+
+    const labelEl3 = document.createElement('label');
+    labelEl3.innerHTML = '&nbsp; &nbsp;';
+    labelEl3.appendChild(addButtonEl);
+
+    p2El.appendChild(labelEl2);
+    p2El.appendChild(labelEl1);
+    p2El.appendChild(labelEl3);
 
     for(let i=1; i<=7; i++){
         const opEl = document.createElement('option');
@@ -55,10 +68,12 @@ function createAddScheduleForm(){
         selectEl.appendChild(opEl);
     }
 
-    formEl.appendChild(titleEl);
+    /*formEl.appendChild(titleEl);
     formEl.appendChild(labelEl2);
     formEl.appendChild(labelEl1);
-    formEl.appendChild(addButtonEl);
+    formEl.appendChild(addButtonEl);*/
+    formEl.appendChild(p1El);
+    formEl.appendChild(p2El);
 
     return formEl;
 }
@@ -86,12 +101,13 @@ function createScheduleList(scheduleList) {
     }
 
     const addSchedulePEl = document.createElement('a');
+    const pEl = document.createElement('p');
     addSchedulePEl.textContent = '+ schedule';
     addSchedulePEl.setAttribute('id', 'addSchedule-button');
     addSchedulePEl.setAttribute('href', 'javascript:void(0);');
+    pEl.appendChild(addSchedulePEl);
 
-
-    ulEl.appendChild(addSchedulePEl);
+    ulEl.appendChild(pEl);
     ulEl.appendChild(createAddScheduleForm());
     return ulEl;
 }
