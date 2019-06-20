@@ -122,8 +122,7 @@ function createDrop() {
     const adminButtonEl = document.createElement('button');
     adminButtonEl.setAttribute('id', 'adminButton');
     adminButtonEl.textContent = 'Logging';
-    //adminButtonEl.addEventListener('click', onAdminButtonClicked);
-    console.log(adminButtonEl);
+    adminButtonEl.addEventListener('click', onLoggerButtonClicked);
     if(getAuthorization().userType == 'ADMIN'){
         dropEl.appendChild(adminButtonEl);
     }

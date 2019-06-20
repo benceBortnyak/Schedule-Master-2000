@@ -18,6 +18,8 @@
     <c:url value="/scripts/google.js" var="googleScriptUrl"/>
     <c:url value="/scripts/display.js" var="sidenavScriptUrl"/>
     <c:url value="/scripts/task.js" var="taskScriptUrl"/>
+    <c:url value="/scripts/logger.js" var="logScriptUrl"/>
+    <script src="${logScriptUrl}"></script>
     <script src="${taskScriptUrl}"></script>
     <script src="${sidenavScriptUrl}"></script>
     <script src="${tableScriptUrl}"></script>
@@ -163,9 +165,7 @@
             </p>
         </form>
     </div>
-    <div id = "log" class = "hidden content modal">
-
-
+    <div id = "log" class = "hidden content">
 
     </div>
 

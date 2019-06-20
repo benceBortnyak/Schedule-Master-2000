@@ -14,4 +14,24 @@ public class Log {
         this.origin = origin;
         this.message = message;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getRoot() {
+        return root;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
