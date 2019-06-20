@@ -21,6 +21,7 @@ function createAddScheduleForm(){
     formEl.classList.add('hidden');
     formEl.setAttribute('onsubmit','return false;');
     formEl.setAttribute('id', 'addSchedule-content');
+    formEl.setAttribute('style', 'font-size: 30px;');
 
     const p1El = document.createElement('p');
     const p2El = document.createElement('p');
@@ -103,7 +104,7 @@ function createScheduleList(scheduleList) {
     const addSchedulePEl = document.createElement('a');
     const pEl = document.createElement('p');
     addSchedulePEl.textContent = '+ schedule';
-    addSchedulePEl.setAttribute('id', 'addSchedule-button');
+    pEl.setAttribute('id', 'addSchedule-button');
     addSchedulePEl.setAttribute('href', 'javascript:void(0);');
     pEl.appendChild(addSchedulePEl);
 
